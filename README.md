@@ -19,8 +19,8 @@ SASM (Scriptable ASseMbler) is a x86 assembler with ECMAScript as (additional) m
   - COFF64 
   - OMF16 (Work in progress, non-existent/only-stub) 
   - OMF32 (Work in progress, non-existent/only-stub) 
-  - TRI32 
-  - TRI64 
+  - TRI32 (TRI = Tiny Runtime Image, a simple object in-memory file format, designed for usage in just-in-time compilers and so on)
+  - TRI64 (TRI = Tiny Runtime Image, a simple object in-memory file format, designed for usage in just-in-time compilers and so on)
   - and of course RUNTIME, where the assembled code can run directly after the assemblation, so it's also a runtime x86 assembler.
 - 1024-bit big integer parsing and arithmetics
 - Floating point number literal parsing up to inoffical 512 bit FP data formats.
