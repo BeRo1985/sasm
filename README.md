@@ -6,7 +6,7 @@ SASM (Scriptable ASseMbler) is a x86 assembler with ECMAScript as (additional) m
 
 - Support for x86-16, x86-32 and x86-64 targets 
   - since 2015, it's based on the opcode tables from the NASM project, before 2015, the whole x86 ISA code generation was hardcoded 
-- Support output formats: 
+- Supported output formats: 
   - BIN 
   - COM 
   - MZEXE 
