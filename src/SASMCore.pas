@@ -1500,7 +1500,7 @@ type PIntegerValue=^TIntegerValue;
        OpcodeSymbolTree:TSymbolTree;
        KeywordSymbolTree:TSymbolTree;
        UserSymbolTree:TSymbolTree;
-       StartOffset:longint;
+       StartOffset:ptrint;
        ImportHashTablePosition:longint;
        CPULevel:longint;
        CurrentBits:longword;
@@ -9623,7 +9623,7 @@ var ImageDOSHeader:TImageDOSHeader;
   result:=nil;
   for i:=0 to length(Sections)-1 do begin
    if (RVA<(Sections[i].RVA+Sections[i].Size)) and (RVA>=Sections[i].RVA) then begin
-    result:=pointer(longword((RVA-longword(Sections[i].RVA))+longword(Sections[i].Base)));
+    result:=pointer(ptruint((RVA-longword(Sections[i].RVA))+ptruint(Sections[i].Base)));
     exit;
    end;
   end;
@@ -9654,7 +9654,7 @@ var ImageDOSHeader:TImageDOSHeader;
    if Is64Bit then begin
     FileImageBase:=ImageNTHeaders.OptionalHeader64.ImageBase;
     GetMem(ImageBase,ImageNTHeaders.OptionalHeader64.SizeOfImage);
-    ImageBaseDelta:=longword(ImageBase)-ImageNTHeaders.OptionalHeader64.ImageBase;
+    ImageBaseDelta:=ptruint(ImageBase)-ImageNTHeaders.OptionalHeader64.ImageBase;
     SectionBase:=ImageBase;
     OldPosition:=Stream.Position;
     Stream.Seek(0,soBeginning);
@@ -9663,7 +9663,7 @@ var ImageDOSHeader:TImageDOSHeader;
    end else begin
     FileImageBase:=ImageNTHeaders.OptionalHeader.ImageBase;
     GetMem(ImageBase,ImageNTHeaders.OptionalHeader.SizeOfImage);
-    ImageBaseDelta:=longword(ImageBase)-ImageNTHeaders.OptionalHeader.ImageBase;
+    ImageBaseDelta:=ptruint(ImageBase)-ImageNTHeaders.OptionalHeader.ImageBase;
     SectionBase:=ImageBase;
     OldPosition:=Stream.Position;
     Stream.Seek(0,soBeginning);
@@ -9691,7 +9691,7 @@ var ImageDOSHeader:TImageDOSHeader;
      Sections[i].Size:=Section.Misc.VirtualSize;
     end;
     Sections[i].Characteristics:=Section.Characteristics;
-    Sections[i].Base:=pointer(longword(Sections[i].RVA+longword(ImageBase)));
+    Sections[i].Base:=pointer(ptruint(Sections[i].RVA+ptruint(ImageBase)));
     FillChar(Sections[i].Base^,Sections[i].Size,#0);
     if Section.PointerToRawData<>0 then begin
      Stream.Seek(Section.PointerToRawData,soBeginning);
@@ -9733,7 +9733,7 @@ var ImageDOSHeader:TImageDOSHeader;
      exit;
     end;
     NumberOfRelocations:=(BaseRelocation^.SizeOfBlock-SizeOf(TImageBaseRelocation)) div SizeOf(word);
-    Relocation:=pointer(longword(longword(BaseRelocation)+SizeOf(TImageBaseRelocation)));
+    Relocation:=pointer(ptruint(ptruint(BaseRelocation)+SizeOf(TImageBaseRelocation)));
     for RelocationCounter:=0 to NumberOfRelocations-1 do begin
      RelocationPointer:=pointer(ptruint(ptruint(Base)+(Relocation^[RelocationCounter] and $fff)));
      RelocationType:=Relocation^[RelocationCounter] shr 12;
@@ -9741,13 +9741,13 @@ var ImageDOSHeader:TImageDOSHeader;
       IMAGE_REL_BASED_ABSOLUTE:begin
       end;
       IMAGE_REL_BASED_HIGH:begin
-       pword(RelocationPointer)^:=(longword(((longword((pword(RelocationPointer)^+longword(ImageBase))-FileImageBase)))) shr 16) and $ffff;
+       pword(RelocationPointer)^:=(longword(((longword((pword(RelocationPointer)^+ptruint(ImageBase))-FileImageBase)))) shr 16) and $ffff;
       end;
       IMAGE_REL_BASED_LOW:begin
-       pword(RelocationPointer)^:=longword(((longword((pword(RelocationPointer)^+longword(ImageBase))-FileImageBase)))) and $ffff;
+       pword(RelocationPointer)^:=longword(((longword((pword(RelocationPointer)^+ptruint(ImageBase))-FileImageBase)))) and $ffff;
       end;
       IMAGE_REL_BASED_HIGHLOW:begin
-       plongword(RelocationPointer)^:=(plongword(RelocationPointer)^+longword(ImageBase))-FileImageBase;
+       plongword(RelocationPointer)^:=(plongword(RelocationPointer)^+ptruint(ImageBase))-FileImageBase;
       end;
       IMAGE_REL_BASED_HIGHADJ:begin
        // ???
@@ -9760,7 +9760,7 @@ var ImageDOSHeader:TImageDOSHeader;
       end;
      end;
     end;
-    Relocations:=pointer(longword(longword(Relocations)+BaseRelocation^.SizeOfBlock));
+    Relocations:=pointer(ptruint(ptruint(Relocations)+BaseRelocation^.SizeOfBlock));
     inc(Position,BaseRelocation^.SizeOfBlock);
    end;
   end;
@@ -9899,16 +9899,16 @@ var ImageDOSHeader:TImageDOSHeader;
     ExportDirectorySize:=Size;
     SetLength(ExportArray,ExportDirectory^.NumberOfNames);
     for i:=0 to ExportDirectory^.NumberOfNames-1 do begin
-     FunctionNamePointer:=ConvertPointer(longword(ExportDirectory^.AddressOfNames));
+     FunctionNamePointer:=ConvertPointer(ptruint(ExportDirectory^.AddressOfNames));
      FunctionNamePointer:=ConvertPointer(PLongWordArray(FunctionNamePointer)^[i]);
      FunctionName:=FunctionNamePointer;
-     FunctionIndexPointer:=ConvertPointer(longword(ExportDirectory^.AddressOfNameOrdinals));
+     FunctionIndexPointer:=ConvertPointer(ptruint(ExportDirectory^.AddressOfNameOrdinals));
      FunctionIndex:=PWordArray(FunctionIndexPointer)^[i];
-     FunctionPointer:=ConvertPointer(longword(ExportDirectory^.AddressOfFunctions));
+     FunctionPointer:=ConvertPointer(ptruint(ExportDirectory^.AddressOfFunctions));
      FunctionPointer:=ConvertPointer(PLongWordArray(FunctionPointer)^[FunctionIndex]);
      ExportArray[i].Name:=FunctionName;
      ExportArray[i].index:=FunctionIndex+ExportDirectory^.Base;
-     if (longword(ExportDirectory)<longword(FunctionPointer)) and (longword(FunctionPointer)<(longword(ExportDirectory)+ExportDirectorySize)) then begin
+     if (ptruint(ExportDirectory)<ptruint(FunctionPointer)) and (ptruint(FunctionPointer)<(ptruint(ExportDirectory)+ExportDirectorySize)) then begin
       ForwarderCharPointer:=FunctionPointer;
       ForwarderString:=ForwarderCharPointer;
       while ForwarderCharPointer^<>'.' do begin
@@ -15917,7 +15917,16 @@ var Pass,Passes:longint;
  var i:longint;
      ImportItem:TAssemblerImportItem;
      ImportLibraryItem:TAssemblerImportLibraryItem;
+{$undef HasGetProcAddress}
+{$if defined(Win32) or defined(Win64)}
+ {$define HasGetProcAddress}
+{$ifend}
+{$ifdef UNIX}
+ {$define HasGetProcAddress}
+{$endif}
+{$ifdef HasGetProcAddress}
      Address:pointer;
+{$endif}
  begin
   for i:=0 to ImportList.Count-1 do begin
    ImportItem:=ImportList.Items[i];
@@ -15926,7 +15935,7 @@ var Pass,Passes:longint;
    end;
    ImportLibraryItem:=ImportItem.ImportLibrary;
    if CodeImageWriting and (ImportLibraryItem.Handle=0) then begin
-{$ifdef WIN32}
+{$if defined(Win32) or defined(Win64)}
     ImportLibraryItem.Handle:=GetModuleHandleA(pansichar(ImportLibraryItem.Name));
     if ImportLibraryItem.Handle=0 then begin
      ImportLibraryItem.Handle:=LoadLibraryA(pansichar(ImportLibraryItem.Name));
@@ -15939,13 +15948,6 @@ var Pass,Passes:longint;
 {$endif}
 {$endif}
    end;
-{$undef HasGetProcAddress}
-{$ifdef WIN32}
- {$define HasGetProcAddress}
-{$endif}
-{$ifdef UNIX}
- {$define HasGetProcAddress}
-{$endif}
 {$ifdef HasGetProcAddress}
    if CodeImageWriting then begin
     Address:=GetProcAddress(ImportLibraryItem.Handle,pansichar(ImportItem.Name));
@@ -16444,7 +16446,7 @@ var Pass,Passes:longint;
 {$endif}
     end;
     RuntimeCodeImageEntryPoint:=nil;
-    StartOffset:=longword(RuntimeCodeImage);
+    StartOffset:=ptruint(RuntimeCodeImage);
     WriteImports;
    end;
   end;
@@ -18285,6 +18287,7 @@ type PELFIdent=^TELFIdent;
 
      PELFSection=^TELFSection;
      TELFSection=record
+      ToSymbolTable:boolean;
       Name:ansistring;
       Data:TMemoryStream;
       sh_name:longword;
@@ -18301,7 +18304,7 @@ type PELFIdent=^TELFIdent;
 
      TELFSections=array of TELFSection;
 
-var {CountELFRealSegments,CountELFRealSections,}CountELFSections,Index,SHStrTabIndex,StrTabIndex,SymTabIndex,Counter:longint;
+var {CountELFRealSegments,CountELFRealSections,}CountELFSections,SymbolIndex,Index,SHStrTabIndex,StrTabIndex,SymTabIndex,Counter:longint;
     ELFSections:TELFSections;
     SHStrTabStream,StrTabStream,SymTabStream,RelocationStream:TMemoryStream;
     SectionFlags,SectionHeaderOffset,SectionHeaderCount,Address,Info:qword;
@@ -18317,7 +18320,8 @@ var {CountELFRealSegments,CountELFRealSections,}CountELFSections,Index,SHStrTabI
     FixUpExpressionFlags:TFixUpExpressionFlags;
     FileName:ansistring;
 
- function AddELFSection(const Name:ansistring;
+ function AddELFSection(const ToSymbolTable:boolean;
+                        const Name:ansistring;
                         const sh_type:longword;
                         const sh_flags:qword;
                         const sh_addr:qword;
@@ -18334,6 +18338,7 @@ var {CountELFRealSegments,CountELFRealSections,}CountELFSections,Index,SHStrTabI
    SetLength(ELFSections,CountELFSections*2);
   end;
   ELFSection:=@ELFSections[result];
+  ELFSection^.ToSymbolTable:=ToSymbolTable;
   ELFSection^.Name:=Name;
   ELFSection^.sh_name:=SHStrTabStream.Position;
   if length(Name)>0 then begin
@@ -18474,14 +18479,14 @@ begin
                       
      StreamWriteByte(SHStrTabStream,0);
 
-     AddELFSection('',SHT_NULL,0,0,0,0,0,0,nil);
-     SHStrTabIndex:=AddELFSection('.shstrtab',SHT_STRTAB,0,0,0,0,0,0,nil);
-     StrTabIndex:=AddELFSection('.strtab',SHT_STRTAB,0,0,0,0,4,0,nil);
+     AddELFSection(false,'',SHT_NULL,0,0,0,0,0,0,nil);
+     SHStrTabIndex:=AddELFSection(false,'.shstrtab',SHT_STRTAB,0,0,0,0,0,0,nil);
+     StrTabIndex:=AddELFSection(false,'.strtab',SHT_STRTAB,0,0,0,0,4,0,nil);
 
      if ELF64 then begin
-      SymTabIndex:=AddELFSection('.symtab',SHT_SYMTAB,0,0,StrTabIndex,0,SYMTAB64_ALIGN,SYMTAB64_SIZE,nil);
+      SymTabIndex:=AddELFSection(false,'.symtab',SHT_SYMTAB,0,0,StrTabIndex,0,SYMTAB64_ALIGN,SYMTAB64_SIZE,nil);
      end else begin
-      SymTabIndex:=AddELFSection('.symtab',SHT_SYMTAB,0,0,StrTabIndex,0,SYMTAB32_ALIGN,SYMTAB32_SIZE,nil);
+      SymTabIndex:=AddELFSection(false,'.symtab',SHT_SYMTAB,0,0,StrTabIndex,0,SYMTAB32_ALIGN,SYMTAB32_SIZE,nil);
      end;
                                             
      StrTabStream:=ELFSections[StrTabIndex].Data;
@@ -18492,16 +18497,16 @@ begin
      Counter:=0;
      Section:=StartSection;
      while assigned(Section) do begin
-      Section^.ObjectSectionIndex:=AddELFSection(Section^.Name,SHT_PROGBITS,IntegerValueGetQWord(Section^.FreezedFlags),0,0,0,16,0,Section^.Data);
+      Section^.ObjectSectionIndex:=AddELFSection(true,Section^.Name,SHT_PROGBITS,IntegerValueGetQWord(Section^.FreezedFlags),0,0,0,16,0,Section^.Data);
       if Section^.RelocationFixUpExpressions.Count>0 then begin
        if Is64Bit then begin
         if IsX32 then begin
-         Section^.ObjectSectionRelocationIndex:=AddELFSection('.rela'+Section^.Name,SHT_RELA,0,0,SymTabIndex,Section^.ObjectSectionIndex,RELOC32_ALIGN,RELOC32A_SIZE,nil);
+         Section^.ObjectSectionRelocationIndex:=AddELFSection(false,'.rela'+Section^.Name,SHT_RELA,0,0,SymTabIndex,Section^.ObjectSectionIndex,RELOC32_ALIGN,RELOC32A_SIZE,nil);
         end else begin
-         Section^.ObjectSectionRelocationIndex:=AddELFSection('.rela'+Section^.Name,SHT_RELA,0,0,SymTabIndex,Section^.ObjectSectionIndex,RELOC64_ALIGN,RELOC64A_SIZE,nil);
+         Section^.ObjectSectionRelocationIndex:=AddELFSection(false,'.rela'+Section^.Name,SHT_RELA,0,0,SymTabIndex,Section^.ObjectSectionIndex,RELOC64_ALIGN,RELOC64A_SIZE,nil);
         end;
        end else begin
-        Section^.ObjectSectionRelocationIndex:=AddELFSection('.rel'+Section^.Name,SHT_REL,0,0,SymTabIndex,Section^.ObjectSectionIndex,RELOC32_ALIGN,RELOC32_SIZE,nil);
+        Section^.ObjectSectionRelocationIndex:=AddELFSection(false,'.rel'+Section^.Name,SHT_REL,0,0,SymTabIndex,Section^.ObjectSectionIndex,RELOC32_ALIGN,RELOC32_SIZE,nil);
        end;
       end else begin
        Section^.ObjectSectionRelocationIndex:=-1;
@@ -18524,6 +18529,8 @@ begin
        StreamWriteByteCount(SymTabStream,0,SYMTAB32_SIZE);
       end;
 
+      SymbolIndex:=0;
+
       begin
        if FileStringList.Count>0 then begin
         FileName:=FileStringList[0];
@@ -18544,26 +18551,32 @@ begin
        end;
       end;
 
+      inc(SymbolIndex);
+
       for Index:=1 to CountELFSections-1 do begin
        ELFSection:=@ELFSections[Index];
-       StreamWriteDWord(SymTabStream,GetStrTabName(ELFSection^.Name)); // st_name
-       if not ELF64 then begin
-        StreamWriteDWord(SymTabStream,0); // st_value
-        StreamWriteDWord(SymTabStream,0); // st_size
-       end;
-       StreamWriteByte(SymTabStream,(STB_LOCAL shl 4) or STT_SECTION); // st_info
-       StreamWriteByte(SymTabStream,0); // st_other
-       StreamWriteWord(SymTabStream,Index); // st_shndx
-       if ELF64 then begin
-        StreamWriteQWord(SymTabStream,0); // st_value
-        StreamWriteQWord(SymTabStream,0); // st_size
+       if ELFSection^.ToSymbolTable then begin
+        StreamWriteDWord(SymTabStream,GetStrTabName(ELFSection^.Name)); // st_name
+        if not ELF64 then begin
+         StreamWriteDWord(SymTabStream,0); // st_value
+         StreamWriteDWord(SymTabStream,0); // st_size
+        end;
+        StreamWriteByte(SymTabStream,(STB_LOCAL shl 4) or STT_SECTION); // st_info
+        StreamWriteByte(SymTabStream,0); // st_other
+        StreamWriteWord(SymTabStream,Index); // st_shndx
+        if ELF64 then begin
+         StreamWriteQWord(SymTabStream,0); // st_value
+         StreamWriteQWord(SymTabStream,0); // st_size
+        end;
+        inc(SymbolIndex);
        end;
       end;
                    
       for Index:=0 to UserSymbolList.Count-1 do begin
        Symbol:=UserSymbolList[Index];
        if Symbol.NeedSymbol then begin
-        Symbol.ObjectSymbolIndex:=CountELFSections+Symbol.SymbolIndex+1;
+        Symbol.ObjectSymbolIndex:=SymbolIndex; //+Symbol.SymbolIndex+1;
+        inc(SymbolIndex);
         StreamWriteDWord(SymTabStream,GetStrTabName(Symbol.OriginalName)); // st_name
         if not ELF64 then begin
          if Symbol.IsExternal then begin
@@ -27221,7 +27234,7 @@ begin
   if (SymbolValue>=0) and (SymbolValue<UserSymbolList.Count) then begin
    Symbol:=UserSymbolList[SymbolValue];
    if assigned(Symbol) and (Symbol.SymbolType=ustLABEL) then begin
-    result:=pointer(longword(longword(RuntimeCodeImage)+longword(ValueGetInt64(self,Symbol.GetValue(self),false))));
+    result:=pointer(ptruint(ptruint(RuntimeCodeImage)+ptruint(ValueGetInt64(self,Symbol.GetValue(self),false))));
    end;
   end;
  end;
