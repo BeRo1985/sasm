@@ -11,7 +11,7 @@ uses {$ifdef Windows}Windows,{$endif}{$ifdef unix}baseunix,{$endif}SysUtils,Clas
 {$endif}
      PUCU;
 
-const SASMVersionString='2017.01.10.11.42.0000';
+const SASMVersionString='2017.01.10.19.28.0000';
 
       SASMCopyrightString='Copyright (C) 2003-2017, Benjamin ''BeRo'' Rosseaux';
 
@@ -70,7 +70,7 @@ const SASMVersionString='2017.01.10.11.42.0000';
       REX_NH=$200;  // Instruction which doesn't use high regs
       REX_EV=$400;  // Instruction uses EVEX instead of REX
 
-      EVEX_P0MM=$03;       // EVEX P[1:0] : Legacy escape
+      EVEX_P0MM=$0f;       // EVEX P[3:0] : Legacy escape
       EVEX_P0RP=$10;       // EVEX P[4] : High-16 reg
       EVEX_P0X=$40;        // EVEX P[6] : High-16 rm
       EVEX_P1PP=$03;       // EVEX P[9:8] : Legacy prefix
@@ -13873,7 +13873,7 @@ begin
     inc(SequencePosition,3);
     Instruction.evex_p[2]:=(Instruction.evex_p[2] or OpEVEXFlags(Instruction.Operand[1],EVEX_P2Z or EVEX_P2AAA,2)) xor EVEX_P2VP;
     WriteByte($62);
-    WriteByte(((((Instruction.REX and 7) shl 5) or (Instruction.evex_p[0] and (EVEX_P0X or EVEX_P0RP))) xor $f0) or (Instruction.vex_cm and 3));
+    WriteByte(((((Instruction.REX and 7) shl 5) or (Instruction.evex_p[0] and (EVEX_P0X or EVEX_P0RP))) xor $f0) or (Instruction.vex_cm and EVEX_P0MM));
     WriteByte(((Instruction.REX and REX_W) shl (7-3)) or (((not Instruction.VEXRegister) and 15) shl 3) or (1 shl 2) or (Instruction.vex_wlp and 3));
     WriteByte(Instruction.evex_p[2]);
     inc(HereOffset,4);
