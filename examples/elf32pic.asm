@@ -29,7 +29,7 @@
 // add ebx, __gotpc__(_GLOBAL_OFFSET_TABLE_ + __no_relocation__(__here__ - @getgot))
 }
  
-.section(".data",  SHF_ALLOC){
-  TextString: db "Hello world!\n"
+.section(".data",  SHF_ALLOC | SHF_WRITE){
+  TextString: db "Hello World!\n"
   TextLength = _here_ - offset TextString
 }

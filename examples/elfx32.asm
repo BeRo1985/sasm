@@ -12,18 +12,17 @@
   .public(main)
   main:
   push rbp	                 	  
-	mov	rax,0		                  
-	mov	rsi,offset TextString
-	mov	rdi,offset FormatString
+  mov rax, 0		                  
+  mov rsi, offset TextString
+  mov rdi, offset FormatString
   call printf		                
   pop rbp           
-  
-	mov	rax,0	                    
-	ret			                      
+  mov rax,0	                    
+  ret			                      
 }
  
-.section(".data",  SHF_ALLOC){
-  TextString: db "Hello world!\0"
+.section(".data",  SHF_ALLOC | SHF_WRITE){
+  TextString: db "Hello World!\0"
   FormatString: db "%s\n\0"
 }
 

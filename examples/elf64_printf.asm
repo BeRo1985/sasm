@@ -9,21 +9,19 @@
   .entrypoint
   .public(main)
   main:
-
-  mov rax, 1
-  mov rdi, 1
+  push rbp		
+  mov rax, 0	
   mov rsi, offset TextString
-  mov rdx, TextLength       
-  syscall
-	
-  mov rax, 60
-  mov rdi, 0	
-  syscall
-  
-  ret
+  mov rdi, offset FormatString
+  call printf	
+  pop rbp	
+  mov rax,0	
+  ret		
 }
- 
+
 .section(".data",  SHF_ALLOC | SHF_WRITE){
-  TextString: db "Hello World!\n"
-  TextLength = __here__ - offset TextString
+  TextString: db "Hello world!\0"
+  FormatString: db "%s\n\0"
 }
+
+.external(printf)
