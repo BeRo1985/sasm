@@ -12,11 +12,11 @@ SASM (Scriptable ASseMbler) is a x86 assembler with ECMAScript as (additional) m
   - MZEXE 
   - PE32 
   - PE32+/PE64 
-  - ELF32 (Work in progress, existent, but still bit buggy) 
-  - ELFX32 (Work in progress, existent, but still bit buggy) 
-  - ELF64 (Work in progress, existent, but still bit buggy) 
-  - COFF32 
-  - COFF64 
+  - ELF32 
+  - ELFX32 (untested)
+  - ELF64 (works, but some small non-critical issues are still there)
+  - COFF32
+  - COFF64
   - OMF16 (Work in progress, non-existent/only-stub) 
   - OMF32 (Work in progress, non-existent/only-stub) 
   - TRI32 (TRI = Tiny Runtime Image, a simple object in-memory file format, designed for usage in just-in-time compilers and so on)
