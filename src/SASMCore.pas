@@ -11,7 +11,7 @@ uses {$ifdef Windows}Windows,{$endif}{$ifdef unix}baseunix,{$endif}SysUtils,Clas
 {$endif}
      PUCU;
 
-const SASMVersionString='2017.01.10.07.45.0000';
+const SASMVersionString='2017.01.10.09.04.0000';
 
       SASMCopyrightString='Copyright (C) 2003-2017, Benjamin ''BeRo'' Rosseaux';
 
@@ -554,6 +554,43 @@ type PIntegerValue=^TIntegerValue;
      TIntegerValue=array[0..IntegerValueDWords-1] of longword;
 
      EStringToFloat=class(Exception);
+
+     PSASMPtrUInt=^TSASMPtrUInt;
+     PSASMPtrInt=^TSASMPtrInt;
+
+{$ifdef fpc}
+ {$undef OldDelphi}
+     TSASMUInt64=uint64;
+     TSASMPtrUInt=PtrUInt;
+     TSASMPtrInt=PtrInt;
+{$else}
+ {$ifdef conditionalexpressions}
+  {$if CompilerVersion>=23.0}
+   {$undef OldDelphi}
+     TSASMUInt64=uint64;
+     TSASMPtrUInt=NativeUInt;
+     TSASMPtrInt=NativeInt;
+  {$else}
+   {$define OldDelphi}
+  {$ifend}
+ {$else}
+  {$define OldDelphi}
+ {$endif}
+{$endif}
+{$ifdef OldDelphi}
+  {$if CompilerVersion>=15.0}
+     TSASMUInt64=uint64;
+  {$else}
+     TSASMUInt64=int64;
+  {$ifend}
+  {$ifdef CPU64}
+     TSASMPtrUInt=uint64;
+     TSASMPtrInt=int64;
+  {$else}
+     TSASMPtrUInt=longword;
+     TSASMPtrInt=longint;
+  {$endif}
+{$endif}
 
      PIEEEFormat=^TIEEEFormat;
      TIEEEFormat=record
@@ -1500,7 +1537,7 @@ type PIntegerValue=^TIntegerValue;
        OpcodeSymbolTree:TSymbolTree;
        KeywordSymbolTree:TSymbolTree;
        UserSymbolTree:TSymbolTree;
-       StartOffset:ptrint;
+       StartOffset:TSASMPtrInt;
        ImportHashTablePosition:longint;
        CPULevel:longint;
        CurrentBits:longword;
@@ -1655,33 +1692,6 @@ function StringToFloat(const FloatString:ansistring;var FloatValue;const IEEEFor
 function FloatToRawString(const Src;const IEEEFormat:TIEEEFormat):ansistring;
 
 implementation
-
-{$ifdef fpc}
- {$undef OldDelphi}
-{$else}
- {$ifdef conditionalexpressions}
-  {$if CompilerVersion>=23.0}
-   {$undef OldDelphi}
-type qword=uint64;
-     ptruint=NativeUInt;
-     ptrint=NativeInt;
-  {$else}
-   {$define OldDelphi}
-  {$ifend}
- {$else}
-  {$define OldDelphi}
- {$endif}
-{$endif}
-{$ifdef OldDelphi}
-type qword=uint64;
-{$ifdef cpu64}
-     ptruint=qword;
-     ptrint=int64;
-{$else}
-     ptruint=longword;
-     ptrint=longint;
-{$endif}
-{$endif}
 
 const CELL_EMPTY=-1;
       CELL_DELETED=-2;
@@ -2003,19 +2013,19 @@ procedure IntegerValueSetInt64(out Dest:TIntegerValue;const Value:int64);
 var LimbIndex:longint;
     SignValue:longword;
 begin
- Dest[0]:=qword(Value) and $ffffffff;
- Dest[1]:=qword(Value) shr 32;
- SignValue:=-(qword(Value) shr 63);
+ Dest[0]:=uint64(Value) and $ffffffff;
+ Dest[1]:=uint64(Value) shr 32;
+ SignValue:=-(uint64(Value) shr 63);
  for LimbIndex:=2 to IntegerValueDWords-1 do begin
   Dest[LimbIndex]:=SignValue;
  end;
 end;
 
-procedure IntegerValueSetQWord(out Dest:TIntegerValue;const Value:qword);
+procedure IntegerValueSetQWord(out Dest:TIntegerValue;const Value:uint64);
 var LimbIndex:longint;
 begin
- Dest[0]:=qword(Value) and $ffffffff;
- Dest[1]:=qword(Value) shr 32;
+ Dest[0]:=uint64(Value) and $ffffffff;
+ Dest[1]:=uint64(Value) shr 32;
  for LimbIndex:=2 to IntegerValueDWords-1 do begin
   Dest[LimbIndex]:=0;
  end;
@@ -2026,19 +2036,19 @@ begin
  result:=Source[0] or (int64(Source[1]) shl 32);
 end;
 
-function IntegerValueGetQWord(const Source:TIntegerValue):qword;
+function IntegerValueGetQWord(const Source:TIntegerValue):uint64;
 begin
- result:=Source[0] or (qword(Source[1]) shl 32);
+ result:=Source[0] or (uint64(Source[1]) shl 32);
 end;
 
 procedure IntegerValueAdd(out Dest:TIntegerValue;const a,b:TIntegerValue);
 var LimbIndex:longint;
     Carry:longword;
-    Value:qword;
+    Value:uint64;
 begin
  Carry:=0;
  for LimbIndex:=0 to IntegerValueDWords-1 do begin
-  Value:=qword(a[LimbIndex])+qword(b[LimbIndex])+qword(Carry);
+  Value:=uint64(a[LimbIndex])+uint64(b[LimbIndex])+uint64(Carry);
   Carry:=Value shr 32;
   Dest[LimbIndex]:=Value and $ffffffff;
  end;
@@ -2047,11 +2057,11 @@ end;
 procedure IntegerValueSub(out Dest:TIntegerValue;const a,b:TIntegerValue);
 var LimbIndex:longint;
     Borrow:longword;
-    Value:qword;
+    Value:uint64;
 begin
  Borrow:=0;
  for LimbIndex:=0 to IntegerValueDWords-1 do begin
-  Value:=(qword(a[LimbIndex])-qword(b[LimbIndex]))-Borrow;
+  Value:=(uint64(a[LimbIndex])-uint64(b[LimbIndex]))-Borrow;
   Borrow:=Value shr 63;
   Dest[LimbIndex]:=Value and $ffffffff;
  end;
@@ -2202,11 +2212,11 @@ end;
 procedure IntegerValueNEG(out Dest:TIntegerValue;const Source:TIntegerValue);
 var Index:longint;
     Carry:longword;
-    Value:qword;
+    Value:uint64;
 begin
  Carry:=1;
  for Index:=0 to IntegerValueDWords-1 do begin
-  Value:=qword(longword(not Source[Index]))+qword(Carry);
+  Value:=uint64(longword(not Source[Index]))+uint64(Carry);
   Carry:=Value shr 32;
   Dest[Index]:=Value and $ffffffff;
  end;
@@ -2215,12 +2225,12 @@ end;
 procedure IntegerValueABS(out Dest:TIntegerValue;const Source:TIntegerValue);
 var Index:longint;
     Carry:longword;
-    Value:qword;
+    Value:uint64;
 begin
  if (Source[IntegerValueDWords-1] and longword($80000000))<>0 then begin
   Carry:=1;
   for Index:=0 to IntegerValueDWords-1 do begin
-   Value:=qword(longword(not Source[Index]))+qword(Carry);
+   Value:=uint64(longword(not Source[Index]))+uint64(Carry);
    Carry:=Value shr 32;
    Dest[Index]:=Value and $ffffffff;
   end;
@@ -2470,7 +2480,7 @@ end;
 procedure IntegerValueMulReference(out Dest:TIntegerValue;const a,b:TIntegerValue);
 var i,j,k:longint;
     Value32,Carry:longword;
-    Value64,Value:qword;
+    Value64,Value:uint64;
     Temp:array[0..(IntegerValueDWords*2)-1] of longword;
     Negative,NegativeA,NegativeB:boolean;
     TempA,TempB:TIntegerValue;
@@ -2501,7 +2511,7 @@ begin
    Carry:=0;
    for j:=0 to IntegerValueDWords-1 do begin
     k:=i+j;
-    Value:=qword(qword(Value64*WorkB^[j])+Temp[k])+Carry;
+    Value:=uint64(uint64(Value64*WorkB^[j])+Temp[k])+Carry;
     Temp[k]:=longword(Value and $ffffffff);
     Carry:=longword(Value shr 32);
    end;
@@ -3211,7 +3221,7 @@ type PFPLimb=^TFPLimb;
      PFPLimbs=^TFPLimbs;
      TFPLimbs=array[0..65535] of TFPLimb;
      PFP2Limb=^TFP2Limb;
-     TFP2Limb=qword;
+     TFP2Limb=uint64;
      PMantissa=^TMantissa;
      TMantissa=array[0..MANT_LIMBS-1] of TFPLimb;
  function MantissaMultiply(var MantissaA,MantissaB:TMantissa):longint;
@@ -3480,7 +3490,7 @@ type PFPLimb=^TFPLimb;
        if MantissaShift<=0 then begin
         MantissaPointer^:=MantissaPointer^ or longword(longword(Value) shr longword(-MantissaShift));
         inc(MantissaPointer);
-        if ptruint(MantissaPointer)>ptruint(pointer(@Mult[MANT_LIMBS])) then begin
+        if TSASMPtrUInt(MantissaPointer)>TSASMPtrUInt(pointer(@Mult[MANT_LIMBS])) then begin
          MantissaPointer:=@Mult[MANT_LIMBS];
         end;
         inc(MantissaShift,LIMB_BITS);
@@ -4167,7 +4177,7 @@ const m=longword($57559429);
       n=longword($5052acdb);
 var b:PAnsiChar;
     h,k,len:longword;
-    p:{$ifdef fpc}qword{$else}int64{$endif};
+    p:{$ifdef fpc}uint64{$else}int64{$endif};
 begin
  len:=length(Str);
  h:=len;
@@ -4176,13 +4186,13 @@ begin
   b:=PAnsiChar(Str);
   while len>7 do begin
    begin
-    p:=longword(pointer(b)^)*{$ifdef fpc}qword{$else}int64{$endif}(n);
+    p:=longword(pointer(b)^)*{$ifdef fpc}uint64{$else}int64{$endif}(n);
     h:=h xor longword(p and $ffffffff);
     k:=k xor longword(p shr 32);
     inc(b,4);
    end;
    begin
-    p:=longword(pointer(b)^)*{$ifdef fpc}qword{$else}int64{$endif}(m);
+    p:=longword(pointer(b)^)*{$ifdef fpc}uint64{$else}int64{$endif}(m);
     k:=k xor longword(p and $ffffffff);
     h:=h xor longword(p shr 32);
     inc(b,4);
@@ -4190,7 +4200,7 @@ begin
    dec(len,8);
   end;
   if len>3 then begin
-   p:=longword(pointer(b)^)*{$ifdef fpc}qword{$else}int64{$endif}(n);
+   p:=longword(pointer(b)^)*{$ifdef fpc}uint64{$else}int64{$endif}(n);
    h:=h xor longword(p and $ffffffff);
    k:=k xor longword(p shr 32);
    inc(b,4);
@@ -4207,13 +4217,13 @@ begin
    if len>0 then begin
     p:=p or (byte(b^) shl 16);
    end;
-   p:=p*{$ifdef fpc}qword{$else}int64{$endif}(m);
+   p:=p*{$ifdef fpc}uint64{$else}int64{$endif}(m);
    k:=k xor longword(p and $ffffffff);
    h:=h xor longword(p shr 32);
   end;
  end;
  begin
-  p:=(h xor (k+n))*{$ifdef fpc}qword{$else}int64{$endif}(n);
+  p:=(h xor (k+n))*{$ifdef fpc}uint64{$else}int64{$endif}(n);
   h:=h xor longword(p and $ffffffff);
   k:=k xor longword(p shr 32);
  end;
@@ -4411,7 +4421,7 @@ begin
  result:=StreamReadWord(Stream) or (StreamReadWord(Stream) shl 16);
 end;
 
-function StreamReadQWord(const Stream:TStream):qword;
+function StreamReadQWord(const Stream:TStream):uint64;
 begin
  result:=StreamReadDWord(Stream) or (StreamReadDWord(Stream) shl 32);
 end;
@@ -4518,7 +4528,7 @@ begin
  StreamWriteByte(Stream,(Value shr 56) and $ff);
 end;
 
-procedure StreamWriteQWord(const Stream:TStream;const Value:qword);
+procedure StreamWriteQWord(const Stream:TStream;const Value:uint64);
 begin
  StreamWriteByte(Stream,Value and $ff);
  StreamWriteByte(Stream,(Value shr 8) and $ff);
@@ -9623,7 +9633,7 @@ var ImageDOSHeader:TImageDOSHeader;
   result:=nil;
   for i:=0 to length(Sections)-1 do begin
    if (RVA<(Sections[i].RVA+Sections[i].Size)) and (RVA>=Sections[i].RVA) then begin
-    result:=pointer(ptruint((RVA-longword(Sections[i].RVA))+ptruint(Sections[i].Base)));
+    result:=pointer(TSASMPtrUInt((RVA-longword(Sections[i].RVA))+TSASMPtrUInt(Sections[i].Base)));
     exit;
    end;
   end;
@@ -9654,7 +9664,7 @@ var ImageDOSHeader:TImageDOSHeader;
    if Is64Bit then begin
     FileImageBase:=ImageNTHeaders.OptionalHeader64.ImageBase;
     GetMem(ImageBase,ImageNTHeaders.OptionalHeader64.SizeOfImage);
-    ImageBaseDelta:=ptruint(ImageBase)-ImageNTHeaders.OptionalHeader64.ImageBase;
+    ImageBaseDelta:=TSASMPtrUInt(ImageBase)-ImageNTHeaders.OptionalHeader64.ImageBase;
     SectionBase:=ImageBase;
     OldPosition:=Stream.Position;
     Stream.Seek(0,soBeginning);
@@ -9663,7 +9673,7 @@ var ImageDOSHeader:TImageDOSHeader;
    end else begin
     FileImageBase:=ImageNTHeaders.OptionalHeader.ImageBase;
     GetMem(ImageBase,ImageNTHeaders.OptionalHeader.SizeOfImage);
-    ImageBaseDelta:=ptruint(ImageBase)-ImageNTHeaders.OptionalHeader.ImageBase;
+    ImageBaseDelta:=TSASMPtrUInt(ImageBase)-ImageNTHeaders.OptionalHeader.ImageBase;
     SectionBase:=ImageBase;
     OldPosition:=Stream.Position;
     Stream.Seek(0,soBeginning);
@@ -9691,7 +9701,7 @@ var ImageDOSHeader:TImageDOSHeader;
      Sections[i].Size:=Section.Misc.VirtualSize;
     end;
     Sections[i].Characteristics:=Section.Characteristics;
-    Sections[i].Base:=pointer(ptruint(Sections[i].RVA+ptruint(ImageBase)));
+    Sections[i].Base:=pointer(TSASMPtrUInt(Sections[i].RVA+TSASMPtrUInt(ImageBase)));
     FillChar(Sections[i].Base^,Sections[i].Size,#0);
     if Section.PointerToRawData<>0 then begin
      Stream.Seek(Section.PointerToRawData,soBeginning);
@@ -9733,21 +9743,21 @@ var ImageDOSHeader:TImageDOSHeader;
      exit;
     end;
     NumberOfRelocations:=(BaseRelocation^.SizeOfBlock-SizeOf(TImageBaseRelocation)) div SizeOf(word);
-    Relocation:=pointer(ptruint(ptruint(BaseRelocation)+SizeOf(TImageBaseRelocation)));
+    Relocation:=pointer(TSASMPtrUInt(TSASMPtrUInt(BaseRelocation)+SizeOf(TImageBaseRelocation)));
     for RelocationCounter:=0 to NumberOfRelocations-1 do begin
-     RelocationPointer:=pointer(ptruint(ptruint(Base)+(Relocation^[RelocationCounter] and $fff)));
+     RelocationPointer:=pointer(TSASMPtrUInt(TSASMPtrUInt(Base)+(Relocation^[RelocationCounter] and $fff)));
      RelocationType:=Relocation^[RelocationCounter] shr 12;
      case RelocationType of
       IMAGE_REL_BASED_ABSOLUTE:begin
       end;
       IMAGE_REL_BASED_HIGH:begin
-       pword(RelocationPointer)^:=(longword(((longword((pword(RelocationPointer)^+ptruint(ImageBase))-FileImageBase)))) shr 16) and $ffff;
+       pword(RelocationPointer)^:=(longword(((longword((pword(RelocationPointer)^+TSASMPtrUInt(ImageBase))-FileImageBase)))) shr 16) and $ffff;
       end;
       IMAGE_REL_BASED_LOW:begin
-       pword(RelocationPointer)^:=longword(((longword((pword(RelocationPointer)^+ptruint(ImageBase))-FileImageBase)))) and $ffff;
+       pword(RelocationPointer)^:=longword(((longword((pword(RelocationPointer)^+TSASMPtrUInt(ImageBase))-FileImageBase)))) and $ffff;
       end;
       IMAGE_REL_BASED_HIGHLOW:begin
-       plongword(RelocationPointer)^:=(plongword(RelocationPointer)^+ptruint(ImageBase))-FileImageBase;
+       plongword(RelocationPointer)^:=(plongword(RelocationPointer)^+TSASMPtrUInt(ImageBase))-FileImageBase;
       end;
       IMAGE_REL_BASED_HIGHADJ:begin
        // ???
@@ -9756,11 +9766,11 @@ var ImageDOSHeader:TImageDOSHeader;
        // Only for MIPS CPUs ;)
       end;
       IMAGE_REL_BASED_DIR64:begin
-       puint64(RelocationPointer)^:=(puint64(RelocationPointer)^+uint64(ptruint(ImageBase)))-FileImageBase;
+       puint64(RelocationPointer)^:=(puint64(RelocationPointer)^+uint64(TSASMPtrUInt(ImageBase)))-FileImageBase;
       end;
      end;
     end;
-    Relocations:=pointer(ptruint(ptruint(Relocations)+BaseRelocation^.SizeOfBlock));
+    Relocations:=pointer(TSASMPtrUInt(TSASMPtrUInt(Relocations)+BaseRelocation^.SizeOfBlock));
     inc(Position,BaseRelocation^.SizeOfBlock);
    end;
   end;
@@ -9899,16 +9909,16 @@ var ImageDOSHeader:TImageDOSHeader;
     ExportDirectorySize:=Size;
     SetLength(ExportArray,ExportDirectory^.NumberOfNames);
     for i:=0 to ExportDirectory^.NumberOfNames-1 do begin
-     FunctionNamePointer:=ConvertPointer(ptruint(ExportDirectory^.AddressOfNames));
+     FunctionNamePointer:=ConvertPointer(TSASMPtrUInt(ExportDirectory^.AddressOfNames));
      FunctionNamePointer:=ConvertPointer(PLongWordArray(FunctionNamePointer)^[i]);
      FunctionName:=FunctionNamePointer;
-     FunctionIndexPointer:=ConvertPointer(ptruint(ExportDirectory^.AddressOfNameOrdinals));
+     FunctionIndexPointer:=ConvertPointer(TSASMPtrUInt(ExportDirectory^.AddressOfNameOrdinals));
      FunctionIndex:=PWordArray(FunctionIndexPointer)^[i];
-     FunctionPointer:=ConvertPointer(ptruint(ExportDirectory^.AddressOfFunctions));
+     FunctionPointer:=ConvertPointer(TSASMPtrUInt(ExportDirectory^.AddressOfFunctions));
      FunctionPointer:=ConvertPointer(PLongWordArray(FunctionPointer)^[FunctionIndex]);
      ExportArray[i].Name:=FunctionName;
      ExportArray[i].index:=FunctionIndex+ExportDirectory^.Base;
-     if (ptruint(ExportDirectory)<ptruint(FunctionPointer)) and (ptruint(FunctionPointer)<(ptruint(ExportDirectory)+ExportDirectorySize)) then begin
+     if (TSASMPtrUInt(ExportDirectory)<TSASMPtrUInt(FunctionPointer)) and (TSASMPtrUInt(FunctionPointer)<(TSASMPtrUInt(ExportDirectory)+ExportDirectorySize)) then begin
       ForwarderCharPointer:=FunctionPointer;
       ForwarderString:=ForwarderCharPointer;
       while ForwarderCharPointer^<>'.' do begin
@@ -13660,7 +13670,7 @@ var c,b,opex:byte;
     Operand,OtherOperand:POperand;
     EAData:TEA;
     Value:int64;
-    ValueMask:qword;
+    ValueMask:uint64;
 begin
 
  opex:=0;
@@ -13902,7 +13912,7 @@ begin
     end else begin
      ValueBits:=CurrentBits;
     end;
-    ValueMask:=qword(2) shl (ValueBits-1);
+    ValueMask:=uint64(2) shl (ValueBits-1);
     AddFixUpExpression(Operand^.Value,Operand^.FixUpExpressionFlags,8,false,-1,CurrentLineNumber,CurrentColumn,CurrentSource,mbmByteSignedWarning,ValueMask-128,ValueMask-1,'Byte value is out of bounds',-HereOffset);
     WriteByte(0);
     inc(HereOffset);
@@ -15946,7 +15956,7 @@ var Pass,Passes:longint;
 {$else}
     continue;
 {$endif}
-{$endif}
+{$ifend}
    end;
 {$ifdef HasGetProcAddress}
    if CodeImageWriting then begin
@@ -15954,7 +15964,7 @@ var Pass,Passes:longint;
    end else begin
     Address:=nil;
    end;
-   ImportItem.ProcAddr:=ptruint(ptruint(RuntimeCodeImage)+ptruint(CodePosition));
+   ImportItem.ProcAddr:=TSASMPtrUInt(TSASMPtrUInt(RuntimeCodeImage)+TSASMPtrUInt(CodePosition));
    if CodeImageWriting then begin
     CodeImage.Write(Address,SizeOf(pointer));
    end;
@@ -16446,7 +16456,7 @@ var Pass,Passes:longint;
 {$endif}
     end;
     RuntimeCodeImageEntryPoint:=nil;
-    StartOffset:=ptruint(RuntimeCodeImage);
+    StartOffset:=TSASMPtrUInt(RuntimeCodeImage);
     WriteImports;
    end;
   end;
@@ -16566,7 +16576,7 @@ begin
     if assigned(RuntimeCodeImage) and (CodeImage.Size<=RuntimeCodeImageSize) then begin
      CodeImage.Seek(0,soBeginning);
      if CodeImage.Read(RuntimeCodeImage^,RuntimeCodeImageSize)<=RuntimeCodeImageSize then begin
-      RuntimeCodeImageEntryPoint:=pointer(ptruint(ptruint(RuntimeCodeImage)+ptruint(EntryPoint)));
+      RuntimeCodeImageEntryPoint:=pointer(TSASMPtrUInt(TSASMPtrUInt(RuntimeCodeImage)+TSASMPtrUInt(EntryPoint)));
      end else begin
       MakeError(55);
      end;
@@ -18292,14 +18302,14 @@ type PELFIdent=^TELFIdent;
       Data:TMemoryStream;
       sh_name:longword;
       sh_type:longword;
-      sh_flags:qword;
-      sh_addr:qword;
-      sh_offset:qword;
-      sh_size:qword;
+      sh_flags:uint64;
+      sh_addr:uint64;
+      sh_offset:uint64;
+      sh_size:uint64;
       sh_link:longword;
       sh_info:longword;
-      sh_addralign:qword;
-      sh_entsize:qword;
+      sh_addralign:uint64;
+      sh_entsize:uint64;
      end;
 
      TELFSections=array of TELFSection;
@@ -18307,7 +18317,7 @@ type PELFIdent=^TELFIdent;
 var {CountELFRealSegments,CountELFRealSections,}CountELFSections,SymbolIndex,Index,SHStrTabIndex,StrTabIndex,SymTabIndex,Counter:longint;
     ELFSections:TELFSections;
     SHStrTabStream,StrTabStream,SymTabStream,RelocationStream:TMemoryStream;
-    SectionFlags,SectionHeaderOffset,SectionHeaderCount,Address,Info:qword;
+    SectionFlags,SectionHeaderOffset,SectionHeaderCount,Address,Info:uint64;
     AddEnd:int64;
     StrTabStringIntegerPairHashMap:TStringIntegerPairHashMap;
     ELF64:longbool;
@@ -18323,12 +18333,12 @@ var {CountELFRealSegments,CountELFRealSections,}CountELFSections,SymbolIndex,Ind
  function AddELFSection(const ToSymbolTable:boolean;
                         const Name:ansistring;
                         const sh_type:longword;
-                        const sh_flags:qword;
-                        const sh_addr:qword;
+                        const sh_flags:uint64;
+                        const sh_addr:uint64;
                         const sh_link:longword;
                         const sh_info:longword;
-                        const sh_addralign:qword;
-                        const sh_entsize:qword;
+                        const sh_addralign:uint64;
+                        const sh_entsize:uint64;
                         const Data:TStream):longint;
  var ELFSection:PELFSection;
  begin
@@ -18838,9 +18848,9 @@ begin
          end;
         end;
         if assigned(FixUpExpression^.Symbol) then begin
-         Info:=Info or (qword(FixUpExpression^.Symbol.ObjectSymbolIndex) shl 32);
+         Info:=Info or (uint64(FixUpExpression^.Symbol.ObjectSymbolIndex) shl 32);
         end else if assigned(Section) then begin
-         Info:=Info or (qword(Section^.Index+5) shl 32);
+         Info:=Info or (uint64(Section^.Index+5) shl 32);
         end;
         if ELF64 then begin
          StreamWriteQWord(RelocationStream,Address);
@@ -27195,9 +27205,9 @@ var OldCurrentLineNumber:longint;
     OldCurrentSource:longint;
     Source:ansistring;
 begin
- Source:=Name+' dd '+inttostr(ptrint(ExternalPointer))+#10+
-         Name+'$var dd '+inttostr(ptrint(ExternalPointer))+#10+
-         Name+'$const equ '+inttostr(ptrint(ExternalPointer))+#10;
+ Source:=Name+' dd '+inttostr(TSASMPtrInt(ExternalPointer))+#10+
+         Name+'$var dd '+inttostr(TSASMPtrInt(ExternalPointer))+#10+
+         Name+'$const equ '+inttostr(TSASMPtrInt(ExternalPointer))+#10;
  if length(Source)>0 then begin
   OldCurrentLineNumber:=CurrentLineNumber;
   OldCurrentColumn:=CurrentColumn;
@@ -27234,7 +27244,7 @@ begin
   if (SymbolValue>=0) and (SymbolValue<UserSymbolList.Count) then begin
    Symbol:=UserSymbolList[SymbolValue];
    if assigned(Symbol) and (Symbol.SymbolType=ustLABEL) then begin
-    result:=pointer(ptruint(ptruint(RuntimeCodeImage)+ptruint(ValueGetInt64(self,Symbol.GetValue(self),false))));
+    result:=pointer(TSASMPtrUInt(TSASMPtrUInt(RuntimeCodeImage)+TSASMPtrUInt(ValueGetInt64(self,Symbol.GetValue(self),false))));
    end;
   end;
  end;
