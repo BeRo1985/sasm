@@ -20,7 +20,7 @@
 }
 
 .section(".data",  SHF_ALLOC | SHF_WRITE){
-  TextString: db "Hello world!\0"
+  TextString: db "Hello World!\0"
   FormatString: db "%s\n\0"
 }
 
