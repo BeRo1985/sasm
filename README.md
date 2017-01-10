@@ -13,7 +13,7 @@ SASM (Scriptable ASseMbler) is a x86 assembler with ECMAScript as (additional) m
   - PE32 
   - PE32+/PE64 
   - ELF32 (Work in progress, existent, but still bit buggy) 
-  - ELFX32(Work in progress, existent, but still bit buggy) 
+  - ELFX32 (Work in progress, existent, but still bit buggy) 
   - ELF64 (Work in progress, existent, but still bit buggy) 
   - COFF32 
   - COFF64 
