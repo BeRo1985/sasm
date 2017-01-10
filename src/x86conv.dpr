@@ -817,10 +817,10 @@ begin
 end;
 
 procedure AddInstruction(const Name,Operand0,Operand1,Operand2,Operand3,Operand4,OperandEncoding,OperandTuple,Sequence,Flags:ansistring;const CountOperands,Relax,ConditionCode:longint);
-var Index,i,j,k,h,SequenceStringLength,FlagsStringLength,SequenceLength,Op,OpEx,b,m,w,l,p,LiteralIndex,ImmCode:longint;
+var Index,i,j,k,h,SequenceStringLength,FlagsStringLength,SequenceLength,Op,OpEx,b,m,w,l,p,LiteralIndex,ImmCode,minmap:longint;
     Instruction:PInstruction;
     PrefixOK,HasNDS:boolean;
-    s,s2,s3,CodeSequence,CodeFlags,Decorator:ansistring;
+    s,s2,s3,CodeSequence,CodeFlags,Decorator,VEXName:ansistring;
     c,LastImm:ansichar;
     OpPos:array[ansichar] of longint;
     IFlags:TIFlags;
@@ -1076,9 +1076,11 @@ begin
     if (s[1]='v') and (s[2]='e') and (s[3]='x') then begin
      // vex
      b:=0;
+     VEXName:='vex';
     end else begin
      // xop
      b:=1;
+     VEXName:='xop';
     end;
     m:=-1;
     w:=2;
@@ -1122,7 +1124,7 @@ begin
        m:=StrToIntDef(copy(s2,2,length(s2)-1),0);
       end else if (s2='nds') or (s2='ndd') or (s2='dds') then begin
        if OpPos['v']<0 then begin
-        writeln('vex.'+s2+' requires v operands');
+        writeln(VEXName+'.'+s2+' requires v operands');
         halt(1);
        end;
        HasNDS:=true;
@@ -1132,11 +1134,20 @@ begin
       end;
      end;
      if (m<0) or (w<0) or (l<0) or (p<0) then begin
-      writeln('Missing fields in VEX specification ',s);
+      writeln('Missing fields in ',UpperCase(VEXName),' specification ',s);
       halt(1);
      end;
      if (OpPos['v']>=0) and not HasNDS then begin
-      writeln('''v'' operand without vex.nds or vex.ndd');
+      writeln('''v'' operand without ',VEXName,'.nds or ',VEXName,'.ndd');
+      halt(1);
+     end;
+     if b<>0 then begin
+      minmap:=8;
+     end else begin
+      minmap:=0;
+     end;
+     if (m<minmap) or (m>31) then begin
+      writeln('Only maps ',minmap,'-31 are valid for ',VEXName);
       halt(1);
      end;
      if OpPos['v']>=0 then begin
@@ -1209,6 +1220,9 @@ begin
      if (OpPos['v']>=0) and not HasNDS then begin
       writeln('''v'' operand without evex.nds or evex.ndd');
       halt(1);
+     end;
+     if m>15 then begin
+      writeln('Only maps 0-15 are valid for EVEX');
      end;
      if OpPos['v']>=0 then begin
       PutCode(Octal($0240)+longword(OpPos['v'] and 3));
@@ -1927,6 +1941,7 @@ begin
       AddIFlagBit('AVX512BW',73,'AVX-512 Byte and Word');
       AddIFlagBit('AVX512IFMA',74,'AVX-512 IFMA instructions');
       AddIFlagBit('AVX512VBMI',75,'AVX-512 VBMI instructions');
+      AddIFlagBit('OBSOLETE',93,'Instruction removed from architecture');
       AddIFlagBit('VEX',94,'VEX or XOP encoded instruction');
       AddIFlagBit('EVEX',95,'EVEX encoded instruction');
       AddIFlagBit('8086',96,'8086');

@@ -167,9 +167,32 @@ begin
    i:=1;
 
    Opcode:=trim(Parse(Line,[#1..#32],i,true));
+   if (Opcode='DB') or
+      (Opcode='DW') or
+      (Opcode='DD') or
+      (Opcode='DQ') or
+      (Opcode='DT') or
+      (Opcode='DO') or
+      (Opcode='DY') or
+      (Opcode='DZ') or
+      (Opcode='RESB') or
+      (Opcode='RESW') or
+      (Opcode='RESD') or
+      (Opcode='RESQ') or
+      (Opcode='REST') or
+      (Opcode='RESO') or
+      (Opcode='RESY') or
+      (Opcode='RESZ') or
+      (Opcode='EQU') or
+      (Opcode='INCBIN') then begin
+    continue;
+   end;
+
    Operands:=trim(Parse(Line,[#1..#32],i,true));
    Parse(Line,['['],i,true);
+
    Sequence:=trim(Parse(Line,[']'],i,true));
+
    j:=pos(':',Sequence);
    if j>0 then begin
     OperandEncoding:=copy(Sequence,1,j-1);
