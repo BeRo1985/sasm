@@ -11,7 +11,7 @@ uses {$ifdef Windows}Windows,{$endif}{$ifdef unix}baseunix,{$endif}SysUtils,Clas
 {$endif}
      PUCU;
 
-const SASMVersionString='2017.01.10.01.28.0000';
+const SASMVersionString='2017.01.10.07.45.0000';
 
       SASMCopyrightString='Copyright (C) 2003-2017, Benjamin ''BeRo'' Rosseaux';
 
@@ -1127,7 +1127,7 @@ type PIntegerValue=^TIntegerValue;
        function GetFixUpSymbol(const ASMx86:TAssembler):TUserSymbol;
        function HasValueType(const ASMx86:TAssembler;const ValueType:longint;const Level:longint=0):boolean;
        function IsInteger(const ASMx86:TAssembler):boolean;
-       function Equals(const WithExpression:TAssemblerExpression):boolean;
+       function Equals(const WithExpression:TAssemblerExpression):boolean; {$ifdef fpc}reintroduce;{$endif}
        function Has(const Expression:TAssemblerExpression):boolean;
        procedure MarkAsNoRelocation;
      end;
@@ -1717,7 +1717,7 @@ begin
    Mode:=fmCreate or fmShareDenyRead;
   end;
   if CountArguments>1 then begin
-   s:=TBESEN(Instance).ToStr(Arguments^[1]^);
+   s:=string(TBESEN(Instance).ToStr(Arguments^[1]^));
    if s='c' then begin
     Mode:=fmCreate or fmShareDenyRead;
    end else if s='r' then begin
@@ -1785,14 +1785,14 @@ begin
    fFileStream.Read(s[1],l);
   end;
   ResultValue.ValueType:=bvtSTRING;
-  ResultValue.Str:=s;
+  ResultValue.Str:=TBESENString(s);
   SetLength(s,0);
  end;
 end;
 
 procedure TFileObject.write(const ThisArgument:TBESENValue;Arguments:PPBESENValues;CountArguments:longint;var ResultValue:TBESENValue);
 var l:int64;
-    s:string;
+    s:ansistring;
 begin
  s:='';
  ResultValue.ValueType:=bvtUNDEFINED;
@@ -1800,7 +1800,7 @@ begin
   if CountArguments>0 then begin
    ResultValue.ValueType:=bvtNUMBER;
    ResultValue.Num:=0;
-   s:=TBESEN(Instance).ToStr(Arguments^[0]^);
+   s:=ansistring(TBESEN(Instance).ToStr(Arguments^[0]^));
    l:=length(s);
    if l>0 then begin
     ResultValue.Num:=fFileStream.Write(s[1],l);
@@ -3285,12 +3285,12 @@ type PFPLimb=^TFPLimb;
  var FloatStringPosition,FloatStringLength,TenPower,TwoPower,ExtraTwos,ExponentValue,MantissaPosition,DigitPos,StoredDigitPos,DigitPosBackwards,
      Value:longint;
      Bit,Carry:TFPLimb;
-     Started,SeenDot,Warned:boolean;
-     m:PFPLimb;
+     Started,SeenDot{,Warned}:boolean;
+     //m:PFPLimb;
      Digits:array[0..MANT_DIGITS-1] of byte;
      Mult:TMantissa;
  begin
-  Warned:=false;
+  //Warned:=false;
   TenPower:=0;
   DigitPos:=0;
   Started:=false;
@@ -3319,7 +3319,7 @@ type PFPLimb=^TFPLimb;
        Digits[DigitPos]:=byte(ansichar(FloatStringValue[FloatStringPosition]))-byte(ansichar('0'));
        inc(DigitPos);
       end else begin
-       Warned:=true;
+       //Warned:=true;
       end;
       if not SeenDot then begin
        inc(TenPower);
@@ -4643,8 +4643,8 @@ begin
 end;
 
 function ValueToString(const AssemblerInstance:TAssembler;const Value:TAssemblerValue;const DoError:boolean):ansistring;
-var Counter:longint;
-    a,b:TIntegerValue;
+{var Counter:longint;
+    a,b:TIntegerValue;}
 begin
  case Value.ValueType of
   AVT_INT:begin
@@ -4952,7 +4952,7 @@ begin
 end;
 
 function ValueOpSub(const AssemblerInstance:TAssembler;const LeftValue,RightValue:TAssemblerValue;const DoError:boolean):TAssemblerValue;
-var s:ansistring;
+//var s:ansistring;
 begin
  result.ValueType:=AVT_NONE;
  case LeftValue.ValueType of
@@ -5243,7 +5243,7 @@ begin
 end;
 
 function ValueOpMul(const AssemblerInstance:TAssembler;const LeftValue,RightValue:TAssemblerValue;const DoError:boolean):TAssemblerValue;
-var s:ansistring;
+//var s:ansistring;
 begin
  result.ValueType:=AVT_NONE;
  case LeftValue.ValueType of
@@ -5447,7 +5447,7 @@ begin
 end;
 
 function ValueOpDiv(const AssemblerInstance:TAssembler;const LeftValue,RightValue:TAssemblerValue;const DoError:boolean):TAssemblerValue;
-var s:ansistring;
+//var s:ansistring;
 begin
  result.ValueType:=AVT_NONE;
  case LeftValue.ValueType of
@@ -5657,7 +5657,7 @@ begin
 end;
 
 function ValueOpXOR(const AssemblerInstance:TAssembler;const LeftValue,RightValue:TAssemblerValue;const DoError:boolean):TAssemblerValue;
-var s:ansistring;
+//var s:ansistring;
 begin
  result.ValueType:=AVT_NONE;
  case LeftValue.ValueType of
@@ -5687,7 +5687,7 @@ begin
 end;
 
 function ValueOpOR(const AssemblerInstance:TAssembler;const LeftValue,RightValue:TAssemblerValue;const DoError:boolean):TAssemblerValue;
-var s:ansistring;
+//var s:ansistring;
 begin
  result.ValueType:=AVT_NONE;
  case LeftValue.ValueType of
@@ -5717,7 +5717,7 @@ begin
 end;
 
 function ValueOpAND(const AssemblerInstance:TAssembler;const LeftValue,RightValue:TAssemblerValue;const DoError:boolean):TAssemblerValue;
-var s:ansistring;
+//var s:ansistring;
 begin
  result.ValueType:=AVT_NONE;
  case LeftValue.ValueType of
@@ -5747,7 +5747,7 @@ begin
 end;
 
 function ValueOpShiftLeft(const AssemblerInstance:TAssembler;const LeftValue,RightValue:TAssemblerValue;const DoError:boolean):TAssemblerValue;
-var s:ansistring;
+//var s:ansistring;
 begin
  result.ValueType:=AVT_NONE;
  case LeftValue.ValueType of
@@ -5777,7 +5777,7 @@ begin
 end;
 
 function ValueOpShiftRight(const AssemblerInstance:TAssembler;const LeftValue,RightValue:TAssemblerValue;const DoError:boolean):TAssemblerValue;
-var s:ansistring;
+//var s:ansistring;
 begin
  result.ValueType:=AVT_NONE;
  case LeftValue.ValueType of
@@ -5807,7 +5807,7 @@ begin
 end;
 
 function ValueOpShiftCompare(const AssemblerInstance:TAssembler;const LeftValue,RightValue:TAssemblerValue;const DoError:boolean):longint;
-var s:ansistring;
+var //s:ansistring;
     i64:int64;
     IntegerValue:TIntegerValue;
 begin
@@ -7291,7 +7291,7 @@ var TerminateIt,OK:boolean;
     FloatValueACasted:longword absolute FloatValueA;
     FloatValueB:single;
     FloatValueBCasted:longword absolute FloatValueB;
-    DoTruncBits:int64;
+    //DoTruncBits:int64;
     IntegerValue,OtherIntegerValue:PIntegerValue;
     s:ansistring;
     Counter:longint;
@@ -8870,7 +8870,7 @@ begin
 end;
 
 destructor TUserSymbol.Destroy;
-var Counter:longint;
+//var Counter:longint;
 begin
  Name:='';
  OriginalName:='';
@@ -9713,7 +9713,7 @@ var ImageDOSHeader:TImageDOSHeader;
      RelocationCounter:longint;
      RelocationPointer:pointer;
      RelocationType:longword;
-     ui64:puint64;
+     //ui64:puint64;
  begin
   if Is64Bit then begin
    VirtualAddress:=ImageNTHeaders.OptionalHeader64.DataDirectory[IMAGE_DIRECTORY_ENTRY_BASERELOC].VirtualAddress;
@@ -10401,7 +10401,7 @@ begin
      if ioresult<>0 then begin
       {$i-}closefile(f);{$i+}
       filemode:=fm;
-      raise EBESENError.Create('FileError','Couldn''t read file "'+String(FileName)+'"');
+      raise EBESENError.Create('FileError',TBESENString('Couldn''t read file "'+String(FileName)+'"'));
       exit;
      end;
     end;
@@ -10416,7 +10416,7 @@ begin
     if ioresult=0 then begin
     end;
     filemode:=fm;
-    raise EBESENError.Create('FileError','Couldn''t read file "'+String(FileName)+'"');
+    raise EBESENError.Create('FileError',TBESENString('Couldn''t read file "'+String(FileName)+'"'));
    end;
   end else begin
    raise EBESENError.Create('FileError','Too few arguments');
@@ -10450,7 +10450,7 @@ begin
      if ioresult<>0 then begin
       {$i-}closefile(f);{$i+}
       filemode:=fm;
-      raise EBESENError.Create('FileError','Couldn''t write file "'+String(FileName)+'"');
+      raise EBESENError.Create('FileError',TBESENString('Couldn''t write file "'+String(FileName)+'"'));
       exit;
      end;
     end;
@@ -10463,7 +10463,7 @@ begin
     if ioresult=0 then begin
     end;
     filemode:=fm;
-    raise EBESENError.Create('FileError','Couldn''t write file "'+String(FileName)+'"');
+    raise EBESENError.Create('FileError',TBESENString('Couldn''t write file "'+String(FileName)+'"'));
    end;
   end else begin
    raise EBESENError.Create('FileError','Too few arguments');
@@ -10472,6 +10472,7 @@ begin
  end;
 end;
 
+{$warnings off}
 procedure TAssembler.BESENObjectFileUtilsNativeReadDirectory(const ThisArgument:TBESENValue;Arguments:PPBESENValues;CountArguments:longint;var ResultValue:TBESENValue);
 const BoolStr:array[boolean] of {$ifdef BESENSingleStringType}TBESENString{$else}ansistring{$endif}=('false','true');
 var FileName,Content:{$ifdef BESENSingleStringType}TBESENString{$else}ansistring{$endif};
@@ -10516,6 +10517,7 @@ begin
  finally
  end;
 end;
+{$warnings on}
 
 procedure TAssembler.BESENObjectFileUtilsNativeLoadScript(const ThisArgument:TBESENValue;Arguments:PPBESENValues;CountArguments:longint;var ResultValue:TBESENValue);
 var FileName,Content:{$ifdef BESENSingleStringType}TBESENString{$else}ansistring{$endif};
@@ -10542,7 +10544,7 @@ begin
      if ioresult<>0 then begin
       {$i-}closefile(f);{$i+}
       filemode:=fm;
-      raise EBESENError.Create('FileError','Couldn''t load file "'+String(FileName)+'"');
+      raise EBESENError.Create('FileError',TBESENString('Couldn''t load file "'+String(FileName)+'"'));
       exit;
      end;
     end;
@@ -10556,7 +10558,7 @@ begin
     if ioresult=0 then begin
     end;
     filemode:=fm;
-    raise EBESENError.Create('FileError','Couldn''t load file "'+String(FileName)+'"');
+    raise EBESENError.Create('FileError',TBESENString('Couldn''t load file "'+String(FileName)+'"'));
    end;
   end else begin
    raise EBESENError.Create('FileError','Too few arguments');
@@ -10572,7 +10574,7 @@ begin
 end;
 
 procedure TAssembler.BESENObjectAssemblerNativeDefineFunction(const ThisArgument:TBESENValue;Arguments:PPBESENValues;CountArguments:longint;var ResultValue:TBESENValue);
-var v:PBESENValue;
+var //v:PBESENValue;
     Name:widestring;
     FunctionObjectValue:TBESENValue;
 begin
@@ -10594,7 +10596,7 @@ begin
 end;
 
 procedure TAssembler.BESENObjectAssemblerNativeDefineMacro(const ThisArgument:TBESENValue;Arguments:PPBESENValues;CountArguments:longint;var ResultValue:TBESENValue);
-var v:PBESENValue;
+var //v:PBESENValue;
     SymbolName,UpperCaseSymbolName:widestring;
     SymbolType:TSymbolTreeLinkType;
     SymbolValue:TSymbolTreeLink;
@@ -10611,10 +10613,10 @@ begin
     if FunctionObjectValue.Obj is TBESENObject then begin
      BESENInstance.GarbageCollector.AddProtected(TBESENObject(FunctionObjectValue.Obj));
      BESENObjectMacros.OverwriteData(SymbolName,FunctionObjectValue,[bopaWRITABLE,bopaCONFIGURABLE]);
-     if not UserSymbolTree.Find(SymbolName,SymbolType,SymbolValue) then begin
+     if not UserSymbolTree.Find(AnsiString(SymbolName),SymbolType,SymbolValue) then begin
       UpperCaseSymbolName:=UpperCase(SymbolName);
-      UserSymbolList.NewClass(Index,UpperCaseSymbolName,SymbolName);
-      UserSymbolTree.Add(UpperCaseSymbolName,stUSER,Index);
+      UserSymbolList.NewClass(Index,AnsiString(UpperCaseSymbolName),AnsiString(SymbolName));
+      UserSymbolTree.Add(AnsiString(UpperCaseSymbolName),stUSER,Index);
       SymbolType:=stUSER;
       SymbolValue:=Index;
       Symbol:=UserSymbolList[SymbolValue];
@@ -11075,7 +11077,7 @@ procedure TAssembler.Clear;
 var FixUpExpression,NextFixUpExpression:PFixUpExpression;
     Segment,NextSegment:PAssemblerSegment;
     Section,NextSection:PAssemblerSection;
-    i:longint;
+    //i:longint;
 begin
  EvaluateHereOffset:=0;
 {$ifdef SASMBESEN}
@@ -11758,8 +11760,8 @@ end;
 
 procedure TAssembler.AddFixUpExpression(const Expression:TAssemblerExpression;const Flags,Bits:longword;const Relative:boolean;const Signed,LineNumber,Column,Source,ManualBoundMode:longint;const MinBound,MaxBound:uint64;const BoundWarningOrError:ansistring;const HereOffset:longint);
 var FixUpExpression:PFixUpExpression;
-    MustAddSymbol:boolean;
-    OldExpression:TAssemblerExpression;
+    //MustAddSymbol:boolean;
+    //OldExpression:TAssemblerExpression;
 begin
  if assigned(Expression) then begin
   Expression.UseIt(self);
@@ -12607,7 +12609,7 @@ const REG_NUM_EBP=5;
       REG_NUM_ESP=4;
 var AddressBits,EAFlags,i,b,it,bt,t,Mod_,RM,Scale,Index,Base,hb,ht:longint;
     s:int64;
-    f,ix,bx,x,sok:TOperandFlags;
+    {f,}ix,bx,x,sok:TOperandFlags;
  function SelectMOD(const BaseRM,CompareWithRegNum:longint):longint;
  var OperandValue:TIntegerValue;
      OperandHasFixUpSymbolReference,OperandIsZero,OperandInSignedByteValueRange:boolean;
@@ -14300,7 +14302,7 @@ var InstructionSize,HereOffset:longint;
 begin
  Code^.Segment:=CurrentSegment;
  Code^.Section:=CurrentSection;
- if Code^.Instruction.Opcode<=OpEnd then begin
+ if longint(Code^.Instruction.Opcode)<=longint(OpEnd) then begin
 { if Code^.Instruction.Operand[2].Value.Value=$4c then begin
    if Code^.Instruction.Operand[2].Value.Value=$4c then begin
    end;
@@ -14554,7 +14556,7 @@ procedure TAssembler.ProcessData(Code:PCode);
  end;
  procedure DoString;
  var Len:longint;
-     Symbol:TUserSymbol;
+     //Symbol:TUserSymbol;
      Value:TAssemblerValue;
      StringData:ansistring;
  begin
@@ -14822,7 +14824,7 @@ begin
     CurrentSection^.Data.Read(New,SizeOf(byte));
     Temp:=New-Old;
     CurrentSection^.Data.Seek(Counter,soBeginning);
-    CurrentSection^.Data.Write(New,SizeOf(byte));
+    CurrentSection^.Data.Write(Temp,SizeOf(byte));
     Old:=New;
    end;
    CurrentSection^.Data.Seek(p1,soBeginning);
@@ -14837,7 +14839,7 @@ begin
     CodeImage.Read(New,SizeOf(byte));
     Temp:=New-Old;
     CodeImage.Seek(Counter,soBeginning);
-    CodeImage.Write(New,SizeOf(byte));
+    CodeImage.Write(Temp,SizeOf(byte));
     Old:=New;
    end;                     
    CodeImage.Seek(p1,soBeginning);
@@ -15177,7 +15179,7 @@ end;
 
 procedure TAssembler.PostProcessFixUpExpressions;
 var FixUpExpression:PFixUpExpression;
-    Value,SubValue,TempValue:TIntegerValue;
+    Value,SubValue{,TempValue}:TIntegerValue;
     Value64:int64;
     Symbol:TUserSymbol;
     Section:PAssemblerSection;
@@ -16922,12 +16924,12 @@ const MZEXEHeaderSize=128;
         $69,$73,$20,$70,$72,$6f,$67,$72,$61,$6d,$20,$63,$61,$6e,$6e,$6f,
         $74,$20,$62,$65,$20,$72,$75,$6e,$20,$69,$6e,$20,$44,$4f,$53,$20,
         $6d,$6f,$64,$65,$2e,$0d,$0a,$24,$00,$00,$00,$00,$00,$00,$00,$00);
-var i,NumberOfSections,OldCodePosition,OldCodeImageSize,Pass:longint;
-    CheckSumPosition,Offset,FileOffset,TotalImageSize,TotalFileOffset,
-    HeaderSize,CountBytes,Value64:int64;
-    Value:TIntegerValue;
+var i,NumberOfSections{,OldCodePosition,OldCodeImageSize},Pass:longint;
+    {CheckSumPosition,}Offset,FileOffset,TotalImageSize,TotalFileOffset,
+    HeaderSize,CountBytes{,Value64}:int64;
+    //Value:TIntegerValue;
     PECOFFDirectoryEntry:PPECOFFDirectoryEntry;
-    OldSection,Section:PAssemblerSection;
+    {OldSection,}Section:PAssemblerSection;
     ImageNTHeaders:TImageNTHeaders;
     ImageSectionHeader:TImageSectionHeader;
     HasRelocations:boolean;
@@ -17504,7 +17506,7 @@ var CountCOFFSections,SymbolPosition,InitialSymbolCount,Counter,Len,RelocationIn
     Buf1:array[1..18] of ansichar;
     FileName,StringData,PrivatePrefix:ansistring;
     MustAddFeat00:boolean;
-    SymbolType:TSymbolTreeLinkType;
+    //SymbolType:TSymbolTreeLinkType;
     SymbolValue:TSymbolTreeLink;
     UpperCaseSymbolName:ansistring;
     Feat00Symbol:TUserSymbol;
@@ -17532,7 +17534,7 @@ begin
     UpperCaseSymbolName:=UpperCase('@feat.00');
     UserSymbolList.NewClass(Index,UpperCaseSymbolName,'@feat.00');
     UserSymbolTree.Add(UpperCaseSymbolName,stUSER,Index);
-    SymbolType:=stUSER;
+    //SymbolType:=stUSER;
     SymbolValue:=Index;
     Symbol:=UserSymbolList[SymbolValue];
     Symbol.SymbolType:=ustLABEL;
@@ -18299,14 +18301,14 @@ type PELFIdent=^TELFIdent;
 
      TELFSections=array of TELFSection;
 
-var CountELFRealSegments,CountELFRealSections,CountELFSections,Index,SHStrTabIndex,StrTabIndex,SymTabIndex,Counter:longint;
+var {CountELFRealSegments,CountELFRealSections,}CountELFSections,Index,SHStrTabIndex,StrTabIndex,SymTabIndex,Counter:longint;
     ELFSections:TELFSections;
     SHStrTabStream,StrTabStream,SymTabStream,RelocationStream:TMemoryStream;
     SectionFlags,SectionHeaderOffset,SectionHeaderCount,Address,Info:qword;
     AddEnd:int64;
     StrTabStringIntegerPairHashMap:TStringIntegerPairHashMap;
     ELF64:longbool;
-    Segment:PAssemblerSegment;
+    //Segment:PAssemblerSegment;
     Section:PAssemblerSection;
     Symbol:TUserSymbol;
     ELFSection:PELFSection;
@@ -18450,8 +18452,8 @@ begin
 
   ELF64:=Is64Bit and not IsX32;
 
-  CountELFRealSegments:=CountSegments;
-  CountELFRealSections:=CountSections;
+{ CountELFRealSegments:=CountSegments;
+  CountELFRealSections:=CountSections;}
 
   ShowStatus('Write image');
   if Stream is TMemoryStream then begin
@@ -19039,9 +19041,9 @@ var OMFRecords:TList;
 
 var Index:longint;
     OMFRecord:POMFRecord;
-    Symbol:TUserSymbol;
+    //Symbol:TUserSymbol;
     ImportItem:TAssemblerImportItem;
-    ImportLibraryItem:TAssemblerImportLibraryItem;
+    //ImportLibraryItem:TAssemblerImportLibraryItem;
     ExportItem:TAssemblerExportItem;
 begin
  result:=false;
@@ -19072,7 +19074,7 @@ begin
    for Index:=0 to ImportList.Count-1 do begin
     ImportItem:=ImportList.Items[Index];
     if assigned(ImportItem.ImportLibrary) then begin
-     ImportLibraryItem:=ImportItem.ImportLibrary;
+     //ImportLibraryItem:=ImportItem.ImportLibrary;
      OMFRecord:=NewRecord(COMENT);
      StreamWriteByte(OMFRecord^.RecordData,$00);
      StreamWriteByte(OMFRecord^.RecordData,$a0); // comment class A0
@@ -19124,7 +19126,7 @@ function TAssembler.WriteTRI(const Stream:TStream):boolean;
 var i:longint;
  function CountRelocations:longint;
  var FixUpExpression:PFixUpExpression;
-     SymbolIndex:longint;
+     //SymbolIndex:longint;
      Symbol:TUserSymbol;
  begin
   result:=0;
@@ -19145,7 +19147,7 @@ var i:longint;
  end;
  procedure WriteRelocations;
  var FixUpExpression:PFixUpExpression;
-     SymbolIndex,i:longint;
+     {SymbolIndex,}i:longint;
      Symbol:TUserSymbol;
  begin
   FixUpExpression:=StartFixUpExpression;
@@ -20361,7 +20363,7 @@ var InputSourceCode:ansistring;
      WideStringData:=WideStringData+C;
      GetChar;
     end else begin
-     WideStringData:=WideStringData+LastChar;
+     WideStringData:=WideStringData+WideChar(LastChar);
      GetChar;
     end;
    end;
@@ -20374,7 +20376,7 @@ var InputSourceCode:ansistring;
  var NumberString:ansistring;
  begin
   NumberString:='';
-  if LastChar in ['-'..'+'] then begin
+  if LastChar in ['-','+'] then begin
    NumberString:=NumberString+LastChar;
    GetChar;
   end;
@@ -20399,7 +20401,7 @@ var InputSourceCode:ansistring;
       if LastChar in ['p','P'] then begin
        NumberString:=NumberString+LastChar;
        GetChar;
-       if LastChar in ['-'..'+'] then begin
+       if LastChar in ['-','+'] then begin
         NumberString:=NumberString+LastChar;
         GetChar;
        end;
@@ -20427,7 +20429,7 @@ var InputSourceCode:ansistring;
       if LastChar in ['p','P'] then begin
        NumberString:=NumberString+LastChar;
        GetChar;
-       if LastChar in ['-'..'+'] then begin
+       if LastChar in ['-','+'] then begin
         NumberString:=NumberString+LastChar;
         GetChar;
        end;
@@ -20455,7 +20457,7 @@ var InputSourceCode:ansistring;
       if LastChar in ['e','E'] then begin
        NumberString:=NumberString+LastChar;
        GetChar;
-       if LastChar in ['-'..'+'] then begin
+       if LastChar in ['-','+'] then begin
         NumberString:=NumberString+LastChar;
         GetChar;
        end;
@@ -20483,7 +20485,7 @@ var InputSourceCode:ansistring;
       if LastChar in ['p','P'] then begin
        NumberString:=NumberString+LastChar;
        GetChar;
-       if LastChar in ['-'..'+'] then begin
+       if LastChar in ['-','+'] then begin
         NumberString:=NumberString+LastChar;
         GetChar;
        end;
@@ -20517,7 +20519,7 @@ var InputSourceCode:ansistring;
       if LastChar in ['e','E'] then begin
        NumberString:=NumberString+LastChar;
        GetChar;
-       if LastChar in ['-'..'+'] then begin
+       if LastChar in ['-','+'] then begin
         NumberString:=NumberString+LastChar;
         GetChar;
        end;
@@ -20546,7 +20548,7 @@ var InputSourceCode:ansistring;
     if LastChar in ['e','E'] then begin
      NumberString:=NumberString+LastChar;
      GetChar;
-     if LastChar in ['-'..'+'] then begin
+     if LastChar in ['-','+'] then begin
       NumberString:=NumberString+LastChar;
       GetChar;
      end;
@@ -27125,14 +27127,14 @@ end;
 
 procedure TAssembler.ParseStream(const Stream:TStream);
 var s:ansistring;
-    OldPosition:int64;
+    //OldPosition:int64;
 begin
  s:='';
  try
   if assigned(Stream) and not AreErrors then begin
    SetLength(s,Stream.Size);
    if Stream.Size>0 then begin
-    OldPosition:=Stream.Position;
+    //OldPosition:=Stream.Position;
     Stream.Seek(0,soBeginning);
     Stream.Read(s[1],Stream.Size);
     ParseString(s);
