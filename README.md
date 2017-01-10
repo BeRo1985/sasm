@@ -28,7 +28,7 @@ SASM (Scriptable ASseMbler) is a x86 assembler with ECMAScript as (additional) m
 
 # Requirements
 
-- Delphi or FreePascal as compiler for to compile PACC itself
+- Delphi or FreePascal as compiler for to compile SASM itself
 - PUCU.pas from https://github.com/BeRo1985/pucu for unicode handling stuff
 - Optional together with SASMBESEN as define: BESEN*.pas from https://github.com/BeRo1985/besen 
 
