@@ -243,5 +243,9 @@ begin
   writeln('         -Dx            = Define a constant symbol x with value 0');
  end;
  writeln;
-//readln;
+{$ifndef fpc}
+ if DebugHook<>0 then begin
+  readln;
+ end;
+{$endif}
 end.
