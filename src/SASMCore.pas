@@ -11,7 +11,7 @@ uses {$ifdef Windows}Windows,{$endif}{$ifdef unix}baseunix,{$endif}SysUtils,Clas
 {$endif}
      PUCU;
 
-const SASMVersionString='2017.01.10.19.28.0000';
+const SASMVersionString='2017.01.10.19.41.0000';
 
       SASMCopyrightString='Copyright (C) 2003-2017, Benjamin ''BeRo'' Rosseaux';
 
@@ -18299,6 +18299,7 @@ type PELFIdent=^TELFIdent;
      TELFSection=record
       ToSymbolTable:boolean;
       Name:ansistring;
+      SymbolIndex:longint;
       Data:TMemoryStream;
       sh_name:longword;
       sh_type:longword;
@@ -18352,6 +18353,7 @@ var {CountELFRealSegments,CountELFRealSections,}CountELFSections,SymbolIndex,
   ELFSection:=@ELFSections[result];
   ELFSection^.ToSymbolTable:=ToSymbolTable;
   ELFSection^.Name:=Name;
+  ELFSection^.SymbolIndex:=-1;
   ELFSection^.sh_name:=SHStrTabStream.Position;
   if length(Name)>0 then begin
    SHStrTabStream.Write(Name[1],length(Name)*SizeOf(AnsiChar));
@@ -18586,6 +18588,7 @@ begin
       for Index:=1 to CountELFSections-1 do begin
        ELFSection:=@ELFSections[Index];
        if ELFSection^.ToSymbolTable then begin
+        ELFSection^.SymbolIndex:=SymbolIndex;
         StreamWriteDWord(SymTabStream,0{GetStrTabName(ELFSection^.Name)}); // st_name
         if not ELF64 then begin
          StreamWriteDWord(SymTabStream,0); // st_value
@@ -18884,7 +18887,11 @@ begin
         if assigned(FixUpExpression^.Symbol) then begin
          Info:=Info or (uint64(FixUpExpression^.Symbol.ObjectSymbolIndex) shl 32);
         end else if assigned(Section) then begin
-         Info:=Info or (uint64(Section^.Index+5) shl 32);
+         if ELFSections[Section^.ObjectSectionIndex].SymbolIndex>=0 then begin
+          Info:=Info or (uint64(ELFSections[Section^.ObjectSectionIndex].SymbolIndex) shl 32);
+         end else begin
+          MakeError('Unsupported relocation type for ELF');
+         end;
         end;
         if ELF64 then begin
          StreamWriteQWord(RelocationStream,Address);
