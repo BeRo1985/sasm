@@ -11,7 +11,7 @@ uses {$ifdef Windows}Windows,{$endif}{$ifdef unix}baseunix,{$endif}SysUtils,Clas
 {$endif}
      PUCU;
 
-const SASMVersionString='2017.01.10.09.04.0000';
+const SASMVersionString='2017.01.10.11.42.0000';
 
       SASMCopyrightString='Copyright (C) 2003-2017, Benjamin ''BeRo'' Rosseaux';
 
@@ -18314,7 +18314,9 @@ type PELFIdent=^TELFIdent;
 
      TELFSections=array of TELFSection;
 
-var {CountELFRealSegments,CountELFRealSections,}CountELFSections,SymbolIndex,Index,SHStrTabIndex,StrTabIndex,SymTabIndex,Counter:longint;
+var {CountELFRealSegments,CountELFRealSections,}CountELFSections,SymbolIndex,
+    LocalGlobalSymbolPassIndex,FirstNonLocalSymbolIndex,
+    Index,SHStrTabIndex,StrTabIndex,SymTabIndex,Counter:longint;
     ELFSections:TELFSections;
     SHStrTabStream,StrTabStream,SymTabStream,RelocationStream:TMemoryStream;
     SectionFlags,SectionHeaderOffset,SectionHeaderCount,Address,Info:uint64;
@@ -18486,28 +18488,35 @@ begin
 
     StrTabStringIntegerPairHashMap:=TStringIntegerPairHashMap.Create;
     try
-                      
+
      StreamWriteByte(SHStrTabStream,0);
 
      AddELFSection(false,'',SHT_NULL,0,0,0,0,0,0,nil);
-     SHStrTabIndex:=AddELFSection(false,'.shstrtab',SHT_STRTAB,0,0,0,0,0,0,nil);
-     StrTabIndex:=AddELFSection(false,'.strtab',SHT_STRTAB,0,0,0,0,4,0,nil);
+
+     Counter:=0;
+     Section:=StartSection;
+     while assigned(Section) do begin
+      Section^.ObjectSectionIndex:=AddELFSection(true,Section^.Name,SHT_PROGBITS,IntegerValueGetQWord(Section^.FreezedFlags),0,0,0,16,0,Section^.Data);
+      Section^.Index:=Counter;
+      inc(Counter);
+      Section:=Section^.Next;
+     end;
+
+     SHStrTabIndex:=AddELFSection(false,'.shstrtab',SHT_STRTAB,0,0,0,0,1,0,nil);
+
+     StrTabIndex:=CountELFSections+1;
 
      if ELF64 then begin
       SymTabIndex:=AddELFSection(false,'.symtab',SHT_SYMTAB,0,0,StrTabIndex,0,SYMTAB64_ALIGN,SYMTAB64_SIZE,nil);
      end else begin
       SymTabIndex:=AddELFSection(false,'.symtab',SHT_SYMTAB,0,0,StrTabIndex,0,SYMTAB32_ALIGN,SYMTAB32_SIZE,nil);
      end;
-                                            
-     StrTabStream:=ELFSections[StrTabIndex].Data;
-     SymTabStream:=ELFSections[SymTabIndex].Data;
 
-     StreamWriteByte(StrTabStream,0);
+     StrTabIndex:=AddELFSection(false,'.strtab',SHT_STRTAB,0,0,0,0,1,0,nil);
 
      Counter:=0;
      Section:=StartSection;
      while assigned(Section) do begin
-      Section^.ObjectSectionIndex:=AddELFSection(true,Section^.Name,SHT_PROGBITS,IntegerValueGetQWord(Section^.FreezedFlags),0,0,0,16,0,Section^.Data);
       if Section^.RelocationFixUpExpressions.Count>0 then begin
        if Is64Bit then begin
         if IsX32 then begin
@@ -18533,13 +18542,24 @@ begin
      FreeAndNil(SHStrTabStream);
 
      begin
+
+      StrTabStream:=ELFSections[StrTabIndex].Data;
+
+      StreamWriteByte(StrTabStream,0);
+
+      SymTabStream:=ELFSections[SymTabIndex].Data;
+
+      SymbolIndex:=0;
+
+      FirstNonLocalSymbolIndex:=-1;
+
       if ELF64 then begin
        StreamWriteByteCount(SymTabStream,0,SYMTAB64_SIZE);
       end else begin
        StreamWriteByteCount(SymTabStream,0,SYMTAB32_SIZE);
       end;
 
-      SymbolIndex:=0;
+      inc(SymbolIndex);
 
       begin
        if FileStringList.Count>0 then begin
@@ -18566,7 +18586,7 @@ begin
       for Index:=1 to CountELFSections-1 do begin
        ELFSection:=@ELFSections[Index];
        if ELFSection^.ToSymbolTable then begin
-        StreamWriteDWord(SymTabStream,GetStrTabName(ELFSection^.Name)); // st_name
+        StreamWriteDWord(SymTabStream,0{GetStrTabName(ELFSection^.Name)}); // st_name
         if not ELF64 then begin
          StreamWriteDWord(SymTabStream,0); // st_value
          StreamWriteDWord(SymTabStream,0); // st_size
@@ -18581,58 +18601,72 @@ begin
         inc(SymbolIndex);
        end;
       end;
-                   
-      for Index:=0 to UserSymbolList.Count-1 do begin
-       Symbol:=UserSymbolList[Index];
-       if Symbol.NeedSymbol then begin
-        Symbol.ObjectSymbolIndex:=SymbolIndex; //+Symbol.SymbolIndex+1;
-        inc(SymbolIndex);
-        StreamWriteDWord(SymTabStream,GetStrTabName(Symbol.OriginalName)); // st_name
-        if not ELF64 then begin
-         if Symbol.IsExternal then begin
-          StreamWriteDWord(SymTabStream,0); // st_value
-          StreamWriteDWord(SymTabStream,0); // st_size
-         end else begin
-          StreamWriteDWord(SymTabStream,Symbol.Position); // st_value
-          StreamWriteDWord(SymTabStream,0); // st_size
+
+      // First all local symbols, then all global symbols
+      for LocalGlobalSymbolPassIndex:=0 to 1 do begin
+       for Index:=0 to UserSymbolList.Count-1 do begin
+        Symbol:=UserSymbolList[Index];
+        if Symbol.NeedSymbol then begin
+         if (LocalGlobalSymbolPassIndex<>0) xor (Symbol.IsExternal or Symbol.IsPublic) then begin
+          continue;
          end;
-        end;
-        if Symbol.IsExternal then begin
-//       Flags:=(STB_WEAK shl 4) or STT_NOTYPE;
-         Flags:=(STB_GLOBAL shl 4) or STT_NOTYPE;
-        end else if Symbol.IsPublic then begin
-         Flags:=(STB_GLOBAL shl 4) or STT_NOTYPE;
-        end else begin
-         Flags:=(STB_LOCAL shl 4) or STT_NOTYPE;
-        end;
-        if assigned(Symbol.Section) then begin
-         SectionFlags:=IntegerValueGetQWord(Symbol.Section^.FreezedFlags);
-         if (SectionFlags and SHF_TLS)<>0 then begin
-          Flags:=(Flags and $f0) or STT_TLS;
-{        end else if (SectionFlags and SHF_EXECINSTR)<>0 then begin
-          Flags:=(Flags and $f0) or STT_FUNC;
-         end else if (SectionFlags and SHF_WRITE)<>0 then begin
-          Flags:=(Flags and $f0) or STT_OBJECT; {}
+         if Symbol.IsExternal or Symbol.IsPublic then begin
+          if FirstNonLocalSymbolIndex<0 then begin
+           FirstNonLocalSymbolIndex:=SymbolIndex;
+          end;
          end;
-        end;
-        StreamWriteByte(SymTabStream,Flags); // st_info
-        StreamWriteByte(SymTabStream,STV_DEFAULT); // st_other
-        if assigned(Symbol.Section) then begin
-         StreamWriteWord(SymTabStream,Symbol.Section.ObjectSectionIndex); // st_shndx
-        end else begin
-         StreamWriteWord(SymTabStream,0); // st_shndx
-        end;
-        if ELF64 then begin
+         Symbol.ObjectSymbolIndex:=SymbolIndex;
+         inc(SymbolIndex);
+         StreamWriteDWord(SymTabStream,GetStrTabName(Symbol.OriginalName)); // st_name
+         if not ELF64 then begin
+          if Symbol.IsExternal then begin
+           StreamWriteDWord(SymTabStream,0); // st_value
+           StreamWriteDWord(SymTabStream,0); // st_size
+          end else begin
+           StreamWriteDWord(SymTabStream,Symbol.Position); // st_value
+           StreamWriteDWord(SymTabStream,0); // st_size
+          end;
+         end;
          if Symbol.IsExternal then begin
-          StreamWriteQWord(SymTabStream,0); // st_value
-          StreamWriteQWord(SymTabStream,0); // st_size
+ //       Flags:=(STB_WEAK shl 4) or STT_NOTYPE;
+          Flags:=(STB_GLOBAL shl 4) or STT_NOTYPE;
+         end else if Symbol.IsPublic then begin
+          Flags:=(STB_GLOBAL shl 4) or STT_NOTYPE;
          end else begin
-          StreamWriteQWord(SymTabStream,Symbol.Position); // st_value
-          StreamWriteQWord(SymTabStream,0); // st_size
+          Flags:=(STB_LOCAL shl 4) or STT_NOTYPE;
+         end;
+         if assigned(Symbol.Section) then begin
+          SectionFlags:=IntegerValueGetQWord(Symbol.Section^.FreezedFlags);
+          if (SectionFlags and SHF_TLS)<>0 then begin
+           Flags:=(Flags and $f0) or STT_TLS;
+ {        end else if (SectionFlags and SHF_EXECINSTR)<>0 then begin
+           Flags:=(Flags and $f0) or STT_FUNC;
+          end else if (SectionFlags and SHF_WRITE)<>0 then begin
+           Flags:=(Flags and $f0) or STT_OBJECT; {}
+          end;
+         end;
+         StreamWriteByte(SymTabStream,Flags); // st_info
+         StreamWriteByte(SymTabStream,STV_DEFAULT); // st_other
+         if assigned(Symbol.Section) then begin
+          StreamWriteWord(SymTabStream,Symbol.Section.ObjectSectionIndex); // st_shndx
+         end else begin
+          StreamWriteWord(SymTabStream,0); // st_shndx
+         end;
+         if ELF64 then begin
+          if Symbol.IsExternal then begin
+           StreamWriteQWord(SymTabStream,0); // st_value
+           StreamWriteQWord(SymTabStream,0); // st_size
+          end else begin
+           StreamWriteQWord(SymTabStream,Symbol.Position); // st_value
+           StreamWriteQWord(SymTabStream,0); // st_size
+          end;
          end;
         end;
        end;
       end;
+
+      // Symbol table section's sh_info section header member holds the symbol table index for the first non-local symbol
+      ELFSections[SymTabIndex].sh_info:=FirstNonLocalSymbolIndex;
 
      end;
 
