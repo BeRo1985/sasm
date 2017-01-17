@@ -11,7 +11,7 @@ uses {$ifdef Windows}Windows,{$endif}{$ifdef unix}baseunix,{$endif}SysUtils,Clas
 {$endif}
      PUCU;
 
-const SASMVersionString='2017.01.10.19.41.0000';
+const SASMVersionString='2017.01.17.14.48.0000';
 
       SASMCopyrightString='Copyright (C) 2003-2017, Benjamin ''BeRo'' Rosseaux';
 
@@ -17630,7 +17630,7 @@ begin
      end;
     end;
     if Section^.Position>0 then begin
-     COFFSectionHeaders[Counter].VirtualSize:=VirtualSize;
+     COFFSectionHeaders[Counter].VirtualSize:=0;//VirtualSize;
      if (COFFSectionHeaders[Counter].Characteristics and IMAGE_SCN_CNT_UNINITIALIZED_DATA)<>0 then begin
       COFFSectionHeaders[Counter].SizeOfRawData:=Section^.Data.Size;
  //   COFFSectionHeaders[Counter].SizeOfRawData:=0;
