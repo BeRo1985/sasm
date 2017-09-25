@@ -11,7 +11,7 @@ uses {$ifdef Windows}Windows,{$endif}{$ifdef unix}baseunix,{$endif}SysUtils,Clas
 {$endif}
      PUCU;
 
-const SASMVersionString='2017.01.17.14.48.0000';
+const SASMVersionString='2017.09.25.09.06.0000';
 
       SASMCopyrightString='Copyright (C) 2003-2017, Benjamin ''BeRo'' Rosseaux';
 

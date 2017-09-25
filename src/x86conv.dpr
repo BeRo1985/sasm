@@ -813,7 +813,7 @@ begin
   end;
  end;
  writeln(Flag);
- readlN;
+ readln;
 end;
 
 procedure AddInstruction(const Name,Operand0,Operand1,Operand2,Operand3,Operand4,OperandEncoding,OperandTuple,Sequence,Flags:ansistring;const CountOperands,Relax,ConditionCode:longint);
@@ -1475,6 +1475,8 @@ begin
     s2:='OF_MEMORY or OF_BITS256';
    end else if s2='MEM_OFFS' then begin
     s2:='OF_MEM_OFFS';
+   end else if s2='REG' then begin
+    s2:='OF_REG_GPR';
    end else if s2='REG8' then begin
     s2:='OF_REG_GPR or OF_BITS8';
    end else if s2='REG16' then begin

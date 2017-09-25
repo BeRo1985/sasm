@@ -1,6 +1,6 @@
 { Don't edit! This file is a auto-generated file by x86conv! }
 
-const CountInstructionTemplates=5539;
+const CountInstructionTemplates=5527;
       CountOpcodes=1893;
       CountKeywords=131;
       CountPrefixes=23;
@@ -28892,17 +28892,47 @@ const InstructionTemplates:TInstructionTemplates=
    Operands:(0,0,0,0,0);
    Decorators:(0,0,0,0,0);
    Sequence:(2,15,255,0,0,0,0,0);
-   Flags:[IF_UNDOC,IF_186];
+   Flags:[IF_186];
    CountOperands:0;
    SequenceLength:3;
    Opcode:911;
   ),
   (
    Name:'UD1';
+   Operands:(OF_REG_GPR,OF_RM_GPR or OF_BITS16,0,0,0);
+   Decorators:(0,0,0,0,0);
+   Sequence:(208,2,15,185,72,0,0,0);
+   Flags:[IF_186];
+   CountOperands:2;
+   SequenceLength:5;
+   Opcode:912;
+  ),
+  (
+   Name:'UD1';
+   Operands:(OF_REG_GPR,OF_RM_GPR or OF_BITS32,0,0,0);
+   Decorators:(0,0,0,0,0);
+   Sequence:(209,2,15,185,72,0,0,0);
+   Flags:[IF_186];
+   CountOperands:2;
+   SequenceLength:5;
+   Opcode:912;
+  ),
+  (
+   Name:'UD1';
+   Operands:(OF_REG_GPR,OF_RM_GPR or OF_BITS64,0,0,0);
+   Decorators:(0,0,0,0,0);
+   Sequence:(212,2,15,185,72,0,0,0);
+   Flags:[IF_186];
+   CountOperands:2;
+   SequenceLength:5;
+   Opcode:912;
+  ),
+  (
+   Name:'UD1';
    Operands:(0,0,0,0,0);
    Decorators:(0,0,0,0,0);
    Sequence:(2,15,185,0,0,0,0,0);
-   Flags:[IF_UNDOC,IF_186];
+   Flags:[IF_186];
    CountOperands:0;
    SequenceLength:3;
    Opcode:912;
@@ -28932,9 +28962,39 @@ const InstructionTemplates:TInstructionTemplates=
    Operands:(0,0,0,0,0);
    Decorators:(0,0,0,0,0);
    Sequence:(2,15,185,0,0,0,0,0);
-   Flags:[IF_UNDOC,IF_186];
+   Flags:[IF_186];
    CountOperands:0;
    SequenceLength:3;
+   Opcode:915;
+  ),
+  (
+   Name:'UD2B';
+   Operands:(OF_REG_GPR,OF_RM_GPR or OF_BITS16,0,0,0);
+   Decorators:(0,0,0,0,0);
+   Sequence:(208,2,15,185,72,0,0,0);
+   Flags:[IF_186];
+   CountOperands:2;
+   SequenceLength:5;
+   Opcode:915;
+  ),
+  (
+   Name:'UD2B';
+   Operands:(OF_REG_GPR,OF_RM_GPR or OF_BITS32,0,0,0);
+   Decorators:(0,0,0,0,0);
+   Sequence:(209,2,15,185,72,0,0,0);
+   Flags:[IF_186];
+   CountOperands:2;
+   SequenceLength:5;
+   Opcode:915;
+  ),
+  (
+   Name:'UD2B';
+   Operands:(OF_REG_GPR,OF_RM_GPR or OF_BITS64,0,0,0);
+   Decorators:(0,0,0,0,0);
+   Sequence:(212,2,15,185,72,0,0,0);
+   Flags:[IF_186];
+   CountOperands:2;
+   SequenceLength:5;
    Opcode:915;
   ),
   (
@@ -41069,38 +41129,8 @@ const InstructionTemplates:TInstructionTemplates=
   ),
   (
    Name:'VMOVDQA32';
-   Operands:(OF_XMMREG,OF_XMMREG,0,0,0);
+   Operands:(OF_RM_XMM or OF_BITS128,OF_XMMREG,0,0,0);
    Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
-   Sequence:(168,1,1,192,1,127,65,0);
-   Flags:[IF_AVX512,IF_AVX512VL,IF_VEX,IF_EVEX,IF_FUTURE];
-   CountOperands:2;
-   SequenceLength:7;
-   Opcode:1425;
-  ),
-  (
-   Name:'VMOVDQA32';
-   Operands:(OF_YMMREG,OF_YMMREG,0,0,0);
-   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
-   Sequence:(168,1,5,192,1,127,65,0);
-   Flags:[IF_AVX512,IF_AVX512VL,IF_VEX,IF_EVEX,IF_FUTURE];
-   CountOperands:2;
-   SequenceLength:7;
-   Opcode:1425;
-  ),
-  (
-   Name:'VMOVDQA32';
-   Operands:(OF_ZMMREG,OF_ZMMREG,0,0,0);
-   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
-   Sequence:(168,1,9,192,1,127,65,0);
-   Flags:[IF_AVX512,IF_VEX,IF_EVEX,IF_FUTURE];
-   CountOperands:2;
-   SequenceLength:7;
-   Opcode:1425;
-  ),
-  (
-   Name:'VMOVDQA32';
-   Operands:(OF_MEMORY or OF_BITS128,OF_XMMREG,0,0,0);
-   Decorators:(ODF_MASK,0,0,0,0);
    Sequence:(168,1,1,195,1,127,65,0);
    Flags:[IF_AVX512,IF_AVX512VL,IF_VEX,IF_EVEX,IF_FUTURE];
    CountOperands:2;
@@ -41109,8 +41139,8 @@ const InstructionTemplates:TInstructionTemplates=
   ),
   (
    Name:'VMOVDQA32';
-   Operands:(OF_MEMORY or OF_BITS256,OF_YMMREG,0,0,0);
-   Decorators:(ODF_MASK,0,0,0,0);
+   Operands:(OF_RM_YMM or OF_BITS256,OF_YMMREG,0,0,0);
+   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
    Sequence:(168,1,5,195,1,127,65,0);
    Flags:[IF_AVX512,IF_AVX512VL,IF_VEX,IF_EVEX,IF_FUTURE];
    CountOperands:2;
@@ -41119,8 +41149,8 @@ const InstructionTemplates:TInstructionTemplates=
   ),
   (
    Name:'VMOVDQA32';
-   Operands:(OF_MEMORY or OF_BITS512,OF_ZMMREG,0,0,0);
-   Decorators:(ODF_MASK,0,0,0,0);
+   Operands:(OF_RM_ZMM or OF_BITS512,OF_ZMMREG,0,0,0);
+   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
    Sequence:(168,1,9,195,1,127,65,0);
    Flags:[IF_AVX512,IF_VEX,IF_EVEX,IF_FUTURE];
    CountOperands:2;
@@ -41159,38 +41189,8 @@ const InstructionTemplates:TInstructionTemplates=
   ),
   (
    Name:'VMOVDQA64';
-   Operands:(OF_XMMREG,OF_XMMREG,0,0,0);
+   Operands:(OF_RM_XMM or OF_BITS128,OF_XMMREG,0,0,0);
    Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
-   Sequence:(168,1,17,192,1,127,65,0);
-   Flags:[IF_AVX512,IF_AVX512VL,IF_VEX,IF_EVEX,IF_FUTURE];
-   CountOperands:2;
-   SequenceLength:7;
-   Opcode:1426;
-  ),
-  (
-   Name:'VMOVDQA64';
-   Operands:(OF_YMMREG,OF_YMMREG,0,0,0);
-   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
-   Sequence:(168,1,21,192,1,127,65,0);
-   Flags:[IF_AVX512,IF_AVX512VL,IF_VEX,IF_EVEX,IF_FUTURE];
-   CountOperands:2;
-   SequenceLength:7;
-   Opcode:1426;
-  ),
-  (
-   Name:'VMOVDQA64';
-   Operands:(OF_ZMMREG,OF_ZMMREG,0,0,0);
-   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
-   Sequence:(168,1,25,192,1,127,65,0);
-   Flags:[IF_AVX512,IF_VEX,IF_EVEX,IF_FUTURE];
-   CountOperands:2;
-   SequenceLength:7;
-   Opcode:1426;
-  ),
-  (
-   Name:'VMOVDQA64';
-   Operands:(OF_MEMORY or OF_BITS128,OF_XMMREG,0,0,0);
-   Decorators:(ODF_MASK,0,0,0,0);
    Sequence:(168,1,17,195,1,127,65,0);
    Flags:[IF_AVX512,IF_AVX512VL,IF_VEX,IF_EVEX,IF_FUTURE];
    CountOperands:2;
@@ -41199,8 +41199,8 @@ const InstructionTemplates:TInstructionTemplates=
   ),
   (
    Name:'VMOVDQA64';
-   Operands:(OF_MEMORY or OF_BITS256,OF_YMMREG,0,0,0);
-   Decorators:(ODF_MASK,0,0,0,0);
+   Operands:(OF_RM_YMM or OF_BITS256,OF_YMMREG,0,0,0);
+   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
    Sequence:(168,1,21,195,1,127,65,0);
    Flags:[IF_AVX512,IF_AVX512VL,IF_VEX,IF_EVEX,IF_FUTURE];
    CountOperands:2;
@@ -41209,8 +41209,8 @@ const InstructionTemplates:TInstructionTemplates=
   ),
   (
    Name:'VMOVDQA64';
-   Operands:(OF_MEMORY or OF_BITS512,OF_ZMMREG,0,0,0);
-   Decorators:(ODF_MASK,0,0,0,0);
+   Operands:(OF_RM_ZMM or OF_BITS512,OF_ZMMREG,0,0,0);
+   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
    Sequence:(168,1,25,195,1,127,65,0);
    Flags:[IF_AVX512,IF_VEX,IF_EVEX,IF_FUTURE];
    CountOperands:2;
@@ -41289,38 +41289,8 @@ const InstructionTemplates:TInstructionTemplates=
   ),
   (
    Name:'VMOVDQU16';
-   Operands:(OF_XMMREG,OF_XMMREG,0,0,0);
+   Operands:(OF_RM_XMM or OF_BITS128,OF_XMMREG,0,0,0);
    Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
-   Sequence:(168,1,19,192,1,127,65,0);
-   Flags:[IF_AVX512VL,IF_AVX512BW,IF_VEX,IF_EVEX,IF_FUTURE];
-   CountOperands:2;
-   SequenceLength:7;
-   Opcode:1428;
-  ),
-  (
-   Name:'VMOVDQU16';
-   Operands:(OF_YMMREG,OF_YMMREG,0,0,0);
-   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
-   Sequence:(168,1,23,192,1,127,65,0);
-   Flags:[IF_AVX512VL,IF_AVX512BW,IF_VEX,IF_EVEX,IF_FUTURE];
-   CountOperands:2;
-   SequenceLength:7;
-   Opcode:1428;
-  ),
-  (
-   Name:'VMOVDQU16';
-   Operands:(OF_ZMMREG,OF_ZMMREG,0,0,0);
-   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
-   Sequence:(168,1,27,192,1,127,65,0);
-   Flags:[IF_AVX512BW,IF_VEX,IF_EVEX,IF_FUTURE];
-   CountOperands:2;
-   SequenceLength:7;
-   Opcode:1428;
-  ),
-  (
-   Name:'VMOVDQU16';
-   Operands:(OF_MEMORY or OF_BITS128,OF_XMMREG,0,0,0);
-   Decorators:(ODF_MASK,0,0,0,0);
    Sequence:(168,1,19,195,1,127,65,0);
    Flags:[IF_AVX512VL,IF_AVX512BW,IF_VEX,IF_EVEX,IF_FUTURE];
    CountOperands:2;
@@ -41329,8 +41299,8 @@ const InstructionTemplates:TInstructionTemplates=
   ),
   (
    Name:'VMOVDQU16';
-   Operands:(OF_MEMORY or OF_BITS256,OF_YMMREG,0,0,0);
-   Decorators:(ODF_MASK,0,0,0,0);
+   Operands:(OF_RM_YMM or OF_BITS256,OF_YMMREG,0,0,0);
+   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
    Sequence:(168,1,23,195,1,127,65,0);
    Flags:[IF_AVX512VL,IF_AVX512BW,IF_VEX,IF_EVEX,IF_FUTURE];
    CountOperands:2;
@@ -41339,8 +41309,8 @@ const InstructionTemplates:TInstructionTemplates=
   ),
   (
    Name:'VMOVDQU16';
-   Operands:(OF_MEMORY or OF_BITS512,OF_ZMMREG,0,0,0);
-   Decorators:(ODF_MASK,0,0,0,0);
+   Operands:(OF_RM_ZMM or OF_BITS512,OF_ZMMREG,0,0,0);
+   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
    Sequence:(168,1,27,195,1,127,65,0);
    Flags:[IF_AVX512BW,IF_VEX,IF_EVEX,IF_FUTURE];
    CountOperands:2;
@@ -41379,38 +41349,8 @@ const InstructionTemplates:TInstructionTemplates=
   ),
   (
    Name:'VMOVDQU32';
-   Operands:(OF_XMMREG,OF_XMMREG,0,0,0);
+   Operands:(OF_RM_XMM or OF_BITS128,OF_XMMREG,0,0,0);
    Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
-   Sequence:(168,1,2,192,1,127,65,0);
-   Flags:[IF_AVX512,IF_AVX512VL,IF_VEX,IF_EVEX,IF_FUTURE];
-   CountOperands:2;
-   SequenceLength:7;
-   Opcode:1429;
-  ),
-  (
-   Name:'VMOVDQU32';
-   Operands:(OF_YMMREG,OF_YMMREG,0,0,0);
-   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
-   Sequence:(168,1,6,192,1,127,65,0);
-   Flags:[IF_AVX512,IF_AVX512VL,IF_VEX,IF_EVEX,IF_FUTURE];
-   CountOperands:2;
-   SequenceLength:7;
-   Opcode:1429;
-  ),
-  (
-   Name:'VMOVDQU32';
-   Operands:(OF_ZMMREG,OF_ZMMREG,0,0,0);
-   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
-   Sequence:(168,1,10,192,1,127,65,0);
-   Flags:[IF_AVX512,IF_VEX,IF_EVEX,IF_FUTURE];
-   CountOperands:2;
-   SequenceLength:7;
-   Opcode:1429;
-  ),
-  (
-   Name:'VMOVDQU32';
-   Operands:(OF_MEMORY or OF_BITS128,OF_XMMREG,0,0,0);
-   Decorators:(ODF_MASK,0,0,0,0);
    Sequence:(168,1,2,195,1,127,65,0);
    Flags:[IF_AVX512,IF_AVX512VL,IF_VEX,IF_EVEX,IF_FUTURE];
    CountOperands:2;
@@ -41419,8 +41359,8 @@ const InstructionTemplates:TInstructionTemplates=
   ),
   (
    Name:'VMOVDQU32';
-   Operands:(OF_MEMORY or OF_BITS256,OF_YMMREG,0,0,0);
-   Decorators:(ODF_MASK,0,0,0,0);
+   Operands:(OF_RM_YMM or OF_BITS256,OF_YMMREG,0,0,0);
+   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
    Sequence:(168,1,6,195,1,127,65,0);
    Flags:[IF_AVX512,IF_AVX512VL,IF_VEX,IF_EVEX,IF_FUTURE];
    CountOperands:2;
@@ -41429,8 +41369,8 @@ const InstructionTemplates:TInstructionTemplates=
   ),
   (
    Name:'VMOVDQU32';
-   Operands:(OF_MEMORY or OF_BITS512,OF_ZMMREG,0,0,0);
-   Decorators:(ODF_MASK,0,0,0,0);
+   Operands:(OF_RM_ZMM or OF_BITS512,OF_ZMMREG,0,0,0);
+   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
    Sequence:(168,1,10,195,1,127,65,0);
    Flags:[IF_AVX512,IF_VEX,IF_EVEX,IF_FUTURE];
    CountOperands:2;
@@ -41469,38 +41409,8 @@ const InstructionTemplates:TInstructionTemplates=
   ),
   (
    Name:'VMOVDQU64';
-   Operands:(OF_XMMREG,OF_XMMREG,0,0,0);
+   Operands:(OF_RM_XMM or OF_BITS128,OF_XMMREG,0,0,0);
    Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
-   Sequence:(168,1,18,192,1,127,65,0);
-   Flags:[IF_AVX512,IF_AVX512VL,IF_VEX,IF_EVEX,IF_FUTURE];
-   CountOperands:2;
-   SequenceLength:7;
-   Opcode:1430;
-  ),
-  (
-   Name:'VMOVDQU64';
-   Operands:(OF_YMMREG,OF_YMMREG,0,0,0);
-   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
-   Sequence:(168,1,22,192,1,127,65,0);
-   Flags:[IF_AVX512,IF_AVX512VL,IF_VEX,IF_EVEX,IF_FUTURE];
-   CountOperands:2;
-   SequenceLength:7;
-   Opcode:1430;
-  ),
-  (
-   Name:'VMOVDQU64';
-   Operands:(OF_ZMMREG,OF_ZMMREG,0,0,0);
-   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
-   Sequence:(168,1,26,192,1,127,65,0);
-   Flags:[IF_AVX512,IF_VEX,IF_EVEX,IF_FUTURE];
-   CountOperands:2;
-   SequenceLength:7;
-   Opcode:1430;
-  ),
-  (
-   Name:'VMOVDQU64';
-   Operands:(OF_MEMORY or OF_BITS128,OF_XMMREG,0,0,0);
-   Decorators:(ODF_MASK,0,0,0,0);
    Sequence:(168,1,18,195,1,127,65,0);
    Flags:[IF_AVX512,IF_AVX512VL,IF_VEX,IF_EVEX,IF_FUTURE];
    CountOperands:2;
@@ -41509,8 +41419,8 @@ const InstructionTemplates:TInstructionTemplates=
   ),
   (
    Name:'VMOVDQU64';
-   Operands:(OF_MEMORY or OF_BITS256,OF_YMMREG,0,0,0);
-   Decorators:(ODF_MASK,0,0,0,0);
+   Operands:(OF_RM_YMM or OF_BITS256,OF_YMMREG,0,0,0);
+   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
    Sequence:(168,1,22,195,1,127,65,0);
    Flags:[IF_AVX512,IF_AVX512VL,IF_VEX,IF_EVEX,IF_FUTURE];
    CountOperands:2;
@@ -41519,8 +41429,8 @@ const InstructionTemplates:TInstructionTemplates=
   ),
   (
    Name:'VMOVDQU64';
-   Operands:(OF_MEMORY or OF_BITS512,OF_ZMMREG,0,0,0);
-   Decorators:(ODF_MASK,0,0,0,0);
+   Operands:(OF_RM_ZMM or OF_BITS512,OF_ZMMREG,0,0,0);
+   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
    Sequence:(168,1,26,195,1,127,65,0);
    Flags:[IF_AVX512,IF_VEX,IF_EVEX,IF_FUTURE];
    CountOperands:2;
@@ -41559,38 +41469,8 @@ const InstructionTemplates:TInstructionTemplates=
   ),
   (
    Name:'VMOVDQU8';
-   Operands:(OF_XMMREG,OF_XMMREG,0,0,0);
+   Operands:(OF_RM_XMM or OF_BITS128,OF_XMMREG,0,0,0);
    Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
-   Sequence:(168,1,3,192,1,127,65,0);
-   Flags:[IF_AVX512VL,IF_AVX512BW,IF_VEX,IF_EVEX,IF_FUTURE];
-   CountOperands:2;
-   SequenceLength:7;
-   Opcode:1431;
-  ),
-  (
-   Name:'VMOVDQU8';
-   Operands:(OF_YMMREG,OF_YMMREG,0,0,0);
-   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
-   Sequence:(168,1,7,192,1,127,65,0);
-   Flags:[IF_AVX512VL,IF_AVX512BW,IF_VEX,IF_EVEX,IF_FUTURE];
-   CountOperands:2;
-   SequenceLength:7;
-   Opcode:1431;
-  ),
-  (
-   Name:'VMOVDQU8';
-   Operands:(OF_ZMMREG,OF_ZMMREG,0,0,0);
-   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
-   Sequence:(168,1,11,192,1,127,65,0);
-   Flags:[IF_AVX512BW,IF_VEX,IF_EVEX,IF_FUTURE];
-   CountOperands:2;
-   SequenceLength:7;
-   Opcode:1431;
-  ),
-  (
-   Name:'VMOVDQU8';
-   Operands:(OF_MEMORY or OF_BITS128,OF_XMMREG,0,0,0);
-   Decorators:(ODF_MASK,0,0,0,0);
    Sequence:(168,1,3,195,1,127,65,0);
    Flags:[IF_AVX512VL,IF_AVX512BW,IF_VEX,IF_EVEX,IF_FUTURE];
    CountOperands:2;
@@ -41599,8 +41479,8 @@ const InstructionTemplates:TInstructionTemplates=
   ),
   (
    Name:'VMOVDQU8';
-   Operands:(OF_MEMORY or OF_BITS256,OF_YMMREG,0,0,0);
-   Decorators:(ODF_MASK,0,0,0,0);
+   Operands:(OF_RM_YMM or OF_BITS256,OF_YMMREG,0,0,0);
+   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
    Sequence:(168,1,7,195,1,127,65,0);
    Flags:[IF_AVX512VL,IF_AVX512BW,IF_VEX,IF_EVEX,IF_FUTURE];
    CountOperands:2;
@@ -41609,8 +41489,8 @@ const InstructionTemplates:TInstructionTemplates=
   ),
   (
    Name:'VMOVDQU8';
-   Operands:(OF_MEMORY or OF_BITS512,OF_ZMMREG,0,0,0);
-   Decorators:(ODF_MASK,0,0,0,0);
+   Operands:(OF_RM_ZMM or OF_BITS512,OF_ZMMREG,0,0,0);
+   Decorators:(ODF_MASK or ODF_Z,0,0,0,0);
    Sequence:(168,1,11,195,1,127,65,0);
    Flags:[IF_AVX512BW,IF_VEX,IF_EVEX,IF_FUTURE];
    CountOperands:2;
@@ -64387,3604 +64267,3604 @@ const OpcodeTemplates:TOpcodeTemplates=
   (
    Name:'UD1';
    FromTemplateIndex:2629;
-   ToTemplateIndex:2629;
-   BitSize:0;
-   MaximalCountOperands:0;
+   ToTemplateIndex:2632;
+   BitSize:64;
+   MaximalCountOperands:2;
   ),
   (
    Name:'UD2';
-   FromTemplateIndex:2630;
-   ToTemplateIndex:2630;
+   FromTemplateIndex:2633;
+   ToTemplateIndex:2633;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'UD2A';
-   FromTemplateIndex:2631;
-   ToTemplateIndex:2631;
+   FromTemplateIndex:2634;
+   ToTemplateIndex:2634;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'UD2B';
-   FromTemplateIndex:2632;
-   ToTemplateIndex:2632;
-   BitSize:0;
-   MaximalCountOperands:0;
+   FromTemplateIndex:2635;
+   ToTemplateIndex:2638;
+   BitSize:64;
+   MaximalCountOperands:2;
   ),
   (
    Name:'UMOV';
-   FromTemplateIndex:2633;
-   ToTemplateIndex:2644;
+   FromTemplateIndex:2639;
+   ToTemplateIndex:2650;
    BitSize:32;
    MaximalCountOperands:2;
   ),
   (
    Name:'UNPCKHPD';
-   FromTemplateIndex:2645;
-   ToTemplateIndex:2645;
+   FromTemplateIndex:2651;
+   ToTemplateIndex:2651;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
    Name:'UNPCKHPS';
-   FromTemplateIndex:2646;
-   ToTemplateIndex:2646;
+   FromTemplateIndex:2652;
+   ToTemplateIndex:2652;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
    Name:'UNPCKLPD';
-   FromTemplateIndex:2647;
-   ToTemplateIndex:2647;
+   FromTemplateIndex:2653;
+   ToTemplateIndex:2653;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
    Name:'UNPCKLPS';
-   FromTemplateIndex:2648;
-   ToTemplateIndex:2648;
+   FromTemplateIndex:2654;
+   ToTemplateIndex:2654;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
    Name:'VADDPD';
-   FromTemplateIndex:2649;
-   ToTemplateIndex:2653;
+   FromTemplateIndex:2655;
+   ToTemplateIndex:2659;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VADDPS';
-   FromTemplateIndex:2654;
-   ToTemplateIndex:2658;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VADDSD';
-   FromTemplateIndex:2659;
-   ToTemplateIndex:2660;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VADDSS';
-   FromTemplateIndex:2661;
-   ToTemplateIndex:2662;
-   BitSize:32;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VADDSUBPD';
-   FromTemplateIndex:2663;
+   FromTemplateIndex:2660;
    ToTemplateIndex:2664;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VADDSUBPS';
+   Name:'VADDSD';
    FromTemplateIndex:2665;
    ToTemplateIndex:2666;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VADDSS';
+   FromTemplateIndex:2667;
+   ToTemplateIndex:2668;
+   BitSize:32;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VADDSUBPD';
+   FromTemplateIndex:2669;
+   ToTemplateIndex:2670;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VADDSUBPS';
+   FromTemplateIndex:2671;
+   ToTemplateIndex:2672;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VAESDEC';
-   FromTemplateIndex:2667;
-   ToTemplateIndex:2667;
+   FromTemplateIndex:2673;
+   ToTemplateIndex:2673;
    BitSize:128;
    MaximalCountOperands:3;
   ),
   (
    Name:'VAESDECLAST';
-   FromTemplateIndex:2668;
-   ToTemplateIndex:2668;
+   FromTemplateIndex:2674;
+   ToTemplateIndex:2674;
    BitSize:128;
    MaximalCountOperands:3;
   ),
   (
    Name:'VAESENC';
-   FromTemplateIndex:2669;
-   ToTemplateIndex:2669;
+   FromTemplateIndex:2675;
+   ToTemplateIndex:2675;
    BitSize:128;
    MaximalCountOperands:3;
   ),
   (
    Name:'VAESENCLAST';
-   FromTemplateIndex:2670;
-   ToTemplateIndex:2670;
+   FromTemplateIndex:2676;
+   ToTemplateIndex:2676;
    BitSize:128;
    MaximalCountOperands:3;
   ),
   (
    Name:'VAESIMC';
-   FromTemplateIndex:2671;
-   ToTemplateIndex:2671;
+   FromTemplateIndex:2677;
+   ToTemplateIndex:2677;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
    Name:'VAESKEYGENASSIST';
-   FromTemplateIndex:2672;
-   ToTemplateIndex:2672;
+   FromTemplateIndex:2678;
+   ToTemplateIndex:2678;
    BitSize:128;
    MaximalCountOperands:3;
   ),
   (
    Name:'VALIGND';
-   FromTemplateIndex:2673;
-   ToTemplateIndex:2675;
+   FromTemplateIndex:2679;
+   ToTemplateIndex:2681;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VALIGNQ';
-   FromTemplateIndex:2676;
-   ToTemplateIndex:2678;
+   FromTemplateIndex:2682;
+   ToTemplateIndex:2684;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VANDNPD';
-   FromTemplateIndex:2679;
-   ToTemplateIndex:2683;
+   FromTemplateIndex:2685;
+   ToTemplateIndex:2689;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VANDNPS';
-   FromTemplateIndex:2684;
-   ToTemplateIndex:2688;
+   FromTemplateIndex:2690;
+   ToTemplateIndex:2694;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VANDPD';
-   FromTemplateIndex:2689;
-   ToTemplateIndex:2693;
+   FromTemplateIndex:2695;
+   ToTemplateIndex:2699;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VANDPS';
-   FromTemplateIndex:2694;
-   ToTemplateIndex:2698;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VBLENDMPD';
-   FromTemplateIndex:2699;
-   ToTemplateIndex:2701;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VBLENDMPS';
-   FromTemplateIndex:2702;
+   FromTemplateIndex:2700;
    ToTemplateIndex:2704;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VBLENDPD';
+   Name:'VBLENDMPD';
    FromTemplateIndex:2705;
-   ToTemplateIndex:2706;
+   ToTemplateIndex:2707;
    BitSize:256;
-   MaximalCountOperands:4;
+   MaximalCountOperands:3;
   ),
   (
-   Name:'VBLENDPS';
-   FromTemplateIndex:2707;
-   ToTemplateIndex:2708;
-   BitSize:256;
-   MaximalCountOperands:4;
-  ),
-  (
-   Name:'VBLENDVPD';
-   FromTemplateIndex:2709;
+   Name:'VBLENDMPS';
+   FromTemplateIndex:2708;
    ToTemplateIndex:2710;
    BitSize:256;
-   MaximalCountOperands:4;
+   MaximalCountOperands:3;
   ),
   (
-   Name:'VBLENDVPS';
+   Name:'VBLENDPD';
    FromTemplateIndex:2711;
    ToTemplateIndex:2712;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
-   Name:'VBROADCASTF128';
+   Name:'VBLENDPS';
    FromTemplateIndex:2713;
-   ToTemplateIndex:2713;
+   ToTemplateIndex:2714;
+   BitSize:256;
+   MaximalCountOperands:4;
+  ),
+  (
+   Name:'VBLENDVPD';
+   FromTemplateIndex:2715;
+   ToTemplateIndex:2716;
+   BitSize:256;
+   MaximalCountOperands:4;
+  ),
+  (
+   Name:'VBLENDVPS';
+   FromTemplateIndex:2717;
+   ToTemplateIndex:2718;
+   BitSize:256;
+   MaximalCountOperands:4;
+  ),
+  (
+   Name:'VBROADCASTF128';
+   FromTemplateIndex:2719;
+   ToTemplateIndex:2719;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
    Name:'VBROADCASTF32X2';
-   FromTemplateIndex:2714;
-   ToTemplateIndex:2715;
+   FromTemplateIndex:2720;
+   ToTemplateIndex:2721;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VBROADCASTF32X4';
-   FromTemplateIndex:2716;
-   ToTemplateIndex:2717;
+   FromTemplateIndex:2722;
+   ToTemplateIndex:2723;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
    Name:'VBROADCASTF32X8';
-   FromTemplateIndex:2718;
-   ToTemplateIndex:2718;
+   FromTemplateIndex:2724;
+   ToTemplateIndex:2724;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VBROADCASTF64X2';
-   FromTemplateIndex:2719;
-   ToTemplateIndex:2720;
+   FromTemplateIndex:2725;
+   ToTemplateIndex:2726;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
    Name:'VBROADCASTF64X4';
-   FromTemplateIndex:2721;
-   ToTemplateIndex:2721;
+   FromTemplateIndex:2727;
+   ToTemplateIndex:2727;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VBROADCASTI128';
-   FromTemplateIndex:2722;
-   ToTemplateIndex:2722;
+   FromTemplateIndex:2728;
+   ToTemplateIndex:2728;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
    Name:'VBROADCASTI32X2';
-   FromTemplateIndex:2723;
-   ToTemplateIndex:2725;
+   FromTemplateIndex:2729;
+   ToTemplateIndex:2731;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VBROADCASTI32X4';
-   FromTemplateIndex:2726;
-   ToTemplateIndex:2727;
+   FromTemplateIndex:2732;
+   ToTemplateIndex:2733;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
    Name:'VBROADCASTI32X8';
-   FromTemplateIndex:2728;
-   ToTemplateIndex:2728;
+   FromTemplateIndex:2734;
+   ToTemplateIndex:2734;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VBROADCASTI64X2';
-   FromTemplateIndex:2729;
-   ToTemplateIndex:2730;
+   FromTemplateIndex:2735;
+   ToTemplateIndex:2736;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
    Name:'VBROADCASTI64X4';
-   FromTemplateIndex:2731;
-   ToTemplateIndex:2731;
+   FromTemplateIndex:2737;
+   ToTemplateIndex:2737;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VBROADCASTSD';
-   FromTemplateIndex:2732;
-   ToTemplateIndex:2737;
+   FromTemplateIndex:2738;
+   ToTemplateIndex:2743;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VBROADCASTSS';
-   FromTemplateIndex:2738;
-   ToTemplateIndex:2747;
+   FromTemplateIndex:2744;
+   ToTemplateIndex:2753;
    BitSize:32;
    MaximalCountOperands:2;
   ),
   (
    Name:'VCMPEQ_OSPD';
-   FromTemplateIndex:2754;
-   ToTemplateIndex:2757;
+   FromTemplateIndex:2760;
+   ToTemplateIndex:2763;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VCMPEQ_OSPS';
-   FromTemplateIndex:2758;
-   ToTemplateIndex:2761;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPEQ_OSSD';
-   FromTemplateIndex:2762;
-   ToTemplateIndex:2763;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPEQ_OSSS';
    FromTemplateIndex:2764;
-   ToTemplateIndex:2765;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPEQ_UQPD';
-   FromTemplateIndex:2766;
    ToTemplateIndex:2767;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPEQ_UQPS';
+   Name:'VCMPEQ_OSSD';
    FromTemplateIndex:2768;
    ToTemplateIndex:2769;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPEQ_UQSD';
-   FromTemplateIndex:2770;
-   ToTemplateIndex:2770;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPEQ_UQSS';
-   FromTemplateIndex:2771;
+   Name:'VCMPEQ_OSSS';
+   FromTemplateIndex:2770;
    ToTemplateIndex:2771;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPEQ_USPD';
+   Name:'VCMPEQ_UQPD';
    FromTemplateIndex:2772;
    ToTemplateIndex:2773;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPEQ_USPS';
+   Name:'VCMPEQ_UQPS';
    FromTemplateIndex:2774;
    ToTemplateIndex:2775;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPEQ_USSD';
+   Name:'VCMPEQ_UQSD';
    FromTemplateIndex:2776;
    ToTemplateIndex:2776;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPEQ_USSS';
+   Name:'VCMPEQ_UQSS';
    FromTemplateIndex:2777;
    ToTemplateIndex:2777;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPEQPD';
-   FromTemplateIndex:2748;
-   ToTemplateIndex:2749;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPEQPS';
-   FromTemplateIndex:2750;
-   ToTemplateIndex:2751;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPEQSD';
-   FromTemplateIndex:2752;
-   ToTemplateIndex:2752;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPEQSS';
-   FromTemplateIndex:2753;
-   ToTemplateIndex:2753;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPFALSE_OQPD';
-   FromTemplateIndex:2784;
-   ToTemplateIndex:2785;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPFALSE_OQPS';
-   FromTemplateIndex:2786;
-   ToTemplateIndex:2787;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPFALSE_OQSD';
-   FromTemplateIndex:2788;
-   ToTemplateIndex:2788;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPFALSE_OQSS';
-   FromTemplateIndex:2789;
-   ToTemplateIndex:2789;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPFALSE_OSPD';
-   FromTemplateIndex:2790;
-   ToTemplateIndex:2791;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPFALSE_OSPS';
-   FromTemplateIndex:2792;
-   ToTemplateIndex:2793;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPFALSE_OSSD';
-   FromTemplateIndex:2794;
-   ToTemplateIndex:2794;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPFALSE_OSSS';
-   FromTemplateIndex:2795;
-   ToTemplateIndex:2795;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPFALSEPD';
+   Name:'VCMPEQ_USPD';
    FromTemplateIndex:2778;
    ToTemplateIndex:2779;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPFALSEPS';
+   Name:'VCMPEQ_USPS';
    FromTemplateIndex:2780;
    ToTemplateIndex:2781;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPFALSESD';
+   Name:'VCMPEQ_USSD';
    FromTemplateIndex:2782;
    ToTemplateIndex:2782;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPFALSESS';
+   Name:'VCMPEQ_USSS';
    FromTemplateIndex:2783;
    ToTemplateIndex:2783;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGE_OQPD';
-   FromTemplateIndex:2802;
-   ToTemplateIndex:2803;
+   Name:'VCMPEQPD';
+   FromTemplateIndex:2754;
+   ToTemplateIndex:2755;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGE_OQPS';
-   FromTemplateIndex:2804;
-   ToTemplateIndex:2805;
+   Name:'VCMPEQPS';
+   FromTemplateIndex:2756;
+   ToTemplateIndex:2757;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGE_OQSD';
-   FromTemplateIndex:2806;
-   ToTemplateIndex:2806;
+   Name:'VCMPEQSD';
+   FromTemplateIndex:2758;
+   ToTemplateIndex:2758;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGE_OQSS';
-   FromTemplateIndex:2807;
-   ToTemplateIndex:2807;
+   Name:'VCMPEQSS';
+   FromTemplateIndex:2759;
+   ToTemplateIndex:2759;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGE_OSPD';
-   FromTemplateIndex:2808;
-   ToTemplateIndex:2809;
+   Name:'VCMPFALSE_OQPD';
+   FromTemplateIndex:2790;
+   ToTemplateIndex:2791;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGE_OSPS';
-   FromTemplateIndex:2810;
-   ToTemplateIndex:2811;
+   Name:'VCMPFALSE_OQPS';
+   FromTemplateIndex:2792;
+   ToTemplateIndex:2793;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGE_OSSD';
-   FromTemplateIndex:2812;
-   ToTemplateIndex:2812;
+   Name:'VCMPFALSE_OQSD';
+   FromTemplateIndex:2794;
+   ToTemplateIndex:2794;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGE_OSSS';
-   FromTemplateIndex:2813;
-   ToTemplateIndex:2813;
+   Name:'VCMPFALSE_OQSS';
+   FromTemplateIndex:2795;
+   ToTemplateIndex:2795;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGEPD';
+   Name:'VCMPFALSE_OSPD';
    FromTemplateIndex:2796;
    ToTemplateIndex:2797;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGEPS';
+   Name:'VCMPFALSE_OSPS';
    FromTemplateIndex:2798;
    ToTemplateIndex:2799;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGESD';
+   Name:'VCMPFALSE_OSSD';
    FromTemplateIndex:2800;
    ToTemplateIndex:2800;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGESS';
+   Name:'VCMPFALSE_OSSS';
    FromTemplateIndex:2801;
    ToTemplateIndex:2801;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGT_OQPD';
-   FromTemplateIndex:2820;
-   ToTemplateIndex:2821;
+   Name:'VCMPFALSEPD';
+   FromTemplateIndex:2784;
+   ToTemplateIndex:2785;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGT_OQPS';
-   FromTemplateIndex:2822;
-   ToTemplateIndex:2823;
+   Name:'VCMPFALSEPS';
+   FromTemplateIndex:2786;
+   ToTemplateIndex:2787;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGT_OQSD';
-   FromTemplateIndex:2824;
-   ToTemplateIndex:2824;
+   Name:'VCMPFALSESD';
+   FromTemplateIndex:2788;
+   ToTemplateIndex:2788;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGT_OQSS';
-   FromTemplateIndex:2825;
-   ToTemplateIndex:2825;
+   Name:'VCMPFALSESS';
+   FromTemplateIndex:2789;
+   ToTemplateIndex:2789;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGT_OSPD';
-   FromTemplateIndex:2826;
-   ToTemplateIndex:2827;
+   Name:'VCMPGE_OQPD';
+   FromTemplateIndex:2808;
+   ToTemplateIndex:2809;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGT_OSPS';
-   FromTemplateIndex:2828;
-   ToTemplateIndex:2829;
+   Name:'VCMPGE_OQPS';
+   FromTemplateIndex:2810;
+   ToTemplateIndex:2811;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGT_OSSD';
-   FromTemplateIndex:2830;
-   ToTemplateIndex:2830;
+   Name:'VCMPGE_OQSD';
+   FromTemplateIndex:2812;
+   ToTemplateIndex:2812;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGT_OSSS';
-   FromTemplateIndex:2831;
-   ToTemplateIndex:2831;
+   Name:'VCMPGE_OQSS';
+   FromTemplateIndex:2813;
+   ToTemplateIndex:2813;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGTPD';
+   Name:'VCMPGE_OSPD';
    FromTemplateIndex:2814;
    ToTemplateIndex:2815;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGTPS';
+   Name:'VCMPGE_OSPS';
    FromTemplateIndex:2816;
    ToTemplateIndex:2817;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGTSD';
+   Name:'VCMPGE_OSSD';
    FromTemplateIndex:2818;
    ToTemplateIndex:2818;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPGTSS';
+   Name:'VCMPGE_OSSS';
    FromTemplateIndex:2819;
    ToTemplateIndex:2819;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLE_OQPD';
-   FromTemplateIndex:2838;
-   ToTemplateIndex:2839;
+   Name:'VCMPGEPD';
+   FromTemplateIndex:2802;
+   ToTemplateIndex:2803;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLE_OQPS';
-   FromTemplateIndex:2840;
-   ToTemplateIndex:2841;
+   Name:'VCMPGEPS';
+   FromTemplateIndex:2804;
+   ToTemplateIndex:2805;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLE_OQSD';
-   FromTemplateIndex:2842;
-   ToTemplateIndex:2842;
+   Name:'VCMPGESD';
+   FromTemplateIndex:2806;
+   ToTemplateIndex:2806;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLE_OQSS';
-   FromTemplateIndex:2843;
-   ToTemplateIndex:2843;
+   Name:'VCMPGESS';
+   FromTemplateIndex:2807;
+   ToTemplateIndex:2807;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLE_OSPD';
-   FromTemplateIndex:2844;
-   ToTemplateIndex:2845;
+   Name:'VCMPGT_OQPD';
+   FromTemplateIndex:2826;
+   ToTemplateIndex:2827;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLE_OSPS';
-   FromTemplateIndex:2846;
-   ToTemplateIndex:2847;
+   Name:'VCMPGT_OQPS';
+   FromTemplateIndex:2828;
+   ToTemplateIndex:2829;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLE_OSSD';
-   FromTemplateIndex:2848;
-   ToTemplateIndex:2848;
+   Name:'VCMPGT_OQSD';
+   FromTemplateIndex:2830;
+   ToTemplateIndex:2830;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLE_OSSS';
-   FromTemplateIndex:2849;
-   ToTemplateIndex:2849;
+   Name:'VCMPGT_OQSS';
+   FromTemplateIndex:2831;
+   ToTemplateIndex:2831;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLEPD';
+   Name:'VCMPGT_OSPD';
    FromTemplateIndex:2832;
    ToTemplateIndex:2833;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLEPS';
+   Name:'VCMPGT_OSPS';
    FromTemplateIndex:2834;
    ToTemplateIndex:2835;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLESD';
+   Name:'VCMPGT_OSSD';
    FromTemplateIndex:2836;
    ToTemplateIndex:2836;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLESS';
+   Name:'VCMPGT_OSSS';
    FromTemplateIndex:2837;
    ToTemplateIndex:2837;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLT_OQPD';
-   FromTemplateIndex:2856;
-   ToTemplateIndex:2857;
+   Name:'VCMPGTPD';
+   FromTemplateIndex:2820;
+   ToTemplateIndex:2821;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLT_OQPS';
-   FromTemplateIndex:2858;
-   ToTemplateIndex:2859;
+   Name:'VCMPGTPS';
+   FromTemplateIndex:2822;
+   ToTemplateIndex:2823;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLT_OQSD';
-   FromTemplateIndex:2860;
-   ToTemplateIndex:2860;
+   Name:'VCMPGTSD';
+   FromTemplateIndex:2824;
+   ToTemplateIndex:2824;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLT_OQSS';
-   FromTemplateIndex:2861;
-   ToTemplateIndex:2861;
+   Name:'VCMPGTSS';
+   FromTemplateIndex:2825;
+   ToTemplateIndex:2825;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLT_OSPD';
-   FromTemplateIndex:2862;
-   ToTemplateIndex:2863;
+   Name:'VCMPLE_OQPD';
+   FromTemplateIndex:2844;
+   ToTemplateIndex:2845;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLT_OSPS';
-   FromTemplateIndex:2864;
-   ToTemplateIndex:2865;
+   Name:'VCMPLE_OQPS';
+   FromTemplateIndex:2846;
+   ToTemplateIndex:2847;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLT_OSSD';
-   FromTemplateIndex:2866;
-   ToTemplateIndex:2866;
+   Name:'VCMPLE_OQSD';
+   FromTemplateIndex:2848;
+   ToTemplateIndex:2848;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLT_OSSS';
-   FromTemplateIndex:2867;
-   ToTemplateIndex:2867;
+   Name:'VCMPLE_OQSS';
+   FromTemplateIndex:2849;
+   ToTemplateIndex:2849;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLTPD';
+   Name:'VCMPLE_OSPD';
    FromTemplateIndex:2850;
    ToTemplateIndex:2851;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLTPS';
+   Name:'VCMPLE_OSPS';
    FromTemplateIndex:2852;
    ToTemplateIndex:2853;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLTSD';
+   Name:'VCMPLE_OSSD';
    FromTemplateIndex:2854;
    ToTemplateIndex:2854;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPLTSS';
+   Name:'VCMPLE_OSSS';
    FromTemplateIndex:2855;
    ToTemplateIndex:2855;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNEQ_OQPD';
-   FromTemplateIndex:2874;
-   ToTemplateIndex:2875;
+   Name:'VCMPLEPD';
+   FromTemplateIndex:2838;
+   ToTemplateIndex:2839;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNEQ_OQPS';
-   FromTemplateIndex:2876;
-   ToTemplateIndex:2877;
+   Name:'VCMPLEPS';
+   FromTemplateIndex:2840;
+   ToTemplateIndex:2841;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNEQ_OQSD';
-   FromTemplateIndex:2878;
-   ToTemplateIndex:2878;
+   Name:'VCMPLESD';
+   FromTemplateIndex:2842;
+   ToTemplateIndex:2842;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNEQ_OQSS';
-   FromTemplateIndex:2879;
-   ToTemplateIndex:2879;
+   Name:'VCMPLESS';
+   FromTemplateIndex:2843;
+   ToTemplateIndex:2843;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNEQ_OSPD';
-   FromTemplateIndex:2880;
-   ToTemplateIndex:2881;
+   Name:'VCMPLT_OQPD';
+   FromTemplateIndex:2862;
+   ToTemplateIndex:2863;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNEQ_OSPS';
-   FromTemplateIndex:2882;
-   ToTemplateIndex:2883;
+   Name:'VCMPLT_OQPS';
+   FromTemplateIndex:2864;
+   ToTemplateIndex:2865;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNEQ_OSSD';
-   FromTemplateIndex:2884;
-   ToTemplateIndex:2884;
+   Name:'VCMPLT_OQSD';
+   FromTemplateIndex:2866;
+   ToTemplateIndex:2866;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNEQ_OSSS';
-   FromTemplateIndex:2885;
-   ToTemplateIndex:2885;
+   Name:'VCMPLT_OQSS';
+   FromTemplateIndex:2867;
+   ToTemplateIndex:2867;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNEQ_UQPD';
-   FromTemplateIndex:2886;
-   ToTemplateIndex:2887;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPNEQ_UQPS';
-   FromTemplateIndex:2888;
-   ToTemplateIndex:2889;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPNEQ_UQSD';
-   FromTemplateIndex:2890;
-   ToTemplateIndex:2890;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPNEQ_UQSS';
-   FromTemplateIndex:2891;
-   ToTemplateIndex:2891;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPNEQ_USPD';
-   FromTemplateIndex:2892;
-   ToTemplateIndex:2893;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPNEQ_USPS';
-   FromTemplateIndex:2894;
-   ToTemplateIndex:2895;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPNEQ_USSD';
-   FromTemplateIndex:2896;
-   ToTemplateIndex:2896;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPNEQ_USSS';
-   FromTemplateIndex:2897;
-   ToTemplateIndex:2897;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPNEQPD';
+   Name:'VCMPLT_OSPD';
    FromTemplateIndex:2868;
    ToTemplateIndex:2869;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNEQPS';
+   Name:'VCMPLT_OSPS';
    FromTemplateIndex:2870;
    ToTemplateIndex:2871;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNEQSD';
+   Name:'VCMPLT_OSSD';
    FromTemplateIndex:2872;
    ToTemplateIndex:2872;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNEQSS';
+   Name:'VCMPLT_OSSS';
    FromTemplateIndex:2873;
    ToTemplateIndex:2873;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGE_UQPD';
-   FromTemplateIndex:2904;
-   ToTemplateIndex:2905;
+   Name:'VCMPLTPD';
+   FromTemplateIndex:2856;
+   ToTemplateIndex:2857;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGE_UQPS';
-   FromTemplateIndex:2906;
-   ToTemplateIndex:2907;
+   Name:'VCMPLTPS';
+   FromTemplateIndex:2858;
+   ToTemplateIndex:2859;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGE_UQSD';
-   FromTemplateIndex:2908;
-   ToTemplateIndex:2908;
+   Name:'VCMPLTSD';
+   FromTemplateIndex:2860;
+   ToTemplateIndex:2860;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGE_UQSS';
-   FromTemplateIndex:2909;
-   ToTemplateIndex:2909;
+   Name:'VCMPLTSS';
+   FromTemplateIndex:2861;
+   ToTemplateIndex:2861;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGE_USPD';
-   FromTemplateIndex:2910;
-   ToTemplateIndex:2911;
+   Name:'VCMPNEQ_OQPD';
+   FromTemplateIndex:2880;
+   ToTemplateIndex:2881;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGE_USPS';
-   FromTemplateIndex:2912;
-   ToTemplateIndex:2913;
+   Name:'VCMPNEQ_OQPS';
+   FromTemplateIndex:2882;
+   ToTemplateIndex:2883;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGE_USSD';
-   FromTemplateIndex:2914;
-   ToTemplateIndex:2914;
+   Name:'VCMPNEQ_OQSD';
+   FromTemplateIndex:2884;
+   ToTemplateIndex:2884;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGE_USSS';
-   FromTemplateIndex:2915;
-   ToTemplateIndex:2915;
+   Name:'VCMPNEQ_OQSS';
+   FromTemplateIndex:2885;
+   ToTemplateIndex:2885;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGEPD';
+   Name:'VCMPNEQ_OSPD';
+   FromTemplateIndex:2886;
+   ToTemplateIndex:2887;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPNEQ_OSPS';
+   FromTemplateIndex:2888;
+   ToTemplateIndex:2889;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPNEQ_OSSD';
+   FromTemplateIndex:2890;
+   ToTemplateIndex:2890;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPNEQ_OSSS';
+   FromTemplateIndex:2891;
+   ToTemplateIndex:2891;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPNEQ_UQPD';
+   FromTemplateIndex:2892;
+   ToTemplateIndex:2893;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPNEQ_UQPS';
+   FromTemplateIndex:2894;
+   ToTemplateIndex:2895;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPNEQ_UQSD';
+   FromTemplateIndex:2896;
+   ToTemplateIndex:2896;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPNEQ_UQSS';
+   FromTemplateIndex:2897;
+   ToTemplateIndex:2897;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPNEQ_USPD';
    FromTemplateIndex:2898;
    ToTemplateIndex:2899;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGEPS';
+   Name:'VCMPNEQ_USPS';
    FromTemplateIndex:2900;
    ToTemplateIndex:2901;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGESD';
+   Name:'VCMPNEQ_USSD';
    FromTemplateIndex:2902;
    ToTemplateIndex:2902;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGESS';
+   Name:'VCMPNEQ_USSS';
    FromTemplateIndex:2903;
    ToTemplateIndex:2903;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGT_UQPD';
-   FromTemplateIndex:2922;
-   ToTemplateIndex:2923;
+   Name:'VCMPNEQPD';
+   FromTemplateIndex:2874;
+   ToTemplateIndex:2875;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGT_UQPS';
-   FromTemplateIndex:2924;
-   ToTemplateIndex:2925;
+   Name:'VCMPNEQPS';
+   FromTemplateIndex:2876;
+   ToTemplateIndex:2877;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGT_UQSD';
-   FromTemplateIndex:2926;
-   ToTemplateIndex:2926;
+   Name:'VCMPNEQSD';
+   FromTemplateIndex:2878;
+   ToTemplateIndex:2878;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGT_UQSS';
-   FromTemplateIndex:2927;
-   ToTemplateIndex:2927;
+   Name:'VCMPNEQSS';
+   FromTemplateIndex:2879;
+   ToTemplateIndex:2879;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGT_USPD';
-   FromTemplateIndex:2928;
-   ToTemplateIndex:2929;
+   Name:'VCMPNGE_UQPD';
+   FromTemplateIndex:2910;
+   ToTemplateIndex:2911;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGT_USPS';
-   FromTemplateIndex:2930;
-   ToTemplateIndex:2931;
+   Name:'VCMPNGE_UQPS';
+   FromTemplateIndex:2912;
+   ToTemplateIndex:2913;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGT_USSD';
-   FromTemplateIndex:2932;
-   ToTemplateIndex:2932;
+   Name:'VCMPNGE_UQSD';
+   FromTemplateIndex:2914;
+   ToTemplateIndex:2914;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGT_USSS';
-   FromTemplateIndex:2933;
-   ToTemplateIndex:2933;
+   Name:'VCMPNGE_UQSS';
+   FromTemplateIndex:2915;
+   ToTemplateIndex:2915;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGTPD';
+   Name:'VCMPNGE_USPD';
    FromTemplateIndex:2916;
    ToTemplateIndex:2917;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGTPS';
+   Name:'VCMPNGE_USPS';
    FromTemplateIndex:2918;
    ToTemplateIndex:2919;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGTSD';
+   Name:'VCMPNGE_USSD';
    FromTemplateIndex:2920;
    ToTemplateIndex:2920;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNGTSS';
+   Name:'VCMPNGE_USSS';
    FromTemplateIndex:2921;
    ToTemplateIndex:2921;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLE_UQPD';
-   FromTemplateIndex:2940;
-   ToTemplateIndex:2941;
+   Name:'VCMPNGEPD';
+   FromTemplateIndex:2904;
+   ToTemplateIndex:2905;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLE_UQPS';
-   FromTemplateIndex:2942;
-   ToTemplateIndex:2943;
+   Name:'VCMPNGEPS';
+   FromTemplateIndex:2906;
+   ToTemplateIndex:2907;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLE_UQSD';
-   FromTemplateIndex:2944;
-   ToTemplateIndex:2944;
+   Name:'VCMPNGESD';
+   FromTemplateIndex:2908;
+   ToTemplateIndex:2908;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLE_UQSS';
-   FromTemplateIndex:2945;
-   ToTemplateIndex:2945;
+   Name:'VCMPNGESS';
+   FromTemplateIndex:2909;
+   ToTemplateIndex:2909;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLE_USPD';
-   FromTemplateIndex:2946;
-   ToTemplateIndex:2947;
+   Name:'VCMPNGT_UQPD';
+   FromTemplateIndex:2928;
+   ToTemplateIndex:2929;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLE_USPS';
-   FromTemplateIndex:2948;
-   ToTemplateIndex:2949;
+   Name:'VCMPNGT_UQPS';
+   FromTemplateIndex:2930;
+   ToTemplateIndex:2931;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLE_USSD';
-   FromTemplateIndex:2950;
-   ToTemplateIndex:2950;
+   Name:'VCMPNGT_UQSD';
+   FromTemplateIndex:2932;
+   ToTemplateIndex:2932;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLE_USSS';
-   FromTemplateIndex:2951;
-   ToTemplateIndex:2951;
+   Name:'VCMPNGT_UQSS';
+   FromTemplateIndex:2933;
+   ToTemplateIndex:2933;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLEPD';
+   Name:'VCMPNGT_USPD';
    FromTemplateIndex:2934;
    ToTemplateIndex:2935;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLEPS';
+   Name:'VCMPNGT_USPS';
    FromTemplateIndex:2936;
    ToTemplateIndex:2937;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLESD';
+   Name:'VCMPNGT_USSD';
    FromTemplateIndex:2938;
    ToTemplateIndex:2938;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLESS';
+   Name:'VCMPNGT_USSS';
    FromTemplateIndex:2939;
    ToTemplateIndex:2939;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLT_UQPD';
-   FromTemplateIndex:2958;
-   ToTemplateIndex:2959;
+   Name:'VCMPNGTPD';
+   FromTemplateIndex:2922;
+   ToTemplateIndex:2923;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLT_UQPS';
-   FromTemplateIndex:2960;
-   ToTemplateIndex:2961;
+   Name:'VCMPNGTPS';
+   FromTemplateIndex:2924;
+   ToTemplateIndex:2925;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLT_UQSD';
-   FromTemplateIndex:2962;
-   ToTemplateIndex:2962;
+   Name:'VCMPNGTSD';
+   FromTemplateIndex:2926;
+   ToTemplateIndex:2926;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLT_UQSS';
-   FromTemplateIndex:2963;
-   ToTemplateIndex:2963;
+   Name:'VCMPNGTSS';
+   FromTemplateIndex:2927;
+   ToTemplateIndex:2927;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLT_USPD';
-   FromTemplateIndex:2964;
-   ToTemplateIndex:2965;
+   Name:'VCMPNLE_UQPD';
+   FromTemplateIndex:2946;
+   ToTemplateIndex:2947;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLT_USPS';
-   FromTemplateIndex:2966;
-   ToTemplateIndex:2967;
+   Name:'VCMPNLE_UQPS';
+   FromTemplateIndex:2948;
+   ToTemplateIndex:2949;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLT_USSD';
-   FromTemplateIndex:2968;
-   ToTemplateIndex:2968;
+   Name:'VCMPNLE_UQSD';
+   FromTemplateIndex:2950;
+   ToTemplateIndex:2950;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLT_USSS';
-   FromTemplateIndex:2969;
-   ToTemplateIndex:2969;
+   Name:'VCMPNLE_UQSS';
+   FromTemplateIndex:2951;
+   ToTemplateIndex:2951;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLTPD';
+   Name:'VCMPNLE_USPD';
    FromTemplateIndex:2952;
    ToTemplateIndex:2953;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLTPS';
+   Name:'VCMPNLE_USPS';
    FromTemplateIndex:2954;
    ToTemplateIndex:2955;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLTSD';
+   Name:'VCMPNLE_USSD';
    FromTemplateIndex:2956;
    ToTemplateIndex:2956;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPNLTSS';
+   Name:'VCMPNLE_USSS';
    FromTemplateIndex:2957;
    ToTemplateIndex:2957;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPORD_QPD';
-   FromTemplateIndex:2976;
-   ToTemplateIndex:2977;
+   Name:'VCMPNLEPD';
+   FromTemplateIndex:2940;
+   ToTemplateIndex:2941;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPORD_QPS';
-   FromTemplateIndex:2978;
-   ToTemplateIndex:2979;
+   Name:'VCMPNLEPS';
+   FromTemplateIndex:2942;
+   ToTemplateIndex:2943;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPORD_QSD';
-   FromTemplateIndex:2980;
-   ToTemplateIndex:2980;
+   Name:'VCMPNLESD';
+   FromTemplateIndex:2944;
+   ToTemplateIndex:2944;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPORD_QSS';
-   FromTemplateIndex:2981;
-   ToTemplateIndex:2981;
+   Name:'VCMPNLESS';
+   FromTemplateIndex:2945;
+   ToTemplateIndex:2945;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPORD_SPD';
-   FromTemplateIndex:2982;
-   ToTemplateIndex:2983;
+   Name:'VCMPNLT_UQPD';
+   FromTemplateIndex:2964;
+   ToTemplateIndex:2965;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPORD_SPS';
-   FromTemplateIndex:2984;
-   ToTemplateIndex:2985;
+   Name:'VCMPNLT_UQPS';
+   FromTemplateIndex:2966;
+   ToTemplateIndex:2967;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPORD_SSD';
-   FromTemplateIndex:2986;
-   ToTemplateIndex:2986;
+   Name:'VCMPNLT_UQSD';
+   FromTemplateIndex:2968;
+   ToTemplateIndex:2968;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPORD_SSS';
-   FromTemplateIndex:2987;
-   ToTemplateIndex:2987;
+   Name:'VCMPNLT_UQSS';
+   FromTemplateIndex:2969;
+   ToTemplateIndex:2969;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPORDPD';
+   Name:'VCMPNLT_USPD';
    FromTemplateIndex:2970;
    ToTemplateIndex:2971;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPORDPS';
+   Name:'VCMPNLT_USPS';
    FromTemplateIndex:2972;
    ToTemplateIndex:2973;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPORDSD';
+   Name:'VCMPNLT_USSD';
    FromTemplateIndex:2974;
    ToTemplateIndex:2974;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPORDSS';
+   Name:'VCMPNLT_USSS';
    FromTemplateIndex:2975;
    ToTemplateIndex:2975;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPPD';
+   Name:'VCMPNLTPD';
+   FromTemplateIndex:2958;
+   ToTemplateIndex:2959;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPNLTPS';
+   FromTemplateIndex:2960;
+   ToTemplateIndex:2961;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPNLTSD';
+   FromTemplateIndex:2962;
+   ToTemplateIndex:2962;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPNLTSS';
+   FromTemplateIndex:2963;
+   ToTemplateIndex:2963;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPORD_QPD';
+   FromTemplateIndex:2982;
+   ToTemplateIndex:2983;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPORD_QPS';
+   FromTemplateIndex:2984;
+   ToTemplateIndex:2985;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPORD_QSD';
+   FromTemplateIndex:2986;
+   ToTemplateIndex:2986;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPORD_QSS';
+   FromTemplateIndex:2987;
+   ToTemplateIndex:2987;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPORD_SPD';
    FromTemplateIndex:2988;
+   ToTemplateIndex:2989;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPORD_SPS';
+   FromTemplateIndex:2990;
+   ToTemplateIndex:2991;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPORD_SSD';
+   FromTemplateIndex:2992;
    ToTemplateIndex:2992;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPORD_SSS';
+   FromTemplateIndex:2993;
+   ToTemplateIndex:2993;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPORDPD';
+   FromTemplateIndex:2976;
+   ToTemplateIndex:2977;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPORDPS';
+   FromTemplateIndex:2978;
+   ToTemplateIndex:2979;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPORDSD';
+   FromTemplateIndex:2980;
+   ToTemplateIndex:2980;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPORDSS';
+   FromTemplateIndex:2981;
+   ToTemplateIndex:2981;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPPD';
+   FromTemplateIndex:2994;
+   ToTemplateIndex:2998;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VCMPPS';
-   FromTemplateIndex:2993;
-   ToTemplateIndex:2997;
+   FromTemplateIndex:2999;
+   ToTemplateIndex:3003;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VCMPSD';
-   FromTemplateIndex:2998;
-   ToTemplateIndex:2999;
+   FromTemplateIndex:3004;
+   ToTemplateIndex:3005;
    BitSize:64;
    MaximalCountOperands:4;
   ),
   (
    Name:'VCMPSS';
-   FromTemplateIndex:3000;
-   ToTemplateIndex:3001;
+   FromTemplateIndex:3006;
+   ToTemplateIndex:3007;
    BitSize:64;
    MaximalCountOperands:4;
   ),
   (
    Name:'VCMPTRUE_UQPD';
-   FromTemplateIndex:3008;
-   ToTemplateIndex:3009;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPTRUE_UQPS';
-   FromTemplateIndex:3010;
-   ToTemplateIndex:3011;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPTRUE_UQSD';
-   FromTemplateIndex:3012;
-   ToTemplateIndex:3012;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPTRUE_UQSS';
-   FromTemplateIndex:3013;
-   ToTemplateIndex:3013;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPTRUE_USPD';
    FromTemplateIndex:3014;
    ToTemplateIndex:3015;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPTRUE_USPS';
+   Name:'VCMPTRUE_UQPS';
    FromTemplateIndex:3016;
    ToTemplateIndex:3017;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPTRUE_USSD';
+   Name:'VCMPTRUE_UQSD';
    FromTemplateIndex:3018;
    ToTemplateIndex:3018;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPTRUE_USSS';
+   Name:'VCMPTRUE_UQSS';
    FromTemplateIndex:3019;
    ToTemplateIndex:3019;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPTRUEPD';
-   FromTemplateIndex:3002;
-   ToTemplateIndex:3003;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPTRUEPS';
-   FromTemplateIndex:3004;
-   ToTemplateIndex:3005;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPTRUESD';
-   FromTemplateIndex:3006;
-   ToTemplateIndex:3006;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPTRUESS';
-   FromTemplateIndex:3007;
-   ToTemplateIndex:3007;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPUNORD_QPD';
-   FromTemplateIndex:3026;
-   ToTemplateIndex:3027;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPUNORD_QPS';
-   FromTemplateIndex:3028;
-   ToTemplateIndex:3029;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPUNORD_QSD';
-   FromTemplateIndex:3030;
-   ToTemplateIndex:3030;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPUNORD_QSS';
-   FromTemplateIndex:3031;
-   ToTemplateIndex:3031;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPUNORD_SPD';
-   FromTemplateIndex:3032;
-   ToTemplateIndex:3033;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPUNORD_SPS';
-   FromTemplateIndex:3034;
-   ToTemplateIndex:3035;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPUNORD_SSD';
-   FromTemplateIndex:3036;
-   ToTemplateIndex:3036;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPUNORD_SSS';
-   FromTemplateIndex:3037;
-   ToTemplateIndex:3037;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VCMPUNORDPD';
+   Name:'VCMPTRUE_USPD';
    FromTemplateIndex:3020;
    ToTemplateIndex:3021;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPUNORDPS';
+   Name:'VCMPTRUE_USPS';
    FromTemplateIndex:3022;
    ToTemplateIndex:3023;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPUNORDSD';
+   Name:'VCMPTRUE_USSD';
    FromTemplateIndex:3024;
    ToTemplateIndex:3024;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCMPUNORDSS';
+   Name:'VCMPTRUE_USSS';
    FromTemplateIndex:3025;
    ToTemplateIndex:3025;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VCOMISD';
+   Name:'VCMPTRUEPD';
+   FromTemplateIndex:3008;
+   ToTemplateIndex:3009;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPTRUEPS';
+   FromTemplateIndex:3010;
+   ToTemplateIndex:3011;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPTRUESD';
+   FromTemplateIndex:3012;
+   ToTemplateIndex:3012;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPTRUESS';
+   FromTemplateIndex:3013;
+   ToTemplateIndex:3013;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPUNORD_QPD';
+   FromTemplateIndex:3032;
+   ToTemplateIndex:3033;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPUNORD_QPS';
+   FromTemplateIndex:3034;
+   ToTemplateIndex:3035;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPUNORD_QSD';
+   FromTemplateIndex:3036;
+   ToTemplateIndex:3036;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPUNORD_QSS';
+   FromTemplateIndex:3037;
+   ToTemplateIndex:3037;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPUNORD_SPD';
    FromTemplateIndex:3038;
    ToTemplateIndex:3039;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPUNORD_SPS';
+   FromTemplateIndex:3040;
+   ToTemplateIndex:3041;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPUNORD_SSD';
+   FromTemplateIndex:3042;
+   ToTemplateIndex:3042;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPUNORD_SSS';
+   FromTemplateIndex:3043;
+   ToTemplateIndex:3043;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPUNORDPD';
+   FromTemplateIndex:3026;
+   ToTemplateIndex:3027;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPUNORDPS';
+   FromTemplateIndex:3028;
+   ToTemplateIndex:3029;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPUNORDSD';
+   FromTemplateIndex:3030;
+   ToTemplateIndex:3030;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCMPUNORDSS';
+   FromTemplateIndex:3031;
+   ToTemplateIndex:3031;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VCOMISD';
+   FromTemplateIndex:3044;
+   ToTemplateIndex:3045;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VCOMISS';
-   FromTemplateIndex:3040;
-   ToTemplateIndex:3041;
+   FromTemplateIndex:3046;
+   ToTemplateIndex:3047;
    BitSize:32;
    MaximalCountOperands:2;
   ),
   (
    Name:'VCOMPRESSPD';
-   FromTemplateIndex:3042;
-   ToTemplateIndex:3047;
-   BitSize:256;
-   MaximalCountOperands:2;
-  ),
-  (
-   Name:'VCOMPRESSPS';
    FromTemplateIndex:3048;
    ToTemplateIndex:3053;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VCVTDQ2PD';
+   Name:'VCOMPRESSPS';
    FromTemplateIndex:3054;
-   ToTemplateIndex:3058;
+   ToTemplateIndex:3059;
+   BitSize:256;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VCVTDQ2PD';
+   FromTemplateIndex:3060;
+   ToTemplateIndex:3064;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VCVTDQ2PS';
-   FromTemplateIndex:3059;
-   ToTemplateIndex:3063;
+   FromTemplateIndex:3065;
+   ToTemplateIndex:3069;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VCVTPD2DQ';
-   FromTemplateIndex:3064;
-   ToTemplateIndex:3070;
+   FromTemplateIndex:3070;
+   ToTemplateIndex:3076;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VCVTPD2PS';
-   FromTemplateIndex:3071;
-   ToTemplateIndex:3077;
-   BitSize:256;
-   MaximalCountOperands:2;
-  ),
-  (
-   Name:'VCVTPD2QQ';
-   FromTemplateIndex:3078;
-   ToTemplateIndex:3080;
-   BitSize:256;
-   MaximalCountOperands:2;
-  ),
-  (
-   Name:'VCVTPD2UDQ';
-   FromTemplateIndex:3081;
+   FromTemplateIndex:3077;
    ToTemplateIndex:3083;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VCVTPD2UQQ';
+   Name:'VCVTPD2QQ';
    FromTemplateIndex:3084;
    ToTemplateIndex:3086;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VCVTPH2PS';
+   Name:'VCVTPD2UDQ';
    FromTemplateIndex:3087;
-   ToTemplateIndex:3091;
+   ToTemplateIndex:3089;
+   BitSize:256;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VCVTPD2UQQ';
+   FromTemplateIndex:3090;
+   ToTemplateIndex:3092;
+   BitSize:256;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VCVTPH2PS';
+   FromTemplateIndex:3093;
+   ToTemplateIndex:3097;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VCVTPS2DQ';
-   FromTemplateIndex:3092;
-   ToTemplateIndex:3096;
+   FromTemplateIndex:3098;
+   ToTemplateIndex:3102;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VCVTPS2PD';
-   FromTemplateIndex:3097;
-   ToTemplateIndex:3101;
+   FromTemplateIndex:3103;
+   ToTemplateIndex:3107;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VCVTPS2PH';
-   FromTemplateIndex:3102;
-   ToTemplateIndex:3109;
+   FromTemplateIndex:3108;
+   ToTemplateIndex:3115;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VCVTPS2QQ';
-   FromTemplateIndex:3110;
-   ToTemplateIndex:3112;
-   BitSize:256;
-   MaximalCountOperands:2;
-  ),
-  (
-   Name:'VCVTPS2UDQ';
-   FromTemplateIndex:3113;
-   ToTemplateIndex:3115;
-   BitSize:256;
-   MaximalCountOperands:2;
-  ),
-  (
-   Name:'VCVTPS2UQQ';
    FromTemplateIndex:3116;
    ToTemplateIndex:3118;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VCVTQQ2PD';
+   Name:'VCVTPS2UDQ';
    FromTemplateIndex:3119;
    ToTemplateIndex:3121;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VCVTQQ2PS';
+   Name:'VCVTPS2UQQ';
    FromTemplateIndex:3122;
    ToTemplateIndex:3124;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VCVTSD2SI';
+   Name:'VCVTQQ2PD';
    FromTemplateIndex:3125;
-   ToTemplateIndex:3128;
+   ToTemplateIndex:3127;
+   BitSize:256;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VCVTQQ2PS';
+   FromTemplateIndex:3128;
+   ToTemplateIndex:3130;
+   BitSize:256;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VCVTSD2SI';
+   FromTemplateIndex:3131;
+   ToTemplateIndex:3134;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VCVTSD2SS';
-   FromTemplateIndex:3129;
-   ToTemplateIndex:3130;
+   FromTemplateIndex:3135;
+   ToTemplateIndex:3136;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VCVTSD2USI';
-   FromTemplateIndex:3131;
-   ToTemplateIndex:3132;
+   FromTemplateIndex:3137;
+   ToTemplateIndex:3138;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VCVTSI2SD';
-   FromTemplateIndex:3133;
-   ToTemplateIndex:3137;
+   FromTemplateIndex:3139;
+   ToTemplateIndex:3143;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VCVTSI2SS';
-   FromTemplateIndex:3138;
-   ToTemplateIndex:3142;
+   FromTemplateIndex:3144;
+   ToTemplateIndex:3148;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VCVTSS2SD';
-   FromTemplateIndex:3143;
-   ToTemplateIndex:3144;
+   FromTemplateIndex:3149;
+   ToTemplateIndex:3150;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VCVTSS2SI';
-   FromTemplateIndex:3145;
-   ToTemplateIndex:3148;
+   FromTemplateIndex:3151;
+   ToTemplateIndex:3154;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VCVTSS2USI';
-   FromTemplateIndex:3149;
-   ToTemplateIndex:3150;
+   FromTemplateIndex:3155;
+   ToTemplateIndex:3156;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VCVTTPD2DQ';
-   FromTemplateIndex:3151;
-   ToTemplateIndex:3157;
-   BitSize:256;
-   MaximalCountOperands:2;
-  ),
-  (
-   Name:'VCVTTPD2QQ';
-   FromTemplateIndex:3158;
-   ToTemplateIndex:3160;
-   BitSize:256;
-   MaximalCountOperands:2;
-  ),
-  (
-   Name:'VCVTTPD2UDQ';
-   FromTemplateIndex:3161;
+   FromTemplateIndex:3157;
    ToTemplateIndex:3163;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VCVTTPD2UQQ';
+   Name:'VCVTTPD2QQ';
    FromTemplateIndex:3164;
    ToTemplateIndex:3166;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VCVTTPS2DQ';
+   Name:'VCVTTPD2UDQ';
    FromTemplateIndex:3167;
-   ToTemplateIndex:3171;
+   ToTemplateIndex:3169;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VCVTTPS2QQ';
-   FromTemplateIndex:3172;
-   ToTemplateIndex:3174;
+   Name:'VCVTTPD2UQQ';
+   FromTemplateIndex:3170;
+   ToTemplateIndex:3172;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VCVTTPS2UDQ';
-   FromTemplateIndex:3175;
+   Name:'VCVTTPS2DQ';
+   FromTemplateIndex:3173;
    ToTemplateIndex:3177;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VCVTTPS2UQQ';
+   Name:'VCVTTPS2QQ';
    FromTemplateIndex:3178;
    ToTemplateIndex:3180;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VCVTTSD2SI';
+   Name:'VCVTTPS2UDQ';
    FromTemplateIndex:3181;
-   ToTemplateIndex:3184;
-   BitSize:64;
+   ToTemplateIndex:3183;
+   BitSize:256;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VCVTTSD2USI';
-   FromTemplateIndex:3185;
+   Name:'VCVTTPS2UQQ';
+   FromTemplateIndex:3184;
    ToTemplateIndex:3186;
-   BitSize:64;
+   BitSize:256;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VCVTTSS2SI';
+   Name:'VCVTTSD2SI';
    FromTemplateIndex:3187;
    ToTemplateIndex:3190;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VCVTTSS2USI';
+   Name:'VCVTTSD2USI';
    FromTemplateIndex:3191;
    ToTemplateIndex:3192;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VCVTUDQ2PD';
+   Name:'VCVTTSS2SI';
    FromTemplateIndex:3193;
-   ToTemplateIndex:3195;
-   BitSize:256;
+   ToTemplateIndex:3196;
+   BitSize:64;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VCVTUDQ2PS';
-   FromTemplateIndex:3196;
+   Name:'VCVTTSS2USI';
+   FromTemplateIndex:3197;
    ToTemplateIndex:3198;
-   BitSize:256;
+   BitSize:64;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VCVTUQQ2PD';
+   Name:'VCVTUDQ2PD';
    FromTemplateIndex:3199;
    ToTemplateIndex:3201;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VCVTUQQ2PS';
+   Name:'VCVTUDQ2PS';
    FromTemplateIndex:3202;
    ToTemplateIndex:3204;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VCVTUSI2SD';
+   Name:'VCVTUQQ2PD';
    FromTemplateIndex:3205;
-   ToTemplateIndex:3206;
+   ToTemplateIndex:3207;
+   BitSize:256;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VCVTUQQ2PS';
+   FromTemplateIndex:3208;
+   ToTemplateIndex:3210;
+   BitSize:256;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VCVTUSI2SD';
+   FromTemplateIndex:3211;
+   ToTemplateIndex:3212;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VCVTUSI2SS';
-   FromTemplateIndex:3207;
-   ToTemplateIndex:3208;
+   FromTemplateIndex:3213;
+   ToTemplateIndex:3214;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VDBPSADBW';
-   FromTemplateIndex:3209;
-   ToTemplateIndex:3211;
+   FromTemplateIndex:3215;
+   ToTemplateIndex:3217;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VDIVPD';
-   FromTemplateIndex:3212;
-   ToTemplateIndex:3216;
+   FromTemplateIndex:3218;
+   ToTemplateIndex:3222;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VDIVPS';
-   FromTemplateIndex:3217;
-   ToTemplateIndex:3221;
+   FromTemplateIndex:3223;
+   ToTemplateIndex:3227;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VDIVSD';
-   FromTemplateIndex:3222;
-   ToTemplateIndex:3223;
+   FromTemplateIndex:3228;
+   ToTemplateIndex:3229;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VDIVSS';
-   FromTemplateIndex:3224;
-   ToTemplateIndex:3225;
+   FromTemplateIndex:3230;
+   ToTemplateIndex:3231;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VDPPD';
-   FromTemplateIndex:3226;
-   ToTemplateIndex:3226;
+   FromTemplateIndex:3232;
+   ToTemplateIndex:3232;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VDPPS';
-   FromTemplateIndex:3227;
-   ToTemplateIndex:3228;
+   FromTemplateIndex:3233;
+   ToTemplateIndex:3234;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VERR';
-   FromTemplateIndex:3229;
-   ToTemplateIndex:3231;
+   FromTemplateIndex:3235;
+   ToTemplateIndex:3237;
    BitSize:16;
    MaximalCountOperands:1;
   ),
   (
    Name:'VERW';
-   FromTemplateIndex:3232;
-   ToTemplateIndex:3234;
+   FromTemplateIndex:3238;
+   ToTemplateIndex:3240;
    BitSize:16;
    MaximalCountOperands:1;
   ),
   (
    Name:'VEXP2PD';
-   FromTemplateIndex:3235;
-   ToTemplateIndex:3235;
+   FromTemplateIndex:3241;
+   ToTemplateIndex:3241;
    BitSize:0;
    MaximalCountOperands:2;
   ),
   (
    Name:'VEXP2PS';
-   FromTemplateIndex:3236;
-   ToTemplateIndex:3236;
+   FromTemplateIndex:3242;
+   ToTemplateIndex:3242;
    BitSize:0;
    MaximalCountOperands:2;
   ),
   (
    Name:'VEXPANDPD';
-   FromTemplateIndex:3237;
-   ToTemplateIndex:3242;
-   BitSize:256;
-   MaximalCountOperands:2;
-  ),
-  (
-   Name:'VEXPANDPS';
    FromTemplateIndex:3243;
    ToTemplateIndex:3248;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VEXTRACTF128';
+   Name:'VEXPANDPS';
    FromTemplateIndex:3249;
-   ToTemplateIndex:3249;
+   ToTemplateIndex:3254;
+   BitSize:256;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VEXTRACTF128';
+   FromTemplateIndex:3255;
+   ToTemplateIndex:3255;
    BitSize:128;
    MaximalCountOperands:3;
   ),
   (
    Name:'VEXTRACTF32X4';
-   FromTemplateIndex:3250;
-   ToTemplateIndex:3253;
-   BitSize:128;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VEXTRACTF32X8';
-   FromTemplateIndex:3254;
-   ToTemplateIndex:3255;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VEXTRACTF64X2';
    FromTemplateIndex:3256;
    ToTemplateIndex:3259;
    BitSize:128;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VEXTRACTF64X4';
+   Name:'VEXTRACTF32X8';
    FromTemplateIndex:3260;
    ToTemplateIndex:3261;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VEXTRACTI128';
+   Name:'VEXTRACTF64X2';
    FromTemplateIndex:3262;
-   ToTemplateIndex:3262;
+   ToTemplateIndex:3265;
+   BitSize:128;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VEXTRACTF64X4';
+   FromTemplateIndex:3266;
+   ToTemplateIndex:3267;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VEXTRACTI128';
+   FromTemplateIndex:3268;
+   ToTemplateIndex:3268;
    BitSize:128;
    MaximalCountOperands:3;
   ),
   (
    Name:'VEXTRACTI32X4';
-   FromTemplateIndex:3263;
-   ToTemplateIndex:3266;
-   BitSize:128;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VEXTRACTI32X8';
-   FromTemplateIndex:3267;
-   ToTemplateIndex:3268;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VEXTRACTI64X2';
    FromTemplateIndex:3269;
    ToTemplateIndex:3272;
    BitSize:128;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VEXTRACTI64X4';
+   Name:'VEXTRACTI32X8';
    FromTemplateIndex:3273;
    ToTemplateIndex:3274;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VEXTRACTPS';
+   Name:'VEXTRACTI64X2';
    FromTemplateIndex:3275;
    ToTemplateIndex:3278;
+   BitSize:128;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VEXTRACTI64X4';
+   FromTemplateIndex:3279;
+   ToTemplateIndex:3280;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VEXTRACTPS';
+   FromTemplateIndex:3281;
+   ToTemplateIndex:3284;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFIXUPIMMPD';
-   FromTemplateIndex:3279;
-   ToTemplateIndex:3281;
+   FromTemplateIndex:3285;
+   ToTemplateIndex:3287;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFIXUPIMMPS';
-   FromTemplateIndex:3282;
-   ToTemplateIndex:3284;
+   FromTemplateIndex:3288;
+   ToTemplateIndex:3290;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFIXUPIMMSD';
-   FromTemplateIndex:3285;
-   ToTemplateIndex:3285;
+   FromTemplateIndex:3291;
+   ToTemplateIndex:3291;
    BitSize:64;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFIXUPIMMSS';
-   FromTemplateIndex:3286;
-   ToTemplateIndex:3286;
+   FromTemplateIndex:3292;
+   ToTemplateIndex:3292;
    BitSize:32;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFMADD123PD';
-   FromTemplateIndex:3287;
-   ToTemplateIndex:3288;
+   FromTemplateIndex:3293;
+   ToTemplateIndex:3294;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMADD123PS';
-   FromTemplateIndex:3289;
-   ToTemplateIndex:3290;
+   FromTemplateIndex:3295;
+   ToTemplateIndex:3296;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMADD123SD';
-   FromTemplateIndex:3291;
-   ToTemplateIndex:3291;
+   FromTemplateIndex:3297;
+   ToTemplateIndex:3297;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMADD123SS';
-   FromTemplateIndex:3292;
-   ToTemplateIndex:3292;
+   FromTemplateIndex:3298;
+   ToTemplateIndex:3298;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMADD132PD';
-   FromTemplateIndex:3293;
-   ToTemplateIndex:3297;
+   FromTemplateIndex:3299;
+   ToTemplateIndex:3303;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMADD132PS';
-   FromTemplateIndex:3298;
-   ToTemplateIndex:3302;
+   FromTemplateIndex:3304;
+   ToTemplateIndex:3308;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMADD132SD';
-   FromTemplateIndex:3303;
-   ToTemplateIndex:3304;
+   FromTemplateIndex:3309;
+   ToTemplateIndex:3310;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMADD132SS';
-   FromTemplateIndex:3305;
-   ToTemplateIndex:3306;
+   FromTemplateIndex:3311;
+   ToTemplateIndex:3312;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMADD213PD';
-   FromTemplateIndex:3307;
-   ToTemplateIndex:3311;
+   FromTemplateIndex:3313;
+   ToTemplateIndex:3317;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMADD213PS';
-   FromTemplateIndex:3312;
-   ToTemplateIndex:3316;
+   FromTemplateIndex:3318;
+   ToTemplateIndex:3322;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMADD213SD';
-   FromTemplateIndex:3317;
-   ToTemplateIndex:3318;
+   FromTemplateIndex:3323;
+   ToTemplateIndex:3324;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMADD213SS';
-   FromTemplateIndex:3319;
-   ToTemplateIndex:3320;
+   FromTemplateIndex:3325;
+   ToTemplateIndex:3326;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMADD231PD';
-   FromTemplateIndex:3321;
-   ToTemplateIndex:3325;
+   FromTemplateIndex:3327;
+   ToTemplateIndex:3331;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMADD231PS';
-   FromTemplateIndex:3326;
-   ToTemplateIndex:3330;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VFMADD231SD';
-   FromTemplateIndex:3331;
-   ToTemplateIndex:3332;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VFMADD231SS';
-   FromTemplateIndex:3333;
-   ToTemplateIndex:3334;
-   BitSize:32;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VFMADD312PD';
-   FromTemplateIndex:3335;
+   FromTemplateIndex:3332;
    ToTemplateIndex:3336;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFMADD312PS';
+   Name:'VFMADD231SD';
    FromTemplateIndex:3337;
    ToTemplateIndex:3338;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VFMADD312SD';
-   FromTemplateIndex:3339;
-   ToTemplateIndex:3339;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFMADD312SS';
-   FromTemplateIndex:3340;
+   Name:'VFMADD231SS';
+   FromTemplateIndex:3339;
    ToTemplateIndex:3340;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFMADD321PD';
+   Name:'VFMADD312PD';
    FromTemplateIndex:3341;
    ToTemplateIndex:3342;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFMADD321PS';
+   Name:'VFMADD312PS';
    FromTemplateIndex:3343;
    ToTemplateIndex:3344;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFMADD321SD';
+   Name:'VFMADD312SD';
    FromTemplateIndex:3345;
    ToTemplateIndex:3345;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFMADD321SS';
+   Name:'VFMADD312SS';
    FromTemplateIndex:3346;
    ToTemplateIndex:3346;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFMADDPD';
+   Name:'VFMADD321PD';
    FromTemplateIndex:3347;
+   ToTemplateIndex:3348;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VFMADD321PS';
+   FromTemplateIndex:3349;
    ToTemplateIndex:3350;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VFMADD321SD';
+   FromTemplateIndex:3351;
+   ToTemplateIndex:3351;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VFMADD321SS';
+   FromTemplateIndex:3352;
+   ToTemplateIndex:3352;
+   BitSize:32;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VFMADDPD';
+   FromTemplateIndex:3353;
+   ToTemplateIndex:3356;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFMADDPS';
-   FromTemplateIndex:3351;
-   ToTemplateIndex:3354;
+   FromTemplateIndex:3357;
+   ToTemplateIndex:3360;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFMADDSD';
-   FromTemplateIndex:3355;
-   ToTemplateIndex:3356;
+   FromTemplateIndex:3361;
+   ToTemplateIndex:3362;
    BitSize:64;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFMADDSS';
-   FromTemplateIndex:3357;
-   ToTemplateIndex:3358;
+   FromTemplateIndex:3363;
+   ToTemplateIndex:3364;
    BitSize:32;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFMADDSUB123PD';
-   FromTemplateIndex:3359;
-   ToTemplateIndex:3360;
+   FromTemplateIndex:3365;
+   ToTemplateIndex:3366;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMADDSUB123PS';
-   FromTemplateIndex:3361;
-   ToTemplateIndex:3362;
+   FromTemplateIndex:3367;
+   ToTemplateIndex:3368;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMADDSUB132PD';
-   FromTemplateIndex:3363;
-   ToTemplateIndex:3367;
+   FromTemplateIndex:3369;
+   ToTemplateIndex:3373;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMADDSUB132PS';
-   FromTemplateIndex:3368;
-   ToTemplateIndex:3372;
+   FromTemplateIndex:3374;
+   ToTemplateIndex:3378;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMADDSUB213PD';
-   FromTemplateIndex:3373;
-   ToTemplateIndex:3377;
+   FromTemplateIndex:3379;
+   ToTemplateIndex:3383;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMADDSUB213PS';
-   FromTemplateIndex:3378;
-   ToTemplateIndex:3382;
+   FromTemplateIndex:3384;
+   ToTemplateIndex:3388;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMADDSUB231PD';
-   FromTemplateIndex:3383;
-   ToTemplateIndex:3387;
+   FromTemplateIndex:3389;
+   ToTemplateIndex:3393;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMADDSUB231PS';
-   FromTemplateIndex:3388;
-   ToTemplateIndex:3392;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VFMADDSUB312PD';
-   FromTemplateIndex:3393;
-   ToTemplateIndex:3394;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VFMADDSUB312PS';
-   FromTemplateIndex:3395;
-   ToTemplateIndex:3396;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VFMADDSUB321PD';
-   FromTemplateIndex:3397;
+   FromTemplateIndex:3394;
    ToTemplateIndex:3398;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFMADDSUB321PS';
+   Name:'VFMADDSUB312PD';
    FromTemplateIndex:3399;
    ToTemplateIndex:3400;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFMADDSUBPD';
+   Name:'VFMADDSUB312PS';
    FromTemplateIndex:3401;
+   ToTemplateIndex:3402;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VFMADDSUB321PD';
+   FromTemplateIndex:3403;
    ToTemplateIndex:3404;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VFMADDSUB321PS';
+   FromTemplateIndex:3405;
+   ToTemplateIndex:3406;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VFMADDSUBPD';
+   FromTemplateIndex:3407;
+   ToTemplateIndex:3410;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFMADDSUBPS';
-   FromTemplateIndex:3405;
-   ToTemplateIndex:3408;
+   FromTemplateIndex:3411;
+   ToTemplateIndex:3414;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFMSUB123PD';
-   FromTemplateIndex:3409;
-   ToTemplateIndex:3410;
+   FromTemplateIndex:3415;
+   ToTemplateIndex:3416;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMSUB123PS';
-   FromTemplateIndex:3411;
-   ToTemplateIndex:3412;
+   FromTemplateIndex:3417;
+   ToTemplateIndex:3418;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMSUB123SD';
-   FromTemplateIndex:3413;
-   ToTemplateIndex:3413;
+   FromTemplateIndex:3419;
+   ToTemplateIndex:3419;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMSUB123SS';
-   FromTemplateIndex:3414;
-   ToTemplateIndex:3414;
+   FromTemplateIndex:3420;
+   ToTemplateIndex:3420;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMSUB132PD';
-   FromTemplateIndex:3415;
-   ToTemplateIndex:3419;
+   FromTemplateIndex:3421;
+   ToTemplateIndex:3425;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMSUB132PS';
-   FromTemplateIndex:3420;
-   ToTemplateIndex:3424;
+   FromTemplateIndex:3426;
+   ToTemplateIndex:3430;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMSUB132SD';
-   FromTemplateIndex:3425;
-   ToTemplateIndex:3426;
+   FromTemplateIndex:3431;
+   ToTemplateIndex:3432;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMSUB132SS';
-   FromTemplateIndex:3427;
-   ToTemplateIndex:3428;
+   FromTemplateIndex:3433;
+   ToTemplateIndex:3434;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMSUB213PD';
-   FromTemplateIndex:3429;
-   ToTemplateIndex:3433;
+   FromTemplateIndex:3435;
+   ToTemplateIndex:3439;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMSUB213PS';
-   FromTemplateIndex:3434;
-   ToTemplateIndex:3438;
+   FromTemplateIndex:3440;
+   ToTemplateIndex:3444;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMSUB213SD';
-   FromTemplateIndex:3439;
-   ToTemplateIndex:3440;
+   FromTemplateIndex:3445;
+   ToTemplateIndex:3446;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMSUB213SS';
-   FromTemplateIndex:3441;
-   ToTemplateIndex:3442;
+   FromTemplateIndex:3447;
+   ToTemplateIndex:3448;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMSUB231PD';
-   FromTemplateIndex:3443;
-   ToTemplateIndex:3447;
+   FromTemplateIndex:3449;
+   ToTemplateIndex:3453;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMSUB231PS';
-   FromTemplateIndex:3448;
-   ToTemplateIndex:3452;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VFMSUB231SD';
-   FromTemplateIndex:3453;
-   ToTemplateIndex:3454;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VFMSUB231SS';
-   FromTemplateIndex:3455;
-   ToTemplateIndex:3456;
-   BitSize:32;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VFMSUB312PD';
-   FromTemplateIndex:3457;
+   FromTemplateIndex:3454;
    ToTemplateIndex:3458;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFMSUB312PS';
+   Name:'VFMSUB231SD';
    FromTemplateIndex:3459;
    ToTemplateIndex:3460;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VFMSUB312SD';
-   FromTemplateIndex:3461;
-   ToTemplateIndex:3461;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFMSUB312SS';
-   FromTemplateIndex:3462;
+   Name:'VFMSUB231SS';
+   FromTemplateIndex:3461;
    ToTemplateIndex:3462;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFMSUB321PD';
+   Name:'VFMSUB312PD';
    FromTemplateIndex:3463;
    ToTemplateIndex:3464;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFMSUB321PS';
+   Name:'VFMSUB312PS';
    FromTemplateIndex:3465;
    ToTemplateIndex:3466;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFMSUB321SD';
+   Name:'VFMSUB312SD';
    FromTemplateIndex:3467;
    ToTemplateIndex:3467;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFMSUB321SS';
+   Name:'VFMSUB312SS';
    FromTemplateIndex:3468;
    ToTemplateIndex:3468;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFMSUBADD123PD';
+   Name:'VFMSUB321PD';
    FromTemplateIndex:3469;
    ToTemplateIndex:3470;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFMSUBADD123PS';
+   Name:'VFMSUB321PS';
    FromTemplateIndex:3471;
    ToTemplateIndex:3472;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFMSUBADD132PD';
+   Name:'VFMSUB321SD';
    FromTemplateIndex:3473;
-   ToTemplateIndex:3477;
+   ToTemplateIndex:3473;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VFMSUB321SS';
+   FromTemplateIndex:3474;
+   ToTemplateIndex:3474;
+   BitSize:32;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VFMSUBADD123PD';
+   FromTemplateIndex:3475;
+   ToTemplateIndex:3476;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VFMSUBADD123PS';
+   FromTemplateIndex:3477;
+   ToTemplateIndex:3478;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VFMSUBADD132PD';
+   FromTemplateIndex:3479;
+   ToTemplateIndex:3483;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMSUBADD132PS';
-   FromTemplateIndex:3478;
-   ToTemplateIndex:3482;
+   FromTemplateIndex:3484;
+   ToTemplateIndex:3488;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMSUBADD213PD';
-   FromTemplateIndex:3483;
-   ToTemplateIndex:3487;
+   FromTemplateIndex:3489;
+   ToTemplateIndex:3493;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMSUBADD213PS';
-   FromTemplateIndex:3488;
-   ToTemplateIndex:3492;
+   FromTemplateIndex:3494;
+   ToTemplateIndex:3498;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMSUBADD231PD';
-   FromTemplateIndex:3493;
-   ToTemplateIndex:3497;
+   FromTemplateIndex:3499;
+   ToTemplateIndex:3503;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFMSUBADD231PS';
-   FromTemplateIndex:3498;
-   ToTemplateIndex:3502;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VFMSUBADD312PD';
-   FromTemplateIndex:3503;
-   ToTemplateIndex:3504;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VFMSUBADD312PS';
-   FromTemplateIndex:3505;
-   ToTemplateIndex:3506;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VFMSUBADD321PD';
-   FromTemplateIndex:3507;
+   FromTemplateIndex:3504;
    ToTemplateIndex:3508;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFMSUBADD321PS';
+   Name:'VFMSUBADD312PD';
    FromTemplateIndex:3509;
    ToTemplateIndex:3510;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFMSUBADDPD';
+   Name:'VFMSUBADD312PS';
    FromTemplateIndex:3511;
+   ToTemplateIndex:3512;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VFMSUBADD321PD';
+   FromTemplateIndex:3513;
    ToTemplateIndex:3514;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VFMSUBADD321PS';
+   FromTemplateIndex:3515;
+   ToTemplateIndex:3516;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VFMSUBADDPD';
+   FromTemplateIndex:3517;
+   ToTemplateIndex:3520;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFMSUBADDPS';
-   FromTemplateIndex:3515;
-   ToTemplateIndex:3518;
+   FromTemplateIndex:3521;
+   ToTemplateIndex:3524;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFMSUBPD';
-   FromTemplateIndex:3519;
-   ToTemplateIndex:3522;
+   FromTemplateIndex:3525;
+   ToTemplateIndex:3528;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFMSUBPS';
-   FromTemplateIndex:3523;
-   ToTemplateIndex:3526;
+   FromTemplateIndex:3529;
+   ToTemplateIndex:3532;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFMSUBSD';
-   FromTemplateIndex:3527;
-   ToTemplateIndex:3528;
+   FromTemplateIndex:3533;
+   ToTemplateIndex:3534;
    BitSize:64;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFMSUBSS';
-   FromTemplateIndex:3529;
-   ToTemplateIndex:3530;
+   FromTemplateIndex:3535;
+   ToTemplateIndex:3536;
    BitSize:32;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFNMADD123PD';
-   FromTemplateIndex:3531;
-   ToTemplateIndex:3532;
+   FromTemplateIndex:3537;
+   ToTemplateIndex:3538;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMADD123PS';
-   FromTemplateIndex:3533;
-   ToTemplateIndex:3534;
+   FromTemplateIndex:3539;
+   ToTemplateIndex:3540;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMADD123SD';
-   FromTemplateIndex:3535;
-   ToTemplateIndex:3535;
+   FromTemplateIndex:3541;
+   ToTemplateIndex:3541;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMADD123SS';
-   FromTemplateIndex:3536;
-   ToTemplateIndex:3536;
+   FromTemplateIndex:3542;
+   ToTemplateIndex:3542;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMADD132PD';
-   FromTemplateIndex:3537;
-   ToTemplateIndex:3541;
+   FromTemplateIndex:3543;
+   ToTemplateIndex:3547;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMADD132PS';
-   FromTemplateIndex:3542;
-   ToTemplateIndex:3546;
+   FromTemplateIndex:3548;
+   ToTemplateIndex:3552;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMADD132SD';
-   FromTemplateIndex:3547;
-   ToTemplateIndex:3548;
+   FromTemplateIndex:3553;
+   ToTemplateIndex:3554;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMADD132SS';
-   FromTemplateIndex:3549;
-   ToTemplateIndex:3550;
+   FromTemplateIndex:3555;
+   ToTemplateIndex:3556;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMADD213PD';
-   FromTemplateIndex:3551;
-   ToTemplateIndex:3555;
+   FromTemplateIndex:3557;
+   ToTemplateIndex:3561;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMADD213PS';
-   FromTemplateIndex:3556;
-   ToTemplateIndex:3560;
+   FromTemplateIndex:3562;
+   ToTemplateIndex:3566;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMADD213SD';
-   FromTemplateIndex:3561;
-   ToTemplateIndex:3562;
+   FromTemplateIndex:3567;
+   ToTemplateIndex:3568;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMADD213SS';
-   FromTemplateIndex:3563;
-   ToTemplateIndex:3564;
+   FromTemplateIndex:3569;
+   ToTemplateIndex:3570;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMADD231PD';
-   FromTemplateIndex:3565;
-   ToTemplateIndex:3569;
+   FromTemplateIndex:3571;
+   ToTemplateIndex:3575;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMADD231PS';
-   FromTemplateIndex:3570;
-   ToTemplateIndex:3574;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VFNMADD231SD';
-   FromTemplateIndex:3575;
-   ToTemplateIndex:3576;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VFNMADD231SS';
-   FromTemplateIndex:3577;
-   ToTemplateIndex:3578;
-   BitSize:32;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VFNMADD312PD';
-   FromTemplateIndex:3579;
+   FromTemplateIndex:3576;
    ToTemplateIndex:3580;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFNMADD312PS';
+   Name:'VFNMADD231SD';
    FromTemplateIndex:3581;
    ToTemplateIndex:3582;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VFNMADD312SD';
-   FromTemplateIndex:3583;
-   ToTemplateIndex:3583;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFNMADD312SS';
-   FromTemplateIndex:3584;
+   Name:'VFNMADD231SS';
+   FromTemplateIndex:3583;
    ToTemplateIndex:3584;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFNMADD321PD';
+   Name:'VFNMADD312PD';
    FromTemplateIndex:3585;
    ToTemplateIndex:3586;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFNMADD321PS';
+   Name:'VFNMADD312PS';
    FromTemplateIndex:3587;
    ToTemplateIndex:3588;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFNMADD321SD';
+   Name:'VFNMADD312SD';
    FromTemplateIndex:3589;
    ToTemplateIndex:3589;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFNMADD321SS';
+   Name:'VFNMADD312SS';
    FromTemplateIndex:3590;
    ToTemplateIndex:3590;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFNMADDPD';
+   Name:'VFNMADD321PD';
    FromTemplateIndex:3591;
+   ToTemplateIndex:3592;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VFNMADD321PS';
+   FromTemplateIndex:3593;
    ToTemplateIndex:3594;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VFNMADD321SD';
+   FromTemplateIndex:3595;
+   ToTemplateIndex:3595;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VFNMADD321SS';
+   FromTemplateIndex:3596;
+   ToTemplateIndex:3596;
+   BitSize:32;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VFNMADDPD';
+   FromTemplateIndex:3597;
+   ToTemplateIndex:3600;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFNMADDPS';
-   FromTemplateIndex:3595;
-   ToTemplateIndex:3598;
+   FromTemplateIndex:3601;
+   ToTemplateIndex:3604;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFNMADDSD';
-   FromTemplateIndex:3599;
-   ToTemplateIndex:3600;
+   FromTemplateIndex:3605;
+   ToTemplateIndex:3606;
    BitSize:64;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFNMADDSS';
-   FromTemplateIndex:3601;
-   ToTemplateIndex:3602;
+   FromTemplateIndex:3607;
+   ToTemplateIndex:3608;
    BitSize:32;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFNMSUB123PD';
-   FromTemplateIndex:3603;
-   ToTemplateIndex:3604;
+   FromTemplateIndex:3609;
+   ToTemplateIndex:3610;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMSUB123PS';
-   FromTemplateIndex:3605;
-   ToTemplateIndex:3606;
+   FromTemplateIndex:3611;
+   ToTemplateIndex:3612;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMSUB123SD';
-   FromTemplateIndex:3607;
-   ToTemplateIndex:3607;
+   FromTemplateIndex:3613;
+   ToTemplateIndex:3613;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMSUB123SS';
-   FromTemplateIndex:3608;
-   ToTemplateIndex:3608;
+   FromTemplateIndex:3614;
+   ToTemplateIndex:3614;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMSUB132PD';
-   FromTemplateIndex:3609;
-   ToTemplateIndex:3613;
+   FromTemplateIndex:3615;
+   ToTemplateIndex:3619;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMSUB132PS';
-   FromTemplateIndex:3614;
-   ToTemplateIndex:3618;
+   FromTemplateIndex:3620;
+   ToTemplateIndex:3624;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMSUB132SD';
-   FromTemplateIndex:3619;
-   ToTemplateIndex:3620;
+   FromTemplateIndex:3625;
+   ToTemplateIndex:3626;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMSUB132SS';
-   FromTemplateIndex:3621;
-   ToTemplateIndex:3622;
+   FromTemplateIndex:3627;
+   ToTemplateIndex:3628;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMSUB213PD';
-   FromTemplateIndex:3623;
-   ToTemplateIndex:3627;
+   FromTemplateIndex:3629;
+   ToTemplateIndex:3633;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMSUB213PS';
-   FromTemplateIndex:3628;
-   ToTemplateIndex:3632;
+   FromTemplateIndex:3634;
+   ToTemplateIndex:3638;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMSUB213SD';
-   FromTemplateIndex:3633;
-   ToTemplateIndex:3634;
+   FromTemplateIndex:3639;
+   ToTemplateIndex:3640;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMSUB213SS';
-   FromTemplateIndex:3635;
-   ToTemplateIndex:3636;
+   FromTemplateIndex:3641;
+   ToTemplateIndex:3642;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMSUB231PD';
-   FromTemplateIndex:3637;
-   ToTemplateIndex:3641;
+   FromTemplateIndex:3643;
+   ToTemplateIndex:3647;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFNMSUB231PS';
-   FromTemplateIndex:3642;
-   ToTemplateIndex:3646;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VFNMSUB231SD';
-   FromTemplateIndex:3647;
-   ToTemplateIndex:3648;
-   BitSize:64;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VFNMSUB231SS';
-   FromTemplateIndex:3649;
-   ToTemplateIndex:3650;
-   BitSize:32;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VFNMSUB312PD';
-   FromTemplateIndex:3651;
+   FromTemplateIndex:3648;
    ToTemplateIndex:3652;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFNMSUB312PS';
+   Name:'VFNMSUB231SD';
    FromTemplateIndex:3653;
    ToTemplateIndex:3654;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VFNMSUB312SD';
-   FromTemplateIndex:3655;
-   ToTemplateIndex:3655;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFNMSUB312SS';
-   FromTemplateIndex:3656;
+   Name:'VFNMSUB231SS';
+   FromTemplateIndex:3655;
    ToTemplateIndex:3656;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFNMSUB321PD';
+   Name:'VFNMSUB312PD';
    FromTemplateIndex:3657;
    ToTemplateIndex:3658;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFNMSUB321PS';
+   Name:'VFNMSUB312PS';
    FromTemplateIndex:3659;
    ToTemplateIndex:3660;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFNMSUB321SD';
+   Name:'VFNMSUB312SD';
    FromTemplateIndex:3661;
    ToTemplateIndex:3661;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFNMSUB321SS';
+   Name:'VFNMSUB312SS';
    FromTemplateIndex:3662;
    ToTemplateIndex:3662;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VFNMSUBPD';
+   Name:'VFNMSUB321PD';
    FromTemplateIndex:3663;
+   ToTemplateIndex:3664;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VFNMSUB321PS';
+   FromTemplateIndex:3665;
    ToTemplateIndex:3666;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VFNMSUB321SD';
+   FromTemplateIndex:3667;
+   ToTemplateIndex:3667;
+   BitSize:64;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VFNMSUB321SS';
+   FromTemplateIndex:3668;
+   ToTemplateIndex:3668;
+   BitSize:32;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VFNMSUBPD';
+   FromTemplateIndex:3669;
+   ToTemplateIndex:3672;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFNMSUBPS';
-   FromTemplateIndex:3667;
-   ToTemplateIndex:3670;
+   FromTemplateIndex:3673;
+   ToTemplateIndex:3676;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFNMSUBSD';
-   FromTemplateIndex:3671;
-   ToTemplateIndex:3672;
+   FromTemplateIndex:3677;
+   ToTemplateIndex:3678;
    BitSize:64;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFNMSUBSS';
-   FromTemplateIndex:3673;
-   ToTemplateIndex:3674;
+   FromTemplateIndex:3679;
+   ToTemplateIndex:3680;
    BitSize:32;
    MaximalCountOperands:4;
   ),
   (
    Name:'VFPCLASSPD';
-   FromTemplateIndex:3675;
-   ToTemplateIndex:3677;
+   FromTemplateIndex:3681;
+   ToTemplateIndex:3683;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFPCLASSPS';
-   FromTemplateIndex:3678;
-   ToTemplateIndex:3680;
+   FromTemplateIndex:3684;
+   ToTemplateIndex:3686;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFPCLASSSD';
-   FromTemplateIndex:3681;
-   ToTemplateIndex:3681;
+   FromTemplateIndex:3687;
+   ToTemplateIndex:3687;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFPCLASSSS';
-   FromTemplateIndex:3682;
-   ToTemplateIndex:3682;
+   FromTemplateIndex:3688;
+   ToTemplateIndex:3688;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VFRCZPD';
-   FromTemplateIndex:3683;
-   ToTemplateIndex:3684;
+   FromTemplateIndex:3689;
+   ToTemplateIndex:3690;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VFRCZPS';
-   FromTemplateIndex:3685;
-   ToTemplateIndex:3686;
+   FromTemplateIndex:3691;
+   ToTemplateIndex:3692;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VFRCZSD';
-   FromTemplateIndex:3687;
-   ToTemplateIndex:3687;
+   FromTemplateIndex:3693;
+   ToTemplateIndex:3693;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VFRCZSS';
-   FromTemplateIndex:3688;
-   ToTemplateIndex:3688;
+   FromTemplateIndex:3694;
+   ToTemplateIndex:3694;
    BitSize:32;
    MaximalCountOperands:2;
   ),
   (
    Name:'VGATHERDPD';
-   FromTemplateIndex:3689;
-   ToTemplateIndex:3693;
+   FromTemplateIndex:3695;
+   ToTemplateIndex:3699;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VGATHERDPS';
-   FromTemplateIndex:3694;
-   ToTemplateIndex:3698;
+   FromTemplateIndex:3700;
+   ToTemplateIndex:3704;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VGATHERPF0DPD';
-   FromTemplateIndex:3699;
-   ToTemplateIndex:3699;
-   BitSize:64;
-   MaximalCountOperands:1;
-  ),
-  (
-   Name:'VGATHERPF0DPS';
-   FromTemplateIndex:3700;
-   ToTemplateIndex:3700;
-   BitSize:32;
-   MaximalCountOperands:1;
-  ),
-  (
-   Name:'VGATHERPF0QPD';
-   FromTemplateIndex:3701;
-   ToTemplateIndex:3701;
-   BitSize:64;
-   MaximalCountOperands:1;
-  ),
-  (
-   Name:'VGATHERPF0QPS';
-   FromTemplateIndex:3702;
-   ToTemplateIndex:3702;
-   BitSize:32;
-   MaximalCountOperands:1;
-  ),
-  (
-   Name:'VGATHERPF1DPD';
-   FromTemplateIndex:3703;
-   ToTemplateIndex:3703;
-   BitSize:64;
-   MaximalCountOperands:1;
-  ),
-  (
-   Name:'VGATHERPF1DPS';
-   FromTemplateIndex:3704;
-   ToTemplateIndex:3704;
-   BitSize:32;
-   MaximalCountOperands:1;
-  ),
-  (
-   Name:'VGATHERPF1QPD';
    FromTemplateIndex:3705;
    ToTemplateIndex:3705;
    BitSize:64;
    MaximalCountOperands:1;
   ),
   (
-   Name:'VGATHERPF1QPS';
+   Name:'VGATHERPF0DPS';
    FromTemplateIndex:3706;
    ToTemplateIndex:3706;
    BitSize:32;
    MaximalCountOperands:1;
   ),
   (
-   Name:'VGATHERQPD';
+   Name:'VGATHERPF0QPD';
    FromTemplateIndex:3707;
+   ToTemplateIndex:3707;
+   BitSize:64;
+   MaximalCountOperands:1;
+  ),
+  (
+   Name:'VGATHERPF0QPS';
+   FromTemplateIndex:3708;
+   ToTemplateIndex:3708;
+   BitSize:32;
+   MaximalCountOperands:1;
+  ),
+  (
+   Name:'VGATHERPF1DPD';
+   FromTemplateIndex:3709;
+   ToTemplateIndex:3709;
+   BitSize:64;
+   MaximalCountOperands:1;
+  ),
+  (
+   Name:'VGATHERPF1DPS';
+   FromTemplateIndex:3710;
+   ToTemplateIndex:3710;
+   BitSize:32;
+   MaximalCountOperands:1;
+  ),
+  (
+   Name:'VGATHERPF1QPD';
+   FromTemplateIndex:3711;
    ToTemplateIndex:3711;
+   BitSize:64;
+   MaximalCountOperands:1;
+  ),
+  (
+   Name:'VGATHERPF1QPS';
+   FromTemplateIndex:3712;
+   ToTemplateIndex:3712;
+   BitSize:32;
+   MaximalCountOperands:1;
+  ),
+  (
+   Name:'VGATHERQPD';
+   FromTemplateIndex:3713;
+   ToTemplateIndex:3717;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VGATHERQPS';
-   FromTemplateIndex:3712;
-   ToTemplateIndex:3716;
+   FromTemplateIndex:3718;
+   ToTemplateIndex:3722;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VGETEXPPD';
-   FromTemplateIndex:3717;
-   ToTemplateIndex:3719;
+   FromTemplateIndex:3723;
+   ToTemplateIndex:3725;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VGETEXPPS';
-   FromTemplateIndex:3720;
-   ToTemplateIndex:3722;
+   FromTemplateIndex:3726;
+   ToTemplateIndex:3728;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VGETEXPSD';
-   FromTemplateIndex:3723;
-   ToTemplateIndex:3723;
+   FromTemplateIndex:3729;
+   ToTemplateIndex:3729;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VGETEXPSS';
-   FromTemplateIndex:3724;
-   ToTemplateIndex:3724;
+   FromTemplateIndex:3730;
+   ToTemplateIndex:3730;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VGETMANTPD';
-   FromTemplateIndex:3725;
-   ToTemplateIndex:3727;
+   FromTemplateIndex:3731;
+   ToTemplateIndex:3733;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VGETMANTPS';
-   FromTemplateIndex:3728;
-   ToTemplateIndex:3730;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VGETMANTSD';
-   FromTemplateIndex:3731;
-   ToTemplateIndex:3731;
-   BitSize:64;
-   MaximalCountOperands:4;
-  ),
-  (
-   Name:'VGETMANTSS';
-   FromTemplateIndex:3732;
-   ToTemplateIndex:3732;
-   BitSize:32;
-   MaximalCountOperands:4;
-  ),
-  (
-   Name:'VHADDPD';
-   FromTemplateIndex:3733;
-   ToTemplateIndex:3734;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VHADDPS';
-   FromTemplateIndex:3735;
+   FromTemplateIndex:3734;
    ToTemplateIndex:3736;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VHSUBPD';
+   Name:'VGETMANTSD';
    FromTemplateIndex:3737;
-   ToTemplateIndex:3738;
-   BitSize:256;
-   MaximalCountOperands:3;
+   ToTemplateIndex:3737;
+   BitSize:64;
+   MaximalCountOperands:4;
   ),
   (
-   Name:'VHSUBPS';
+   Name:'VGETMANTSS';
+   FromTemplateIndex:3738;
+   ToTemplateIndex:3738;
+   BitSize:32;
+   MaximalCountOperands:4;
+  ),
+  (
+   Name:'VHADDPD';
    FromTemplateIndex:3739;
    ToTemplateIndex:3740;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VINSERTF128';
+   Name:'VHADDPS';
    FromTemplateIndex:3741;
-   ToTemplateIndex:3741;
+   ToTemplateIndex:3742;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VHSUBPD';
+   FromTemplateIndex:3743;
+   ToTemplateIndex:3744;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VHSUBPS';
+   FromTemplateIndex:3745;
+   ToTemplateIndex:3746;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VINSERTF128';
+   FromTemplateIndex:3747;
+   ToTemplateIndex:3747;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VINSERTF32X4';
-   FromTemplateIndex:3742;
-   ToTemplateIndex:3743;
+   FromTemplateIndex:3748;
+   ToTemplateIndex:3749;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VINSERTF32X8';
-   FromTemplateIndex:3744;
-   ToTemplateIndex:3744;
+   FromTemplateIndex:3750;
+   ToTemplateIndex:3750;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VINSERTF64X2';
-   FromTemplateIndex:3745;
-   ToTemplateIndex:3746;
+   FromTemplateIndex:3751;
+   ToTemplateIndex:3752;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VINSERTF64X4';
-   FromTemplateIndex:3747;
-   ToTemplateIndex:3747;
+   FromTemplateIndex:3753;
+   ToTemplateIndex:3753;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VINSERTI128';
-   FromTemplateIndex:3748;
-   ToTemplateIndex:3748;
+   FromTemplateIndex:3754;
+   ToTemplateIndex:3754;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VINSERTI32X4';
-   FromTemplateIndex:3749;
-   ToTemplateIndex:3750;
+   FromTemplateIndex:3755;
+   ToTemplateIndex:3756;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VINSERTI32X8';
-   FromTemplateIndex:3751;
-   ToTemplateIndex:3751;
+   FromTemplateIndex:3757;
+   ToTemplateIndex:3757;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VINSERTI64X2';
-   FromTemplateIndex:3752;
-   ToTemplateIndex:3753;
+   FromTemplateIndex:3758;
+   ToTemplateIndex:3759;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VINSERTI64X4';
-   FromTemplateIndex:3754;
-   ToTemplateIndex:3754;
+   FromTemplateIndex:3760;
+   ToTemplateIndex:3760;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VINSERTPS';
-   FromTemplateIndex:3755;
-   ToTemplateIndex:3756;
+   FromTemplateIndex:3761;
+   ToTemplateIndex:3762;
    BitSize:32;
    MaximalCountOperands:4;
   ),
   (
    Name:'VLDDQU';
-   FromTemplateIndex:3757;
-   ToTemplateIndex:3758;
+   FromTemplateIndex:3763;
+   ToTemplateIndex:3764;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VLDMXCSR';
-   FromTemplateIndex:3759;
-   ToTemplateIndex:3759;
+   FromTemplateIndex:3765;
+   ToTemplateIndex:3765;
    BitSize:32;
    MaximalCountOperands:1;
   ),
   (
    Name:'VLDQQU';
-   FromTemplateIndex:3760;
-   ToTemplateIndex:3760;
+   FromTemplateIndex:3766;
+   ToTemplateIndex:3766;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMASKMOVDQU';
-   FromTemplateIndex:3761;
-   ToTemplateIndex:3761;
+   FromTemplateIndex:3767;
+   ToTemplateIndex:3767;
    BitSize:16;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMASKMOVPD';
-   FromTemplateIndex:3762;
-   ToTemplateIndex:3765;
+   FromTemplateIndex:3768;
+   ToTemplateIndex:3771;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VMASKMOVPS';
-   FromTemplateIndex:3766;
-   ToTemplateIndex:3769;
+   FromTemplateIndex:3772;
+   ToTemplateIndex:3775;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VMAXPD';
-   FromTemplateIndex:3770;
-   ToTemplateIndex:3774;
+   FromTemplateIndex:3776;
+   ToTemplateIndex:3780;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VMAXPS';
-   FromTemplateIndex:3775;
-   ToTemplateIndex:3779;
+   FromTemplateIndex:3781;
+   ToTemplateIndex:3785;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VMAXSD';
-   FromTemplateIndex:3780;
-   ToTemplateIndex:3781;
+   FromTemplateIndex:3786;
+   ToTemplateIndex:3787;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VMAXSS';
-   FromTemplateIndex:3782;
-   ToTemplateIndex:3783;
+   FromTemplateIndex:3788;
+   ToTemplateIndex:3789;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VMCALL';
-   FromTemplateIndex:3784;
-   ToTemplateIndex:3784;
+   FromTemplateIndex:3790;
+   ToTemplateIndex:3790;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'VMCLEAR';
-   FromTemplateIndex:3785;
-   ToTemplateIndex:3785;
+   FromTemplateIndex:3791;
+   ToTemplateIndex:3791;
    BitSize:0;
    MaximalCountOperands:1;
   ),
   (
    Name:'VMFUNC';
-   FromTemplateIndex:3786;
-   ToTemplateIndex:3786;
+   FromTemplateIndex:3792;
+   ToTemplateIndex:3792;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'VMINPD';
-   FromTemplateIndex:3787;
-   ToTemplateIndex:3791;
+   FromTemplateIndex:3793;
+   ToTemplateIndex:3797;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VMINPS';
-   FromTemplateIndex:3792;
-   ToTemplateIndex:3796;
+   FromTemplateIndex:3798;
+   ToTemplateIndex:3802;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VMINSD';
-   FromTemplateIndex:3797;
-   ToTemplateIndex:3798;
+   FromTemplateIndex:3803;
+   ToTemplateIndex:3804;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VMINSS';
-   FromTemplateIndex:3799;
-   ToTemplateIndex:3800;
+   FromTemplateIndex:3805;
+   ToTemplateIndex:3806;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VMLAUNCH';
-   FromTemplateIndex:3801;
-   ToTemplateIndex:3801;
+   FromTemplateIndex:3807;
+   ToTemplateIndex:3807;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'VMLOAD';
-   FromTemplateIndex:3802;
-   ToTemplateIndex:3802;
+   FromTemplateIndex:3808;
+   ToTemplateIndex:3808;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'VMMCALL';
-   FromTemplateIndex:3803;
-   ToTemplateIndex:3803;
+   FromTemplateIndex:3809;
+   ToTemplateIndex:3809;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'VMOVAPD';
-   FromTemplateIndex:3804;
-   ToTemplateIndex:3816;
+   FromTemplateIndex:3810;
+   ToTemplateIndex:3822;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVAPS';
-   FromTemplateIndex:3817;
-   ToTemplateIndex:3829;
+   FromTemplateIndex:3823;
+   ToTemplateIndex:3835;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVD';
-   FromTemplateIndex:3830;
-   ToTemplateIndex:3833;
+   FromTemplateIndex:3836;
+   ToTemplateIndex:3839;
    BitSize:32;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVDDUP';
-   FromTemplateIndex:3834;
-   ToTemplateIndex:3838;
+   FromTemplateIndex:3840;
+   ToTemplateIndex:3844;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVDQA';
-   FromTemplateIndex:3839;
-   ToTemplateIndex:3842;
+   FromTemplateIndex:3845;
+   ToTemplateIndex:3848;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVDQA32';
-   FromTemplateIndex:3843;
-   ToTemplateIndex:3851;
+   FromTemplateIndex:3849;
+   ToTemplateIndex:3854;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVDQA64';
-   FromTemplateIndex:3852;
+   FromTemplateIndex:3855;
    ToTemplateIndex:3860;
    BitSize:256;
    MaximalCountOperands:2;
@@ -67999,3255 +67879,3255 @@ const OpcodeTemplates:TOpcodeTemplates=
   (
    Name:'VMOVDQU16';
    FromTemplateIndex:3865;
-   ToTemplateIndex:3873;
+   ToTemplateIndex:3870;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVDQU32';
-   FromTemplateIndex:3874;
-   ToTemplateIndex:3882;
+   FromTemplateIndex:3871;
+   ToTemplateIndex:3876;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVDQU64';
-   FromTemplateIndex:3883;
-   ToTemplateIndex:3891;
+   FromTemplateIndex:3877;
+   ToTemplateIndex:3882;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVDQU8';
-   FromTemplateIndex:3892;
-   ToTemplateIndex:3900;
+   FromTemplateIndex:3883;
+   ToTemplateIndex:3888;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVHLPS';
-   FromTemplateIndex:3901;
-   ToTemplateIndex:3902;
+   FromTemplateIndex:3889;
+   ToTemplateIndex:3890;
    BitSize:16;
    MaximalCountOperands:3;
   ),
   (
    Name:'VMOVHPD';
-   FromTemplateIndex:3903;
-   ToTemplateIndex:3906;
+   FromTemplateIndex:3891;
+   ToTemplateIndex:3894;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VMOVHPS';
-   FromTemplateIndex:3907;
-   ToTemplateIndex:3910;
+   FromTemplateIndex:3895;
+   ToTemplateIndex:3898;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VMOVLHPS';
-   FromTemplateIndex:3911;
-   ToTemplateIndex:3912;
+   FromTemplateIndex:3899;
+   ToTemplateIndex:3900;
    BitSize:16;
    MaximalCountOperands:3;
   ),
   (
    Name:'VMOVLPD';
-   FromTemplateIndex:3913;
-   ToTemplateIndex:3916;
+   FromTemplateIndex:3901;
+   ToTemplateIndex:3904;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VMOVLPS';
-   FromTemplateIndex:3917;
-   ToTemplateIndex:3920;
+   FromTemplateIndex:3905;
+   ToTemplateIndex:3908;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VMOVMSKPD';
-   FromTemplateIndex:3921;
-   ToTemplateIndex:3924;
+   FromTemplateIndex:3909;
+   ToTemplateIndex:3912;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVMSKPS';
-   FromTemplateIndex:3925;
-   ToTemplateIndex:3928;
+   FromTemplateIndex:3913;
+   ToTemplateIndex:3916;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVNTDQ';
-   FromTemplateIndex:3929;
-   ToTemplateIndex:3933;
+   FromTemplateIndex:3917;
+   ToTemplateIndex:3921;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVNTDQA';
-   FromTemplateIndex:3934;
-   ToTemplateIndex:3938;
+   FromTemplateIndex:3922;
+   ToTemplateIndex:3926;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVNTPD';
-   FromTemplateIndex:3939;
-   ToTemplateIndex:3943;
+   FromTemplateIndex:3927;
+   ToTemplateIndex:3931;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVNTPS';
-   FromTemplateIndex:3944;
-   ToTemplateIndex:3948;
+   FromTemplateIndex:3932;
+   ToTemplateIndex:3936;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVNTQQ';
-   FromTemplateIndex:3949;
-   ToTemplateIndex:3949;
+   FromTemplateIndex:3937;
+   ToTemplateIndex:3937;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVQ';
-   FromTemplateIndex:3950;
-   ToTemplateIndex:3957;
+   FromTemplateIndex:3938;
+   ToTemplateIndex:3945;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVQQA';
-   FromTemplateIndex:3958;
-   ToTemplateIndex:3959;
+   FromTemplateIndex:3946;
+   ToTemplateIndex:3947;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVQQU';
-   FromTemplateIndex:3960;
-   ToTemplateIndex:3961;
+   FromTemplateIndex:3948;
+   ToTemplateIndex:3949;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVSD';
-   FromTemplateIndex:3962;
-   ToTemplateIndex:3969;
+   FromTemplateIndex:3950;
+   ToTemplateIndex:3957;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VMOVSHDUP';
-   FromTemplateIndex:3970;
-   ToTemplateIndex:3974;
+   FromTemplateIndex:3958;
+   ToTemplateIndex:3962;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVSLDUP';
-   FromTemplateIndex:3975;
-   ToTemplateIndex:3979;
+   FromTemplateIndex:3963;
+   ToTemplateIndex:3967;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVSS';
-   FromTemplateIndex:3980;
-   ToTemplateIndex:3987;
+   FromTemplateIndex:3968;
+   ToTemplateIndex:3975;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VMOVUPD';
-   FromTemplateIndex:3988;
-   ToTemplateIndex:4000;
+   FromTemplateIndex:3976;
+   ToTemplateIndex:3988;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMOVUPS';
-   FromTemplateIndex:4001;
-   ToTemplateIndex:4013;
+   FromTemplateIndex:3989;
+   ToTemplateIndex:4001;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMPSADBW';
-   FromTemplateIndex:4014;
-   ToTemplateIndex:4015;
+   FromTemplateIndex:4002;
+   ToTemplateIndex:4003;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VMPTRLD';
-   FromTemplateIndex:4016;
-   ToTemplateIndex:4016;
+   FromTemplateIndex:4004;
+   ToTemplateIndex:4004;
    BitSize:0;
    MaximalCountOperands:1;
   ),
   (
    Name:'VMPTRST';
-   FromTemplateIndex:4017;
-   ToTemplateIndex:4017;
+   FromTemplateIndex:4005;
+   ToTemplateIndex:4005;
    BitSize:0;
    MaximalCountOperands:1;
   ),
   (
    Name:'VMREAD';
-   FromTemplateIndex:4018;
-   ToTemplateIndex:4019;
+   FromTemplateIndex:4006;
+   ToTemplateIndex:4007;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMRESUME';
-   FromTemplateIndex:4020;
-   ToTemplateIndex:4020;
+   FromTemplateIndex:4008;
+   ToTemplateIndex:4008;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'VMRUN';
-   FromTemplateIndex:4021;
-   ToTemplateIndex:4021;
+   FromTemplateIndex:4009;
+   ToTemplateIndex:4009;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'VMSAVE';
-   FromTemplateIndex:4022;
-   ToTemplateIndex:4022;
+   FromTemplateIndex:4010;
+   ToTemplateIndex:4010;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'VMULPD';
-   FromTemplateIndex:4023;
-   ToTemplateIndex:4027;
+   FromTemplateIndex:4011;
+   ToTemplateIndex:4015;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VMULPS';
-   FromTemplateIndex:4028;
-   ToTemplateIndex:4032;
+   FromTemplateIndex:4016;
+   ToTemplateIndex:4020;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VMULSD';
-   FromTemplateIndex:4033;
-   ToTemplateIndex:4034;
+   FromTemplateIndex:4021;
+   ToTemplateIndex:4022;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VMULSS';
-   FromTemplateIndex:4035;
-   ToTemplateIndex:4036;
+   FromTemplateIndex:4023;
+   ToTemplateIndex:4024;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VMWRITE';
-   FromTemplateIndex:4037;
-   ToTemplateIndex:4038;
+   FromTemplateIndex:4025;
+   ToTemplateIndex:4026;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VMXOFF';
-   FromTemplateIndex:4039;
-   ToTemplateIndex:4039;
+   FromTemplateIndex:4027;
+   ToTemplateIndex:4027;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'VMXON';
-   FromTemplateIndex:4040;
-   ToTemplateIndex:4040;
+   FromTemplateIndex:4028;
+   ToTemplateIndex:4028;
    BitSize:0;
    MaximalCountOperands:1;
   ),
   (
    Name:'VORPD';
-   FromTemplateIndex:4041;
-   ToTemplateIndex:4045;
+   FromTemplateIndex:4029;
+   ToTemplateIndex:4033;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VORPS';
-   FromTemplateIndex:4046;
-   ToTemplateIndex:4050;
+   FromTemplateIndex:4034;
+   ToTemplateIndex:4038;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPABSB';
-   FromTemplateIndex:4051;
-   ToTemplateIndex:4055;
+   FromTemplateIndex:4039;
+   ToTemplateIndex:4043;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPABSD';
-   FromTemplateIndex:4056;
-   ToTemplateIndex:4060;
+   FromTemplateIndex:4044;
+   ToTemplateIndex:4048;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPABSQ';
-   FromTemplateIndex:4061;
-   ToTemplateIndex:4063;
+   FromTemplateIndex:4049;
+   ToTemplateIndex:4051;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPABSW';
-   FromTemplateIndex:4064;
-   ToTemplateIndex:4068;
+   FromTemplateIndex:4052;
+   ToTemplateIndex:4056;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPACKSSDW';
-   FromTemplateIndex:4069;
-   ToTemplateIndex:4073;
+   FromTemplateIndex:4057;
+   ToTemplateIndex:4061;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPACKSSWB';
-   FromTemplateIndex:4074;
-   ToTemplateIndex:4078;
+   FromTemplateIndex:4062;
+   ToTemplateIndex:4066;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPACKUSDW';
-   FromTemplateIndex:4079;
-   ToTemplateIndex:4083;
+   FromTemplateIndex:4067;
+   ToTemplateIndex:4071;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPACKUSWB';
-   FromTemplateIndex:4084;
-   ToTemplateIndex:4088;
+   FromTemplateIndex:4072;
+   ToTemplateIndex:4076;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPADDB';
-   FromTemplateIndex:4089;
-   ToTemplateIndex:4093;
+   FromTemplateIndex:4077;
+   ToTemplateIndex:4081;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPADDD';
-   FromTemplateIndex:4094;
-   ToTemplateIndex:4098;
+   FromTemplateIndex:4082;
+   ToTemplateIndex:4086;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPADDQ';
-   FromTemplateIndex:4099;
-   ToTemplateIndex:4103;
+   FromTemplateIndex:4087;
+   ToTemplateIndex:4091;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPADDSB';
-   FromTemplateIndex:4104;
-   ToTemplateIndex:4108;
+   FromTemplateIndex:4092;
+   ToTemplateIndex:4096;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPADDSW';
-   FromTemplateIndex:4109;
-   ToTemplateIndex:4113;
+   FromTemplateIndex:4097;
+   ToTemplateIndex:4101;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPADDUSB';
-   FromTemplateIndex:4114;
-   ToTemplateIndex:4118;
+   FromTemplateIndex:4102;
+   ToTemplateIndex:4106;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPADDUSW';
-   FromTemplateIndex:4119;
-   ToTemplateIndex:4123;
+   FromTemplateIndex:4107;
+   ToTemplateIndex:4111;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPADDW';
-   FromTemplateIndex:4124;
-   ToTemplateIndex:4128;
+   FromTemplateIndex:4112;
+   ToTemplateIndex:4116;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPALIGNR';
-   FromTemplateIndex:4129;
-   ToTemplateIndex:4133;
+   FromTemplateIndex:4117;
+   ToTemplateIndex:4121;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPAND';
-   FromTemplateIndex:4134;
-   ToTemplateIndex:4135;
+   FromTemplateIndex:4122;
+   ToTemplateIndex:4123;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPANDD';
-   FromTemplateIndex:4136;
-   ToTemplateIndex:4138;
+   FromTemplateIndex:4124;
+   ToTemplateIndex:4126;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPANDN';
-   FromTemplateIndex:4139;
-   ToTemplateIndex:4140;
+   FromTemplateIndex:4127;
+   ToTemplateIndex:4128;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPANDND';
-   FromTemplateIndex:4141;
-   ToTemplateIndex:4143;
+   FromTemplateIndex:4129;
+   ToTemplateIndex:4131;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPANDNQ';
-   FromTemplateIndex:4144;
-   ToTemplateIndex:4146;
+   FromTemplateIndex:4132;
+   ToTemplateIndex:4134;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPANDQ';
-   FromTemplateIndex:4147;
-   ToTemplateIndex:4149;
+   FromTemplateIndex:4135;
+   ToTemplateIndex:4137;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPAVGB';
-   FromTemplateIndex:4150;
-   ToTemplateIndex:4154;
+   FromTemplateIndex:4138;
+   ToTemplateIndex:4142;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPAVGW';
-   FromTemplateIndex:4155;
-   ToTemplateIndex:4159;
+   FromTemplateIndex:4143;
+   ToTemplateIndex:4147;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPBLENDD';
-   FromTemplateIndex:4160;
-   ToTemplateIndex:4161;
+   FromTemplateIndex:4148;
+   ToTemplateIndex:4149;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPBLENDMB';
-   FromTemplateIndex:4162;
-   ToTemplateIndex:4164;
+   FromTemplateIndex:4150;
+   ToTemplateIndex:4152;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPBLENDMD';
-   FromTemplateIndex:4165;
-   ToTemplateIndex:4167;
+   FromTemplateIndex:4153;
+   ToTemplateIndex:4155;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPBLENDMQ';
-   FromTemplateIndex:4168;
-   ToTemplateIndex:4170;
+   FromTemplateIndex:4156;
+   ToTemplateIndex:4158;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPBLENDMW';
-   FromTemplateIndex:4171;
-   ToTemplateIndex:4173;
+   FromTemplateIndex:4159;
+   ToTemplateIndex:4161;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPBLENDVB';
-   FromTemplateIndex:4174;
-   ToTemplateIndex:4175;
+   FromTemplateIndex:4162;
+   ToTemplateIndex:4163;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPBLENDW';
-   FromTemplateIndex:4176;
-   ToTemplateIndex:4177;
+   FromTemplateIndex:4164;
+   ToTemplateIndex:4165;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPBROADCASTB';
-   FromTemplateIndex:4178;
-   ToTemplateIndex:4196;
+   FromTemplateIndex:4166;
+   ToTemplateIndex:4184;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPBROADCASTD';
-   FromTemplateIndex:4197;
-   ToTemplateIndex:4209;
+   FromTemplateIndex:4185;
+   ToTemplateIndex:4197;
    BitSize:32;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPBROADCASTMB2Q';
-   FromTemplateIndex:4210;
-   ToTemplateIndex:4212;
+   FromTemplateIndex:4198;
+   ToTemplateIndex:4200;
    BitSize:0;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPBROADCASTMW2D';
-   FromTemplateIndex:4213;
-   ToTemplateIndex:4215;
+   FromTemplateIndex:4201;
+   ToTemplateIndex:4203;
    BitSize:0;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPBROADCASTQ';
-   FromTemplateIndex:4216;
-   ToTemplateIndex:4228;
+   FromTemplateIndex:4204;
+   ToTemplateIndex:4216;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPBROADCASTW';
-   FromTemplateIndex:4229;
-   ToTemplateIndex:4244;
+   FromTemplateIndex:4217;
+   ToTemplateIndex:4232;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPCLMULHQHQDQ';
-   FromTemplateIndex:4245;
-   ToTemplateIndex:4245;
+   FromTemplateIndex:4233;
+   ToTemplateIndex:4233;
    BitSize:128;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPCLMULHQLQDQ';
-   FromTemplateIndex:4246;
-   ToTemplateIndex:4246;
+   FromTemplateIndex:4234;
+   ToTemplateIndex:4234;
    BitSize:128;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPCLMULLQHQDQ';
-   FromTemplateIndex:4247;
-   ToTemplateIndex:4247;
+   FromTemplateIndex:4235;
+   ToTemplateIndex:4235;
    BitSize:128;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPCLMULLQLQDQ';
-   FromTemplateIndex:4248;
-   ToTemplateIndex:4248;
+   FromTemplateIndex:4236;
+   ToTemplateIndex:4236;
    BitSize:128;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPCLMULQDQ';
-   FromTemplateIndex:4249;
-   ToTemplateIndex:4249;
+   FromTemplateIndex:4237;
+   ToTemplateIndex:4237;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPCMOV';
-   FromTemplateIndex:4250;
-   ToTemplateIndex:4253;
+   FromTemplateIndex:4238;
+   ToTemplateIndex:4241;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPCMPB';
-   FromTemplateIndex:4254;
-   ToTemplateIndex:4256;
+   FromTemplateIndex:4242;
+   ToTemplateIndex:4244;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPCMPD';
-   FromTemplateIndex:4257;
-   ToTemplateIndex:4259;
+   FromTemplateIndex:4245;
+   ToTemplateIndex:4247;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPCMPEQB';
-   FromTemplateIndex:4260;
-   ToTemplateIndex:4264;
+   FromTemplateIndex:4248;
+   ToTemplateIndex:4252;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPCMPEQD';
-   FromTemplateIndex:4265;
-   ToTemplateIndex:4269;
+   FromTemplateIndex:4253;
+   ToTemplateIndex:4257;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPCMPEQQ';
+   FromTemplateIndex:4258;
+   ToTemplateIndex:4262;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPCMPEQW';
+   FromTemplateIndex:4263;
+   ToTemplateIndex:4267;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPCMPESTRI';
+   FromTemplateIndex:4268;
+   ToTemplateIndex:4268;
+   BitSize:128;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPCMPESTRM';
+   FromTemplateIndex:4269;
+   ToTemplateIndex:4269;
+   BitSize:128;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPCMPGTB';
    FromTemplateIndex:4270;
    ToTemplateIndex:4274;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VPCMPEQW';
+   Name:'VPCMPGTD';
    FromTemplateIndex:4275;
    ToTemplateIndex:4279;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VPCMPESTRI';
-   FromTemplateIndex:4280;
-   ToTemplateIndex:4280;
-   BitSize:128;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPCMPESTRM';
-   FromTemplateIndex:4281;
-   ToTemplateIndex:4281;
-   BitSize:128;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPCMPGTB';
-   FromTemplateIndex:4282;
-   ToTemplateIndex:4286;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPCMPGTD';
-   FromTemplateIndex:4287;
-   ToTemplateIndex:4291;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
    Name:'VPCMPGTQ';
-   FromTemplateIndex:4292;
-   ToTemplateIndex:4296;
+   FromTemplateIndex:4280;
+   ToTemplateIndex:4284;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPCMPGTW';
-   FromTemplateIndex:4297;
-   ToTemplateIndex:4301;
+   FromTemplateIndex:4285;
+   ToTemplateIndex:4289;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPCMPISTRI';
-   FromTemplateIndex:4302;
-   ToTemplateIndex:4302;
+   FromTemplateIndex:4290;
+   ToTemplateIndex:4290;
    BitSize:128;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPCMPISTRM';
-   FromTemplateIndex:4303;
-   ToTemplateIndex:4303;
+   FromTemplateIndex:4291;
+   ToTemplateIndex:4291;
    BitSize:128;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPCMPQ';
+   FromTemplateIndex:4292;
+   ToTemplateIndex:4294;
+   BitSize:256;
+   MaximalCountOperands:4;
+  ),
+  (
+   Name:'VPCMPUB';
+   FromTemplateIndex:4295;
+   ToTemplateIndex:4297;
+   BitSize:256;
+   MaximalCountOperands:4;
+  ),
+  (
+   Name:'VPCMPUD';
+   FromTemplateIndex:4298;
+   ToTemplateIndex:4300;
+   BitSize:256;
+   MaximalCountOperands:4;
+  ),
+  (
+   Name:'VPCMPUQ';
+   FromTemplateIndex:4301;
+   ToTemplateIndex:4303;
+   BitSize:256;
+   MaximalCountOperands:4;
+  ),
+  (
+   Name:'VPCMPUW';
    FromTemplateIndex:4304;
    ToTemplateIndex:4306;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
-   Name:'VPCMPUB';
+   Name:'VPCMPW';
    FromTemplateIndex:4307;
    ToTemplateIndex:4309;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
-   Name:'VPCMPUD';
-   FromTemplateIndex:4310;
-   ToTemplateIndex:4312;
-   BitSize:256;
-   MaximalCountOperands:4;
-  ),
-  (
-   Name:'VPCMPUQ';
-   FromTemplateIndex:4313;
-   ToTemplateIndex:4315;
-   BitSize:256;
-   MaximalCountOperands:4;
-  ),
-  (
-   Name:'VPCMPUW';
-   FromTemplateIndex:4316;
-   ToTemplateIndex:4318;
-   BitSize:256;
-   MaximalCountOperands:4;
-  ),
-  (
-   Name:'VPCMPW';
-   FromTemplateIndex:4319;
-   ToTemplateIndex:4321;
-   BitSize:256;
-   MaximalCountOperands:4;
-  ),
-  (
    Name:'VPCOMB';
-   FromTemplateIndex:4322;
-   ToTemplateIndex:4322;
+   FromTemplateIndex:4310;
+   ToTemplateIndex:4310;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPCOMD';
-   FromTemplateIndex:4323;
-   ToTemplateIndex:4323;
+   FromTemplateIndex:4311;
+   ToTemplateIndex:4311;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPCOMPRESSD';
-   FromTemplateIndex:4324;
-   ToTemplateIndex:4329;
+   FromTemplateIndex:4312;
+   ToTemplateIndex:4317;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPCOMPRESSQ';
-   FromTemplateIndex:4330;
-   ToTemplateIndex:4335;
+   FromTemplateIndex:4318;
+   ToTemplateIndex:4323;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPCOMQ';
-   FromTemplateIndex:4336;
-   ToTemplateIndex:4336;
+   FromTemplateIndex:4324;
+   ToTemplateIndex:4324;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPCOMUB';
-   FromTemplateIndex:4337;
-   ToTemplateIndex:4337;
+   FromTemplateIndex:4325;
+   ToTemplateIndex:4325;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPCOMUD';
-   FromTemplateIndex:4338;
-   ToTemplateIndex:4338;
+   FromTemplateIndex:4326;
+   ToTemplateIndex:4326;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPCOMUQ';
-   FromTemplateIndex:4339;
-   ToTemplateIndex:4339;
+   FromTemplateIndex:4327;
+   ToTemplateIndex:4327;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPCOMUW';
-   FromTemplateIndex:4340;
-   ToTemplateIndex:4340;
+   FromTemplateIndex:4328;
+   ToTemplateIndex:4328;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPCOMW';
-   FromTemplateIndex:4341;
-   ToTemplateIndex:4341;
+   FromTemplateIndex:4329;
+   ToTemplateIndex:4329;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPCONFLICTD';
-   FromTemplateIndex:4342;
-   ToTemplateIndex:4344;
+   FromTemplateIndex:4330;
+   ToTemplateIndex:4332;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPCONFLICTQ';
-   FromTemplateIndex:4345;
-   ToTemplateIndex:4347;
+   FromTemplateIndex:4333;
+   ToTemplateIndex:4335;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPERM2F128';
-   FromTemplateIndex:4348;
-   ToTemplateIndex:4348;
+   FromTemplateIndex:4336;
+   ToTemplateIndex:4336;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPERM2I128';
-   FromTemplateIndex:4349;
-   ToTemplateIndex:4349;
+   FromTemplateIndex:4337;
+   ToTemplateIndex:4337;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPERMB';
+   FromTemplateIndex:4338;
+   ToTemplateIndex:4340;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPERMD';
+   FromTemplateIndex:4341;
+   ToTemplateIndex:4343;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPERMI2B';
+   FromTemplateIndex:4344;
+   ToTemplateIndex:4346;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPERMI2D';
+   FromTemplateIndex:4347;
+   ToTemplateIndex:4349;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPERMI2PD';
    FromTemplateIndex:4350;
    ToTemplateIndex:4352;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VPERMD';
+   Name:'VPERMI2PS';
    FromTemplateIndex:4353;
    ToTemplateIndex:4355;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VPERMI2B';
+   Name:'VPERMI2Q';
    FromTemplateIndex:4356;
    ToTemplateIndex:4358;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VPERMI2D';
+   Name:'VPERMI2W';
    FromTemplateIndex:4359;
    ToTemplateIndex:4361;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VPERMI2PD';
-   FromTemplateIndex:4362;
-   ToTemplateIndex:4364;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPERMI2PS';
-   FromTemplateIndex:4365;
-   ToTemplateIndex:4367;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPERMI2Q';
-   FromTemplateIndex:4368;
-   ToTemplateIndex:4370;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPERMI2W';
-   FromTemplateIndex:4371;
-   ToTemplateIndex:4373;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
    Name:'VPERMILPD';
-   FromTemplateIndex:4374;
-   ToTemplateIndex:4383;
+   FromTemplateIndex:4362;
+   ToTemplateIndex:4371;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPERMILPS';
-   FromTemplateIndex:4384;
-   ToTemplateIndex:4393;
+   FromTemplateIndex:4372;
+   ToTemplateIndex:4381;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPERMPD';
-   FromTemplateIndex:4394;
-   ToTemplateIndex:4398;
+   FromTemplateIndex:4382;
+   ToTemplateIndex:4386;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPERMPS';
-   FromTemplateIndex:4399;
-   ToTemplateIndex:4401;
+   FromTemplateIndex:4387;
+   ToTemplateIndex:4389;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPERMQ';
-   FromTemplateIndex:4402;
-   ToTemplateIndex:4406;
+   FromTemplateIndex:4390;
+   ToTemplateIndex:4394;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPERMT2B';
+   FromTemplateIndex:4395;
+   ToTemplateIndex:4397;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPERMT2D';
+   FromTemplateIndex:4398;
+   ToTemplateIndex:4400;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPERMT2PD';
+   FromTemplateIndex:4401;
+   ToTemplateIndex:4403;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPERMT2PS';
+   FromTemplateIndex:4404;
+   ToTemplateIndex:4406;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPERMT2Q';
    FromTemplateIndex:4407;
    ToTemplateIndex:4409;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VPERMT2D';
+   Name:'VPERMT2W';
    FromTemplateIndex:4410;
    ToTemplateIndex:4412;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VPERMT2PD';
+   Name:'VPERMW';
    FromTemplateIndex:4413;
    ToTemplateIndex:4415;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VPERMT2PS';
-   FromTemplateIndex:4416;
-   ToTemplateIndex:4418;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPERMT2Q';
-   FromTemplateIndex:4419;
-   ToTemplateIndex:4421;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPERMT2W';
-   FromTemplateIndex:4422;
-   ToTemplateIndex:4424;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPERMW';
-   FromTemplateIndex:4425;
-   ToTemplateIndex:4427;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
    Name:'VPEXPANDD';
-   FromTemplateIndex:4428;
-   ToTemplateIndex:4433;
+   FromTemplateIndex:4416;
+   ToTemplateIndex:4421;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPEXPANDQ';
-   FromTemplateIndex:4434;
-   ToTemplateIndex:4439;
+   FromTemplateIndex:4422;
+   ToTemplateIndex:4427;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPEXTRB';
-   FromTemplateIndex:4440;
-   ToTemplateIndex:4447;
+   FromTemplateIndex:4428;
+   ToTemplateIndex:4435;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPEXTRD';
-   FromTemplateIndex:4448;
-   ToTemplateIndex:4450;
+   FromTemplateIndex:4436;
+   ToTemplateIndex:4438;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPEXTRQ';
-   FromTemplateIndex:4451;
-   ToTemplateIndex:4452;
+   FromTemplateIndex:4439;
+   ToTemplateIndex:4440;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPEXTRW';
-   FromTemplateIndex:4453;
-   ToTemplateIndex:4464;
+   FromTemplateIndex:4441;
+   ToTemplateIndex:4452;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPGATHERDD';
-   FromTemplateIndex:4465;
-   ToTemplateIndex:4469;
+   FromTemplateIndex:4453;
+   ToTemplateIndex:4457;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPGATHERDQ';
-   FromTemplateIndex:4470;
-   ToTemplateIndex:4474;
+   FromTemplateIndex:4458;
+   ToTemplateIndex:4462;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPGATHERQD';
-   FromTemplateIndex:4475;
-   ToTemplateIndex:4479;
+   FromTemplateIndex:4463;
+   ToTemplateIndex:4467;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPGATHERQQ';
-   FromTemplateIndex:4480;
-   ToTemplateIndex:4484;
+   FromTemplateIndex:4468;
+   ToTemplateIndex:4472;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPHADDBD';
+   FromTemplateIndex:4473;
+   ToTemplateIndex:4473;
+   BitSize:128;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VPHADDBQ';
+   FromTemplateIndex:4474;
+   ToTemplateIndex:4474;
+   BitSize:128;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VPHADDBW';
+   FromTemplateIndex:4475;
+   ToTemplateIndex:4475;
+   BitSize:128;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VPHADDD';
+   FromTemplateIndex:4476;
+   ToTemplateIndex:4477;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPHADDDQ';
+   FromTemplateIndex:4478;
+   ToTemplateIndex:4478;
+   BitSize:128;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VPHADDSW';
+   FromTemplateIndex:4479;
+   ToTemplateIndex:4480;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPHADDUBD';
+   FromTemplateIndex:4481;
+   ToTemplateIndex:4481;
+   BitSize:128;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VPHADDUBQ';
+   FromTemplateIndex:4482;
+   ToTemplateIndex:4482;
+   BitSize:128;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VPHADDUBW';
+   FromTemplateIndex:4483;
+   ToTemplateIndex:4483;
+   BitSize:128;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VPHADDUDQ';
+   FromTemplateIndex:4484;
+   ToTemplateIndex:4484;
+   BitSize:128;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VPHADDUWD';
    FromTemplateIndex:4485;
    ToTemplateIndex:4485;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VPHADDBQ';
+   Name:'VPHADDUWQ';
    FromTemplateIndex:4486;
    ToTemplateIndex:4486;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VPHADDBW';
+   Name:'VPHADDW';
    FromTemplateIndex:4487;
-   ToTemplateIndex:4487;
-   BitSize:128;
-   MaximalCountOperands:2;
-  ),
-  (
-   Name:'VPHADDD';
-   FromTemplateIndex:4488;
-   ToTemplateIndex:4489;
+   ToTemplateIndex:4488;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VPHADDDQ';
+   Name:'VPHADDWD';
+   FromTemplateIndex:4489;
+   ToTemplateIndex:4489;
+   BitSize:128;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VPHADDWQ';
    FromTemplateIndex:4490;
    ToTemplateIndex:4490;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VPHADDSW';
+   Name:'VPHMINPOSUW';
    FromTemplateIndex:4491;
+   ToTemplateIndex:4491;
+   BitSize:128;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VPHSUBBW';
+   FromTemplateIndex:4492;
    ToTemplateIndex:4492;
+   BitSize:128;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VPHSUBD';
+   FromTemplateIndex:4493;
+   ToTemplateIndex:4494;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VPHADDUBD';
-   FromTemplateIndex:4493;
-   ToTemplateIndex:4493;
-   BitSize:128;
-   MaximalCountOperands:2;
-  ),
-  (
-   Name:'VPHADDUBQ';
-   FromTemplateIndex:4494;
-   ToTemplateIndex:4494;
-   BitSize:128;
-   MaximalCountOperands:2;
-  ),
-  (
-   Name:'VPHADDUBW';
+   Name:'VPHSUBDQ';
    FromTemplateIndex:4495;
    ToTemplateIndex:4495;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VPHADDUDQ';
-   FromTemplateIndex:4496;
-   ToTemplateIndex:4496;
-   BitSize:128;
-   MaximalCountOperands:2;
-  ),
-  (
-   Name:'VPHADDUWD';
-   FromTemplateIndex:4497;
-   ToTemplateIndex:4497;
-   BitSize:128;
-   MaximalCountOperands:2;
-  ),
-  (
-   Name:'VPHADDUWQ';
-   FromTemplateIndex:4498;
-   ToTemplateIndex:4498;
-   BitSize:128;
-   MaximalCountOperands:2;
-  ),
-  (
-   Name:'VPHADDW';
-   FromTemplateIndex:4499;
-   ToTemplateIndex:4500;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPHADDWD';
-   FromTemplateIndex:4501;
-   ToTemplateIndex:4501;
-   BitSize:128;
-   MaximalCountOperands:2;
-  ),
-  (
-   Name:'VPHADDWQ';
-   FromTemplateIndex:4502;
-   ToTemplateIndex:4502;
-   BitSize:128;
-   MaximalCountOperands:2;
-  ),
-  (
-   Name:'VPHMINPOSUW';
-   FromTemplateIndex:4503;
-   ToTemplateIndex:4503;
-   BitSize:128;
-   MaximalCountOperands:2;
-  ),
-  (
-   Name:'VPHSUBBW';
-   FromTemplateIndex:4504;
-   ToTemplateIndex:4504;
-   BitSize:128;
-   MaximalCountOperands:2;
-  ),
-  (
-   Name:'VPHSUBD';
-   FromTemplateIndex:4505;
-   ToTemplateIndex:4506;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPHSUBDQ';
-   FromTemplateIndex:4507;
-   ToTemplateIndex:4507;
-   BitSize:128;
-   MaximalCountOperands:2;
-  ),
-  (
    Name:'VPHSUBSW';
-   FromTemplateIndex:4508;
-   ToTemplateIndex:4509;
+   FromTemplateIndex:4496;
+   ToTemplateIndex:4497;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPHSUBW';
-   FromTemplateIndex:4510;
-   ToTemplateIndex:4511;
+   FromTemplateIndex:4498;
+   ToTemplateIndex:4499;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPHSUBWD';
-   FromTemplateIndex:4512;
-   ToTemplateIndex:4512;
+   FromTemplateIndex:4500;
+   ToTemplateIndex:4500;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPINSRB';
-   FromTemplateIndex:4513;
-   ToTemplateIndex:4517;
+   FromTemplateIndex:4501;
+   ToTemplateIndex:4505;
    BitSize:32;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPINSRD';
-   FromTemplateIndex:4518;
-   ToTemplateIndex:4520;
+   FromTemplateIndex:4506;
+   ToTemplateIndex:4508;
    BitSize:32;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPINSRQ';
-   FromTemplateIndex:4521;
-   ToTemplateIndex:4523;
+   FromTemplateIndex:4509;
+   ToTemplateIndex:4511;
    BitSize:64;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPINSRW';
-   FromTemplateIndex:4524;
-   ToTemplateIndex:4528;
+   FromTemplateIndex:4512;
+   ToTemplateIndex:4516;
    BitSize:32;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPLZCNTD';
-   FromTemplateIndex:4529;
-   ToTemplateIndex:4531;
+   FromTemplateIndex:4517;
+   ToTemplateIndex:4519;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPLZCNTQ';
-   FromTemplateIndex:4532;
-   ToTemplateIndex:4534;
+   FromTemplateIndex:4520;
+   ToTemplateIndex:4522;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMACSDD';
-   FromTemplateIndex:4535;
-   ToTemplateIndex:4535;
+   FromTemplateIndex:4523;
+   ToTemplateIndex:4523;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPMACSDQH';
-   FromTemplateIndex:4536;
-   ToTemplateIndex:4536;
+   FromTemplateIndex:4524;
+   ToTemplateIndex:4524;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPMACSDQL';
-   FromTemplateIndex:4537;
-   ToTemplateIndex:4537;
+   FromTemplateIndex:4525;
+   ToTemplateIndex:4525;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPMACSSDD';
-   FromTemplateIndex:4538;
-   ToTemplateIndex:4538;
+   FromTemplateIndex:4526;
+   ToTemplateIndex:4526;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPMACSSDQH';
-   FromTemplateIndex:4539;
-   ToTemplateIndex:4539;
+   FromTemplateIndex:4527;
+   ToTemplateIndex:4527;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPMACSSDQL';
-   FromTemplateIndex:4540;
-   ToTemplateIndex:4540;
+   FromTemplateIndex:4528;
+   ToTemplateIndex:4528;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPMACSSWD';
-   FromTemplateIndex:4541;
-   ToTemplateIndex:4541;
+   FromTemplateIndex:4529;
+   ToTemplateIndex:4529;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPMACSSWW';
-   FromTemplateIndex:4542;
-   ToTemplateIndex:4542;
+   FromTemplateIndex:4530;
+   ToTemplateIndex:4530;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPMACSWD';
-   FromTemplateIndex:4543;
-   ToTemplateIndex:4543;
+   FromTemplateIndex:4531;
+   ToTemplateIndex:4531;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPMACSWW';
-   FromTemplateIndex:4544;
-   ToTemplateIndex:4544;
+   FromTemplateIndex:4532;
+   ToTemplateIndex:4532;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPMADCSSWD';
-   FromTemplateIndex:4545;
-   ToTemplateIndex:4545;
+   FromTemplateIndex:4533;
+   ToTemplateIndex:4533;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPMADCSWD';
-   FromTemplateIndex:4546;
-   ToTemplateIndex:4546;
+   FromTemplateIndex:4534;
+   ToTemplateIndex:4534;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPMADD52HUQ';
-   FromTemplateIndex:4547;
-   ToTemplateIndex:4549;
+   FromTemplateIndex:4535;
+   ToTemplateIndex:4537;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMADD52LUQ';
-   FromTemplateIndex:4550;
-   ToTemplateIndex:4552;
+   FromTemplateIndex:4538;
+   ToTemplateIndex:4540;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMADDUBSW';
-   FromTemplateIndex:4553;
-   ToTemplateIndex:4557;
+   FromTemplateIndex:4541;
+   ToTemplateIndex:4545;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMADDWD';
-   FromTemplateIndex:4558;
-   ToTemplateIndex:4562;
+   FromTemplateIndex:4546;
+   ToTemplateIndex:4550;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMASKMOVD';
-   FromTemplateIndex:4563;
-   ToTemplateIndex:4566;
+   FromTemplateIndex:4551;
+   ToTemplateIndex:4554;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMASKMOVQ';
-   FromTemplateIndex:4567;
-   ToTemplateIndex:4570;
+   FromTemplateIndex:4555;
+   ToTemplateIndex:4558;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMAXSB';
-   FromTemplateIndex:4571;
-   ToTemplateIndex:4575;
+   FromTemplateIndex:4559;
+   ToTemplateIndex:4563;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMAXSD';
-   FromTemplateIndex:4576;
-   ToTemplateIndex:4580;
+   FromTemplateIndex:4564;
+   ToTemplateIndex:4568;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMAXSQ';
-   FromTemplateIndex:4581;
-   ToTemplateIndex:4583;
+   FromTemplateIndex:4569;
+   ToTemplateIndex:4571;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMAXSW';
-   FromTemplateIndex:4584;
-   ToTemplateIndex:4588;
+   FromTemplateIndex:4572;
+   ToTemplateIndex:4576;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMAXUB';
-   FromTemplateIndex:4589;
-   ToTemplateIndex:4593;
+   FromTemplateIndex:4577;
+   ToTemplateIndex:4581;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMAXUD';
-   FromTemplateIndex:4594;
-   ToTemplateIndex:4598;
+   FromTemplateIndex:4582;
+   ToTemplateIndex:4586;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMAXUQ';
-   FromTemplateIndex:4599;
-   ToTemplateIndex:4601;
+   FromTemplateIndex:4587;
+   ToTemplateIndex:4589;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMAXUW';
-   FromTemplateIndex:4602;
-   ToTemplateIndex:4606;
+   FromTemplateIndex:4590;
+   ToTemplateIndex:4594;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMINSB';
-   FromTemplateIndex:4607;
-   ToTemplateIndex:4611;
+   FromTemplateIndex:4595;
+   ToTemplateIndex:4599;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMINSD';
-   FromTemplateIndex:4612;
-   ToTemplateIndex:4616;
+   FromTemplateIndex:4600;
+   ToTemplateIndex:4604;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMINSQ';
-   FromTemplateIndex:4617;
-   ToTemplateIndex:4619;
+   FromTemplateIndex:4605;
+   ToTemplateIndex:4607;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMINSW';
-   FromTemplateIndex:4620;
-   ToTemplateIndex:4624;
+   FromTemplateIndex:4608;
+   ToTemplateIndex:4612;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMINUB';
-   FromTemplateIndex:4625;
-   ToTemplateIndex:4629;
+   FromTemplateIndex:4613;
+   ToTemplateIndex:4617;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMINUD';
-   FromTemplateIndex:4630;
-   ToTemplateIndex:4634;
+   FromTemplateIndex:4618;
+   ToTemplateIndex:4622;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMINUQ';
-   FromTemplateIndex:4635;
-   ToTemplateIndex:4637;
+   FromTemplateIndex:4623;
+   ToTemplateIndex:4625;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMINUW';
-   FromTemplateIndex:4638;
-   ToTemplateIndex:4642;
+   FromTemplateIndex:4626;
+   ToTemplateIndex:4630;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMOVB2M';
-   FromTemplateIndex:4643;
-   ToTemplateIndex:4645;
+   FromTemplateIndex:4631;
+   ToTemplateIndex:4633;
    BitSize:0;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVD2M';
-   FromTemplateIndex:4646;
-   ToTemplateIndex:4648;
+   FromTemplateIndex:4634;
+   ToTemplateIndex:4636;
    BitSize:0;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVDB';
-   FromTemplateIndex:4649;
-   ToTemplateIndex:4654;
+   FromTemplateIndex:4637;
+   ToTemplateIndex:4642;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVDW';
-   FromTemplateIndex:4655;
-   ToTemplateIndex:4660;
+   FromTemplateIndex:4643;
+   ToTemplateIndex:4648;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVM2B';
-   FromTemplateIndex:4661;
-   ToTemplateIndex:4663;
+   FromTemplateIndex:4649;
+   ToTemplateIndex:4651;
    BitSize:0;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVM2D';
-   FromTemplateIndex:4664;
-   ToTemplateIndex:4666;
+   FromTemplateIndex:4652;
+   ToTemplateIndex:4654;
    BitSize:0;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVM2Q';
-   FromTemplateIndex:4667;
-   ToTemplateIndex:4669;
+   FromTemplateIndex:4655;
+   ToTemplateIndex:4657;
    BitSize:0;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVM2W';
-   FromTemplateIndex:4670;
-   ToTemplateIndex:4672;
+   FromTemplateIndex:4658;
+   ToTemplateIndex:4660;
    BitSize:0;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVMSKB';
-   FromTemplateIndex:4673;
-   ToTemplateIndex:4676;
+   FromTemplateIndex:4661;
+   ToTemplateIndex:4664;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVQ2M';
-   FromTemplateIndex:4677;
-   ToTemplateIndex:4679;
+   FromTemplateIndex:4665;
+   ToTemplateIndex:4667;
    BitSize:0;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVQB';
-   FromTemplateIndex:4680;
-   ToTemplateIndex:4685;
+   FromTemplateIndex:4668;
+   ToTemplateIndex:4673;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVQD';
-   FromTemplateIndex:4686;
-   ToTemplateIndex:4691;
+   FromTemplateIndex:4674;
+   ToTemplateIndex:4679;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVQW';
-   FromTemplateIndex:4692;
-   ToTemplateIndex:4697;
+   FromTemplateIndex:4680;
+   ToTemplateIndex:4685;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVSDB';
-   FromTemplateIndex:4698;
-   ToTemplateIndex:4703;
+   FromTemplateIndex:4686;
+   ToTemplateIndex:4691;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVSDW';
+   FromTemplateIndex:4692;
+   ToTemplateIndex:4697;
+   BitSize:256;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VPMOVSQB';
+   FromTemplateIndex:4698;
+   ToTemplateIndex:4703;
+   BitSize:64;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VPMOVSQD';
    FromTemplateIndex:4704;
    ToTemplateIndex:4709;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VPMOVSQB';
+   Name:'VPMOVSQW';
    FromTemplateIndex:4710;
    ToTemplateIndex:4715;
-   BitSize:64;
+   BitSize:128;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VPMOVSQD';
+   Name:'VPMOVSWB';
    FromTemplateIndex:4716;
    ToTemplateIndex:4721;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VPMOVSQW';
+   Name:'VPMOVSXBD';
    FromTemplateIndex:4722;
    ToTemplateIndex:4727;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VPMOVSWB';
+   Name:'VPMOVSXBQ';
    FromTemplateIndex:4728;
    ToTemplateIndex:4733;
-   BitSize:256;
-   MaximalCountOperands:2;
-  ),
-  (
-   Name:'VPMOVSXBD';
-   FromTemplateIndex:4734;
-   ToTemplateIndex:4739;
-   BitSize:128;
-   MaximalCountOperands:2;
-  ),
-  (
-   Name:'VPMOVSXBQ';
-   FromTemplateIndex:4740;
-   ToTemplateIndex:4745;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVSXBW';
-   FromTemplateIndex:4746;
-   ToTemplateIndex:4750;
+   FromTemplateIndex:4734;
+   ToTemplateIndex:4738;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVSXDQ';
-   FromTemplateIndex:4751;
-   ToTemplateIndex:4755;
+   FromTemplateIndex:4739;
+   ToTemplateIndex:4743;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVSXWD';
-   FromTemplateIndex:4756;
-   ToTemplateIndex:4760;
+   FromTemplateIndex:4744;
+   ToTemplateIndex:4748;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVSXWQ';
-   FromTemplateIndex:4761;
-   ToTemplateIndex:4766;
+   FromTemplateIndex:4749;
+   ToTemplateIndex:4754;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVUSDB';
-   FromTemplateIndex:4767;
-   ToTemplateIndex:4772;
+   FromTemplateIndex:4755;
+   ToTemplateIndex:4760;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVUSDW';
+   FromTemplateIndex:4761;
+   ToTemplateIndex:4766;
+   BitSize:256;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VPMOVUSQB';
+   FromTemplateIndex:4767;
+   ToTemplateIndex:4772;
+   BitSize:64;
+   MaximalCountOperands:2;
+  ),
+  (
+   Name:'VPMOVUSQD';
    FromTemplateIndex:4773;
    ToTemplateIndex:4778;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VPMOVUSQB';
+   Name:'VPMOVUSQW';
    FromTemplateIndex:4779;
    ToTemplateIndex:4784;
-   BitSize:64;
+   BitSize:128;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VPMOVUSQD';
+   Name:'VPMOVUSWB';
    FromTemplateIndex:4785;
    ToTemplateIndex:4790;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
-   Name:'VPMOVUSQW';
-   FromTemplateIndex:4791;
-   ToTemplateIndex:4796;
-   BitSize:128;
-   MaximalCountOperands:2;
-  ),
-  (
-   Name:'VPMOVUSWB';
-   FromTemplateIndex:4797;
-   ToTemplateIndex:4802;
-   BitSize:256;
-   MaximalCountOperands:2;
-  ),
-  (
    Name:'VPMOVW2M';
-   FromTemplateIndex:4803;
-   ToTemplateIndex:4805;
+   FromTemplateIndex:4791;
+   ToTemplateIndex:4793;
    BitSize:0;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVWB';
-   FromTemplateIndex:4806;
-   ToTemplateIndex:4811;
+   FromTemplateIndex:4794;
+   ToTemplateIndex:4799;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVZXBD';
-   FromTemplateIndex:4812;
-   ToTemplateIndex:4817;
+   FromTemplateIndex:4800;
+   ToTemplateIndex:4805;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVZXBQ';
-   FromTemplateIndex:4818;
-   ToTemplateIndex:4823;
+   FromTemplateIndex:4806;
+   ToTemplateIndex:4811;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVZXBW';
-   FromTemplateIndex:4824;
-   ToTemplateIndex:4828;
+   FromTemplateIndex:4812;
+   ToTemplateIndex:4816;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVZXDQ';
-   FromTemplateIndex:4829;
-   ToTemplateIndex:4833;
+   FromTemplateIndex:4817;
+   ToTemplateIndex:4821;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVZXWD';
-   FromTemplateIndex:4834;
-   ToTemplateIndex:4838;
+   FromTemplateIndex:4822;
+   ToTemplateIndex:4826;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMOVZXWQ';
-   FromTemplateIndex:4839;
-   ToTemplateIndex:4844;
+   FromTemplateIndex:4827;
+   ToTemplateIndex:4832;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPMULDQ';
-   FromTemplateIndex:4845;
-   ToTemplateIndex:4849;
+   FromTemplateIndex:4833;
+   ToTemplateIndex:4837;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMULHRSW';
-   FromTemplateIndex:4850;
-   ToTemplateIndex:4854;
+   FromTemplateIndex:4838;
+   ToTemplateIndex:4842;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMULHUW';
-   FromTemplateIndex:4855;
-   ToTemplateIndex:4859;
+   FromTemplateIndex:4843;
+   ToTemplateIndex:4847;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMULHW';
-   FromTemplateIndex:4860;
-   ToTemplateIndex:4864;
+   FromTemplateIndex:4848;
+   ToTemplateIndex:4852;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMULLD';
-   FromTemplateIndex:4865;
-   ToTemplateIndex:4869;
+   FromTemplateIndex:4853;
+   ToTemplateIndex:4857;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMULLQ';
-   FromTemplateIndex:4870;
-   ToTemplateIndex:4872;
+   FromTemplateIndex:4858;
+   ToTemplateIndex:4860;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMULLW';
-   FromTemplateIndex:4873;
-   ToTemplateIndex:4877;
+   FromTemplateIndex:4861;
+   ToTemplateIndex:4865;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMULTISHIFTQB';
-   FromTemplateIndex:4878;
-   ToTemplateIndex:4880;
+   FromTemplateIndex:4866;
+   ToTemplateIndex:4868;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPMULUDQ';
-   FromTemplateIndex:4881;
-   ToTemplateIndex:4885;
+   FromTemplateIndex:4869;
+   ToTemplateIndex:4873;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPOR';
-   FromTemplateIndex:4886;
-   ToTemplateIndex:4887;
+   FromTemplateIndex:4874;
+   ToTemplateIndex:4875;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPORD';
-   FromTemplateIndex:4888;
-   ToTemplateIndex:4890;
+   FromTemplateIndex:4876;
+   ToTemplateIndex:4878;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPORQ';
-   FromTemplateIndex:4891;
-   ToTemplateIndex:4893;
+   FromTemplateIndex:4879;
+   ToTemplateIndex:4881;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPPERM';
-   FromTemplateIndex:4894;
-   ToTemplateIndex:4895;
+   FromTemplateIndex:4882;
+   ToTemplateIndex:4883;
    BitSize:128;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPROLD';
+   FromTemplateIndex:4884;
+   ToTemplateIndex:4886;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPROLQ';
+   FromTemplateIndex:4887;
+   ToTemplateIndex:4889;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPROLVD';
+   FromTemplateIndex:4890;
+   ToTemplateIndex:4892;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPROLVQ';
+   FromTemplateIndex:4893;
+   ToTemplateIndex:4895;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPRORD';
    FromTemplateIndex:4896;
    ToTemplateIndex:4898;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VPROLQ';
+   Name:'VPRORQ';
    FromTemplateIndex:4899;
    ToTemplateIndex:4901;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VPROLVD';
+   Name:'VPRORVD';
    FromTemplateIndex:4902;
    ToTemplateIndex:4904;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VPROLVQ';
+   Name:'VPRORVQ';
    FromTemplateIndex:4905;
    ToTemplateIndex:4907;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VPRORD';
+   Name:'VPROTB';
    FromTemplateIndex:4908;
    ToTemplateIndex:4910;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPRORQ';
-   FromTemplateIndex:4911;
-   ToTemplateIndex:4913;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPRORVD';
-   FromTemplateIndex:4914;
-   ToTemplateIndex:4916;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPRORVQ';
-   FromTemplateIndex:4917;
-   ToTemplateIndex:4919;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPROTB';
-   FromTemplateIndex:4920;
-   ToTemplateIndex:4922;
    BitSize:128;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPROTD';
-   FromTemplateIndex:4923;
-   ToTemplateIndex:4925;
+   FromTemplateIndex:4911;
+   ToTemplateIndex:4913;
    BitSize:128;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPROTQ';
-   FromTemplateIndex:4926;
-   ToTemplateIndex:4928;
+   FromTemplateIndex:4914;
+   ToTemplateIndex:4916;
    BitSize:128;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPROTW';
-   FromTemplateIndex:4929;
-   ToTemplateIndex:4931;
+   FromTemplateIndex:4917;
+   ToTemplateIndex:4919;
    BitSize:128;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSADBW';
-   FromTemplateIndex:4932;
-   ToTemplateIndex:4936;
+   FromTemplateIndex:4920;
+   ToTemplateIndex:4924;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSCATTERDD';
-   FromTemplateIndex:4937;
-   ToTemplateIndex:4939;
+   FromTemplateIndex:4925;
+   ToTemplateIndex:4927;
    BitSize:32;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPSCATTERDQ';
-   FromTemplateIndex:4940;
-   ToTemplateIndex:4942;
+   FromTemplateIndex:4928;
+   ToTemplateIndex:4930;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPSCATTERQD';
-   FromTemplateIndex:4943;
-   ToTemplateIndex:4945;
+   FromTemplateIndex:4931;
+   ToTemplateIndex:4933;
    BitSize:32;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPSCATTERQQ';
-   FromTemplateIndex:4946;
-   ToTemplateIndex:4948;
+   FromTemplateIndex:4934;
+   ToTemplateIndex:4936;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPSHAB';
+   FromTemplateIndex:4937;
+   ToTemplateIndex:4938;
+   BitSize:128;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPSHAD';
+   FromTemplateIndex:4939;
+   ToTemplateIndex:4940;
+   BitSize:128;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPSHAQ';
+   FromTemplateIndex:4941;
+   ToTemplateIndex:4942;
+   BitSize:128;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPSHAW';
+   FromTemplateIndex:4943;
+   ToTemplateIndex:4944;
+   BitSize:128;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPSHLB';
+   FromTemplateIndex:4945;
+   ToTemplateIndex:4946;
+   BitSize:128;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPSHLD';
+   FromTemplateIndex:4947;
+   ToTemplateIndex:4948;
+   BitSize:128;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPSHLQ';
    FromTemplateIndex:4949;
    ToTemplateIndex:4950;
    BitSize:128;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VPSHAD';
+   Name:'VPSHLW';
    FromTemplateIndex:4951;
    ToTemplateIndex:4952;
    BitSize:128;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VPSHAQ';
-   FromTemplateIndex:4953;
-   ToTemplateIndex:4954;
-   BitSize:128;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPSHAW';
-   FromTemplateIndex:4955;
-   ToTemplateIndex:4956;
-   BitSize:128;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPSHLB';
-   FromTemplateIndex:4957;
-   ToTemplateIndex:4958;
-   BitSize:128;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPSHLD';
-   FromTemplateIndex:4959;
-   ToTemplateIndex:4960;
-   BitSize:128;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPSHLQ';
-   FromTemplateIndex:4961;
-   ToTemplateIndex:4962;
-   BitSize:128;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPSHLW';
-   FromTemplateIndex:4963;
-   ToTemplateIndex:4964;
-   BitSize:128;
-   MaximalCountOperands:3;
-  ),
-  (
    Name:'VPSHUFB';
-   FromTemplateIndex:4965;
-   ToTemplateIndex:4969;
+   FromTemplateIndex:4953;
+   ToTemplateIndex:4957;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSHUFD';
-   FromTemplateIndex:4970;
-   ToTemplateIndex:4974;
+   FromTemplateIndex:4958;
+   ToTemplateIndex:4962;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSHUFHW';
-   FromTemplateIndex:4975;
-   ToTemplateIndex:4979;
+   FromTemplateIndex:4963;
+   ToTemplateIndex:4967;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSHUFLW';
-   FromTemplateIndex:4980;
-   ToTemplateIndex:4984;
+   FromTemplateIndex:4968;
+   ToTemplateIndex:4972;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSIGNB';
-   FromTemplateIndex:4985;
-   ToTemplateIndex:4986;
+   FromTemplateIndex:4973;
+   ToTemplateIndex:4974;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSIGND';
-   FromTemplateIndex:4987;
-   ToTemplateIndex:4988;
+   FromTemplateIndex:4975;
+   ToTemplateIndex:4976;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSIGNW';
-   FromTemplateIndex:4989;
-   ToTemplateIndex:4990;
+   FromTemplateIndex:4977;
+   ToTemplateIndex:4978;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSLLD';
-   FromTemplateIndex:4991;
-   ToTemplateIndex:5000;
+   FromTemplateIndex:4979;
+   ToTemplateIndex:4988;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSLLDQ';
-   FromTemplateIndex:5001;
-   ToTemplateIndex:5005;
+   FromTemplateIndex:4989;
+   ToTemplateIndex:4993;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSLLQ';
-   FromTemplateIndex:5006;
-   ToTemplateIndex:5015;
+   FromTemplateIndex:4994;
+   ToTemplateIndex:5003;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSLLVD';
-   FromTemplateIndex:5016;
-   ToTemplateIndex:5020;
+   FromTemplateIndex:5004;
+   ToTemplateIndex:5008;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSLLVQ';
-   FromTemplateIndex:5021;
-   ToTemplateIndex:5025;
+   FromTemplateIndex:5009;
+   ToTemplateIndex:5013;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSLLVW';
-   FromTemplateIndex:5026;
-   ToTemplateIndex:5028;
+   FromTemplateIndex:5014;
+   ToTemplateIndex:5016;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSLLW';
-   FromTemplateIndex:5029;
-   ToTemplateIndex:5038;
+   FromTemplateIndex:5017;
+   ToTemplateIndex:5026;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSRAD';
-   FromTemplateIndex:5039;
-   ToTemplateIndex:5048;
+   FromTemplateIndex:5027;
+   ToTemplateIndex:5036;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSRAQ';
-   FromTemplateIndex:5049;
-   ToTemplateIndex:5054;
+   FromTemplateIndex:5037;
+   ToTemplateIndex:5042;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSRAVD';
-   FromTemplateIndex:5055;
-   ToTemplateIndex:5059;
+   FromTemplateIndex:5043;
+   ToTemplateIndex:5047;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSRAVQ';
-   FromTemplateIndex:5060;
-   ToTemplateIndex:5062;
+   FromTemplateIndex:5048;
+   ToTemplateIndex:5050;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSRAVW';
-   FromTemplateIndex:5063;
-   ToTemplateIndex:5065;
+   FromTemplateIndex:5051;
+   ToTemplateIndex:5053;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSRAW';
-   FromTemplateIndex:5066;
-   ToTemplateIndex:5075;
+   FromTemplateIndex:5054;
+   ToTemplateIndex:5063;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSRLD';
-   FromTemplateIndex:5076;
-   ToTemplateIndex:5085;
+   FromTemplateIndex:5064;
+   ToTemplateIndex:5073;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSRLDQ';
-   FromTemplateIndex:5086;
-   ToTemplateIndex:5090;
+   FromTemplateIndex:5074;
+   ToTemplateIndex:5078;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSRLQ';
-   FromTemplateIndex:5091;
-   ToTemplateIndex:5100;
+   FromTemplateIndex:5079;
+   ToTemplateIndex:5088;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSRLVD';
-   FromTemplateIndex:5101;
-   ToTemplateIndex:5105;
+   FromTemplateIndex:5089;
+   ToTemplateIndex:5093;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSRLVQ';
-   FromTemplateIndex:5106;
-   ToTemplateIndex:5110;
+   FromTemplateIndex:5094;
+   ToTemplateIndex:5098;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSRLVW';
-   FromTemplateIndex:5111;
-   ToTemplateIndex:5113;
+   FromTemplateIndex:5099;
+   ToTemplateIndex:5101;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSRLW';
-   FromTemplateIndex:5114;
-   ToTemplateIndex:5123;
+   FromTemplateIndex:5102;
+   ToTemplateIndex:5111;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSUBB';
-   FromTemplateIndex:5124;
-   ToTemplateIndex:5128;
+   FromTemplateIndex:5112;
+   ToTemplateIndex:5116;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSUBD';
-   FromTemplateIndex:5129;
-   ToTemplateIndex:5133;
+   FromTemplateIndex:5117;
+   ToTemplateIndex:5121;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSUBQ';
-   FromTemplateIndex:5134;
-   ToTemplateIndex:5138;
+   FromTemplateIndex:5122;
+   ToTemplateIndex:5126;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSUBSB';
-   FromTemplateIndex:5139;
-   ToTemplateIndex:5143;
+   FromTemplateIndex:5127;
+   ToTemplateIndex:5131;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSUBSW';
-   FromTemplateIndex:5144;
-   ToTemplateIndex:5148;
+   FromTemplateIndex:5132;
+   ToTemplateIndex:5136;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSUBUSB';
-   FromTemplateIndex:5149;
-   ToTemplateIndex:5153;
+   FromTemplateIndex:5137;
+   ToTemplateIndex:5141;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSUBUSW';
-   FromTemplateIndex:5154;
-   ToTemplateIndex:5158;
+   FromTemplateIndex:5142;
+   ToTemplateIndex:5146;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPSUBW';
-   FromTemplateIndex:5159;
-   ToTemplateIndex:5163;
+   FromTemplateIndex:5147;
+   ToTemplateIndex:5151;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPTERNLOGD';
-   FromTemplateIndex:5164;
-   ToTemplateIndex:5166;
+   FromTemplateIndex:5152;
+   ToTemplateIndex:5154;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPTERNLOGQ';
-   FromTemplateIndex:5167;
-   ToTemplateIndex:5169;
+   FromTemplateIndex:5155;
+   ToTemplateIndex:5157;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VPTEST';
-   FromTemplateIndex:5170;
-   ToTemplateIndex:5171;
+   FromTemplateIndex:5158;
+   ToTemplateIndex:5159;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VPTESTMB';
+   FromTemplateIndex:5160;
+   ToTemplateIndex:5162;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPTESTMD';
+   FromTemplateIndex:5163;
+   ToTemplateIndex:5165;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPTESTMQ';
+   FromTemplateIndex:5166;
+   ToTemplateIndex:5168;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPTESTMW';
+   FromTemplateIndex:5169;
+   ToTemplateIndex:5171;
+   BitSize:256;
+   MaximalCountOperands:3;
+  ),
+  (
+   Name:'VPTESTNMB';
    FromTemplateIndex:5172;
    ToTemplateIndex:5174;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VPTESTMD';
+   Name:'VPTESTNMD';
    FromTemplateIndex:5175;
    ToTemplateIndex:5177;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VPTESTMQ';
+   Name:'VPTESTNMQ';
    FromTemplateIndex:5178;
    ToTemplateIndex:5180;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VPTESTMW';
+   Name:'VPTESTNMW';
    FromTemplateIndex:5181;
    ToTemplateIndex:5183;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
-   Name:'VPTESTNMB';
-   FromTemplateIndex:5184;
-   ToTemplateIndex:5186;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPTESTNMD';
-   FromTemplateIndex:5187;
-   ToTemplateIndex:5189;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPTESTNMQ';
-   FromTemplateIndex:5190;
-   ToTemplateIndex:5192;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
-   Name:'VPTESTNMW';
-   FromTemplateIndex:5193;
-   ToTemplateIndex:5195;
-   BitSize:256;
-   MaximalCountOperands:3;
-  ),
-  (
    Name:'VPUNPCKHBW';
-   FromTemplateIndex:5196;
-   ToTemplateIndex:5200;
+   FromTemplateIndex:5184;
+   ToTemplateIndex:5188;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPUNPCKHDQ';
-   FromTemplateIndex:5201;
-   ToTemplateIndex:5205;
+   FromTemplateIndex:5189;
+   ToTemplateIndex:5193;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPUNPCKHQDQ';
-   FromTemplateIndex:5206;
-   ToTemplateIndex:5210;
+   FromTemplateIndex:5194;
+   ToTemplateIndex:5198;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPUNPCKHWD';
-   FromTemplateIndex:5211;
-   ToTemplateIndex:5215;
+   FromTemplateIndex:5199;
+   ToTemplateIndex:5203;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPUNPCKLBW';
-   FromTemplateIndex:5216;
-   ToTemplateIndex:5220;
+   FromTemplateIndex:5204;
+   ToTemplateIndex:5208;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPUNPCKLDQ';
-   FromTemplateIndex:5221;
-   ToTemplateIndex:5225;
+   FromTemplateIndex:5209;
+   ToTemplateIndex:5213;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPUNPCKLQDQ';
-   FromTemplateIndex:5226;
-   ToTemplateIndex:5230;
+   FromTemplateIndex:5214;
+   ToTemplateIndex:5218;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPUNPCKLWD';
-   FromTemplateIndex:5231;
-   ToTemplateIndex:5235;
+   FromTemplateIndex:5219;
+   ToTemplateIndex:5223;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPXOR';
-   FromTemplateIndex:5236;
-   ToTemplateIndex:5237;
+   FromTemplateIndex:5224;
+   ToTemplateIndex:5225;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPXORD';
-   FromTemplateIndex:5238;
-   ToTemplateIndex:5240;
+   FromTemplateIndex:5226;
+   ToTemplateIndex:5228;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VPXORQ';
-   FromTemplateIndex:5241;
-   ToTemplateIndex:5243;
+   FromTemplateIndex:5229;
+   ToTemplateIndex:5231;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VRANGEPD';
-   FromTemplateIndex:5244;
-   ToTemplateIndex:5246;
+   FromTemplateIndex:5232;
+   ToTemplateIndex:5234;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VRANGEPS';
-   FromTemplateIndex:5247;
-   ToTemplateIndex:5249;
+   FromTemplateIndex:5235;
+   ToTemplateIndex:5237;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VRANGESD';
-   FromTemplateIndex:5250;
-   ToTemplateIndex:5250;
+   FromTemplateIndex:5238;
+   ToTemplateIndex:5238;
    BitSize:64;
    MaximalCountOperands:4;
   ),
   (
    Name:'VRANGESS';
-   FromTemplateIndex:5251;
-   ToTemplateIndex:5251;
+   FromTemplateIndex:5239;
+   ToTemplateIndex:5239;
    BitSize:32;
    MaximalCountOperands:4;
   ),
   (
    Name:'VRCP14PD';
-   FromTemplateIndex:5252;
-   ToTemplateIndex:5254;
+   FromTemplateIndex:5240;
+   ToTemplateIndex:5242;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VRCP14PS';
-   FromTemplateIndex:5255;
-   ToTemplateIndex:5257;
+   FromTemplateIndex:5243;
+   ToTemplateIndex:5245;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VRCP14SD';
-   FromTemplateIndex:5258;
-   ToTemplateIndex:5258;
+   FromTemplateIndex:5246;
+   ToTemplateIndex:5246;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VRCP14SS';
-   FromTemplateIndex:5259;
-   ToTemplateIndex:5259;
+   FromTemplateIndex:5247;
+   ToTemplateIndex:5247;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VRCP28PD';
-   FromTemplateIndex:5260;
-   ToTemplateIndex:5260;
+   FromTemplateIndex:5248;
+   ToTemplateIndex:5248;
    BitSize:0;
    MaximalCountOperands:2;
   ),
   (
    Name:'VRCP28PS';
-   FromTemplateIndex:5261;
-   ToTemplateIndex:5261;
+   FromTemplateIndex:5249;
+   ToTemplateIndex:5249;
    BitSize:0;
    MaximalCountOperands:2;
   ),
   (
    Name:'VRCP28SD';
-   FromTemplateIndex:5262;
-   ToTemplateIndex:5262;
+   FromTemplateIndex:5250;
+   ToTemplateIndex:5250;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VRCP28SS';
-   FromTemplateIndex:5263;
-   ToTemplateIndex:5263;
+   FromTemplateIndex:5251;
+   ToTemplateIndex:5251;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VRCPPS';
-   FromTemplateIndex:5264;
-   ToTemplateIndex:5265;
+   FromTemplateIndex:5252;
+   ToTemplateIndex:5253;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VRCPSS';
-   FromTemplateIndex:5266;
-   ToTemplateIndex:5266;
+   FromTemplateIndex:5254;
+   ToTemplateIndex:5254;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VREDUCEPD';
-   FromTemplateIndex:5267;
-   ToTemplateIndex:5269;
+   FromTemplateIndex:5255;
+   ToTemplateIndex:5257;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VREDUCEPS';
-   FromTemplateIndex:5270;
-   ToTemplateIndex:5272;
+   FromTemplateIndex:5258;
+   ToTemplateIndex:5260;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VREDUCESD';
-   FromTemplateIndex:5273;
-   ToTemplateIndex:5273;
+   FromTemplateIndex:5261;
+   ToTemplateIndex:5261;
    BitSize:64;
    MaximalCountOperands:4;
   ),
   (
    Name:'VREDUCESS';
-   FromTemplateIndex:5274;
-   ToTemplateIndex:5274;
+   FromTemplateIndex:5262;
+   ToTemplateIndex:5262;
    BitSize:32;
    MaximalCountOperands:4;
   ),
   (
    Name:'VRNDSCALEPD';
-   FromTemplateIndex:5275;
-   ToTemplateIndex:5277;
+   FromTemplateIndex:5263;
+   ToTemplateIndex:5265;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VRNDSCALEPS';
-   FromTemplateIndex:5278;
-   ToTemplateIndex:5280;
+   FromTemplateIndex:5266;
+   ToTemplateIndex:5268;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VRNDSCALESD';
-   FromTemplateIndex:5281;
-   ToTemplateIndex:5281;
+   FromTemplateIndex:5269;
+   ToTemplateIndex:5269;
    BitSize:64;
    MaximalCountOperands:4;
   ),
   (
    Name:'VRNDSCALESS';
-   FromTemplateIndex:5282;
-   ToTemplateIndex:5282;
+   FromTemplateIndex:5270;
+   ToTemplateIndex:5270;
    BitSize:32;
    MaximalCountOperands:4;
   ),
   (
    Name:'VROUNDPD';
-   FromTemplateIndex:5283;
-   ToTemplateIndex:5284;
+   FromTemplateIndex:5271;
+   ToTemplateIndex:5272;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VROUNDPS';
-   FromTemplateIndex:5285;
-   ToTemplateIndex:5286;
+   FromTemplateIndex:5273;
+   ToTemplateIndex:5274;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VROUNDSD';
-   FromTemplateIndex:5287;
-   ToTemplateIndex:5287;
+   FromTemplateIndex:5275;
+   ToTemplateIndex:5275;
    BitSize:64;
    MaximalCountOperands:4;
   ),
   (
    Name:'VROUNDSS';
-   FromTemplateIndex:5288;
-   ToTemplateIndex:5288;
+   FromTemplateIndex:5276;
+   ToTemplateIndex:5276;
    BitSize:32;
    MaximalCountOperands:4;
   ),
   (
    Name:'VRSQRT14PD';
-   FromTemplateIndex:5289;
-   ToTemplateIndex:5291;
+   FromTemplateIndex:5277;
+   ToTemplateIndex:5279;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VRSQRT14PS';
-   FromTemplateIndex:5292;
-   ToTemplateIndex:5294;
+   FromTemplateIndex:5280;
+   ToTemplateIndex:5282;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VRSQRT14SD';
-   FromTemplateIndex:5295;
-   ToTemplateIndex:5295;
+   FromTemplateIndex:5283;
+   ToTemplateIndex:5283;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VRSQRT14SS';
-   FromTemplateIndex:5296;
-   ToTemplateIndex:5296;
+   FromTemplateIndex:5284;
+   ToTemplateIndex:5284;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VRSQRT28PD';
-   FromTemplateIndex:5297;
-   ToTemplateIndex:5297;
+   FromTemplateIndex:5285;
+   ToTemplateIndex:5285;
    BitSize:0;
    MaximalCountOperands:2;
   ),
   (
    Name:'VRSQRT28PS';
-   FromTemplateIndex:5298;
-   ToTemplateIndex:5298;
+   FromTemplateIndex:5286;
+   ToTemplateIndex:5286;
    BitSize:0;
    MaximalCountOperands:2;
   ),
   (
    Name:'VRSQRT28SD';
-   FromTemplateIndex:5299;
-   ToTemplateIndex:5299;
+   FromTemplateIndex:5287;
+   ToTemplateIndex:5287;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VRSQRT28SS';
-   FromTemplateIndex:5300;
-   ToTemplateIndex:5300;
+   FromTemplateIndex:5288;
+   ToTemplateIndex:5288;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VRSQRTPS';
-   FromTemplateIndex:5301;
-   ToTemplateIndex:5302;
+   FromTemplateIndex:5289;
+   ToTemplateIndex:5290;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VRSQRTSS';
-   FromTemplateIndex:5303;
-   ToTemplateIndex:5303;
+   FromTemplateIndex:5291;
+   ToTemplateIndex:5291;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VSCALEFPD';
-   FromTemplateIndex:5304;
-   ToTemplateIndex:5306;
+   FromTemplateIndex:5292;
+   ToTemplateIndex:5294;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VSCALEFPS';
-   FromTemplateIndex:5307;
-   ToTemplateIndex:5309;
+   FromTemplateIndex:5295;
+   ToTemplateIndex:5297;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VSCALEFSD';
-   FromTemplateIndex:5310;
-   ToTemplateIndex:5310;
+   FromTemplateIndex:5298;
+   ToTemplateIndex:5298;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VSCALEFSS';
-   FromTemplateIndex:5311;
-   ToTemplateIndex:5311;
+   FromTemplateIndex:5299;
+   ToTemplateIndex:5299;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VSCATTERDPD';
-   FromTemplateIndex:5312;
-   ToTemplateIndex:5314;
+   FromTemplateIndex:5300;
+   ToTemplateIndex:5302;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VSCATTERDPS';
-   FromTemplateIndex:5315;
-   ToTemplateIndex:5317;
+   FromTemplateIndex:5303;
+   ToTemplateIndex:5305;
    BitSize:32;
    MaximalCountOperands:2;
   ),
   (
    Name:'VSCATTERPF0DPD';
-   FromTemplateIndex:5318;
-   ToTemplateIndex:5318;
+   FromTemplateIndex:5306;
+   ToTemplateIndex:5306;
    BitSize:64;
    MaximalCountOperands:1;
   ),
   (
    Name:'VSCATTERPF0DPS';
-   FromTemplateIndex:5319;
-   ToTemplateIndex:5319;
+   FromTemplateIndex:5307;
+   ToTemplateIndex:5307;
    BitSize:32;
    MaximalCountOperands:1;
   ),
   (
    Name:'VSCATTERPF0QPD';
-   FromTemplateIndex:5320;
-   ToTemplateIndex:5320;
+   FromTemplateIndex:5308;
+   ToTemplateIndex:5308;
    BitSize:64;
    MaximalCountOperands:1;
   ),
   (
    Name:'VSCATTERPF0QPS';
-   FromTemplateIndex:5321;
-   ToTemplateIndex:5321;
+   FromTemplateIndex:5309;
+   ToTemplateIndex:5309;
    BitSize:32;
    MaximalCountOperands:1;
   ),
   (
    Name:'VSCATTERPF1DPD';
-   FromTemplateIndex:5322;
-   ToTemplateIndex:5322;
+   FromTemplateIndex:5310;
+   ToTemplateIndex:5310;
    BitSize:64;
    MaximalCountOperands:1;
   ),
   (
    Name:'VSCATTERPF1DPS';
-   FromTemplateIndex:5323;
-   ToTemplateIndex:5323;
+   FromTemplateIndex:5311;
+   ToTemplateIndex:5311;
    BitSize:32;
    MaximalCountOperands:1;
   ),
   (
    Name:'VSCATTERPF1QPD';
-   FromTemplateIndex:5324;
-   ToTemplateIndex:5324;
+   FromTemplateIndex:5312;
+   ToTemplateIndex:5312;
    BitSize:64;
    MaximalCountOperands:1;
   ),
   (
    Name:'VSCATTERPF1QPS';
-   FromTemplateIndex:5325;
-   ToTemplateIndex:5325;
+   FromTemplateIndex:5313;
+   ToTemplateIndex:5313;
    BitSize:32;
    MaximalCountOperands:1;
   ),
   (
    Name:'VSCATTERQPD';
-   FromTemplateIndex:5326;
-   ToTemplateIndex:5328;
+   FromTemplateIndex:5314;
+   ToTemplateIndex:5316;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VSCATTERQPS';
-   FromTemplateIndex:5329;
-   ToTemplateIndex:5331;
+   FromTemplateIndex:5317;
+   ToTemplateIndex:5319;
    BitSize:32;
    MaximalCountOperands:2;
   ),
   (
    Name:'VSHUFF32X4';
-   FromTemplateIndex:5332;
-   ToTemplateIndex:5333;
+   FromTemplateIndex:5320;
+   ToTemplateIndex:5321;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VSHUFF64X2';
-   FromTemplateIndex:5334;
-   ToTemplateIndex:5335;
+   FromTemplateIndex:5322;
+   ToTemplateIndex:5323;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VSHUFI32X4';
-   FromTemplateIndex:5336;
-   ToTemplateIndex:5337;
+   FromTemplateIndex:5324;
+   ToTemplateIndex:5325;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VSHUFI64X2';
-   FromTemplateIndex:5338;
-   ToTemplateIndex:5339;
+   FromTemplateIndex:5326;
+   ToTemplateIndex:5327;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VSHUFPD';
-   FromTemplateIndex:5340;
-   ToTemplateIndex:5344;
+   FromTemplateIndex:5328;
+   ToTemplateIndex:5332;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VSHUFPS';
-   FromTemplateIndex:5345;
-   ToTemplateIndex:5349;
+   FromTemplateIndex:5333;
+   ToTemplateIndex:5337;
    BitSize:256;
    MaximalCountOperands:4;
   ),
   (
    Name:'VSQRTPD';
-   FromTemplateIndex:5350;
-   ToTemplateIndex:5354;
+   FromTemplateIndex:5338;
+   ToTemplateIndex:5342;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VSQRTPS';
-   FromTemplateIndex:5355;
-   ToTemplateIndex:5359;
+   FromTemplateIndex:5343;
+   ToTemplateIndex:5347;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VSQRTSD';
-   FromTemplateIndex:5360;
-   ToTemplateIndex:5361;
+   FromTemplateIndex:5348;
+   ToTemplateIndex:5349;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VSQRTSS';
-   FromTemplateIndex:5362;
-   ToTemplateIndex:5363;
+   FromTemplateIndex:5350;
+   ToTemplateIndex:5351;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VSTMXCSR';
-   FromTemplateIndex:5364;
-   ToTemplateIndex:5364;
+   FromTemplateIndex:5352;
+   ToTemplateIndex:5352;
    BitSize:32;
    MaximalCountOperands:1;
   ),
   (
    Name:'VSUBPD';
-   FromTemplateIndex:5365;
-   ToTemplateIndex:5369;
+   FromTemplateIndex:5353;
+   ToTemplateIndex:5357;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VSUBPS';
-   FromTemplateIndex:5370;
-   ToTemplateIndex:5374;
+   FromTemplateIndex:5358;
+   ToTemplateIndex:5362;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VSUBSD';
-   FromTemplateIndex:5375;
-   ToTemplateIndex:5376;
+   FromTemplateIndex:5363;
+   ToTemplateIndex:5364;
    BitSize:64;
    MaximalCountOperands:3;
   ),
   (
    Name:'VSUBSS';
-   FromTemplateIndex:5377;
-   ToTemplateIndex:5378;
+   FromTemplateIndex:5365;
+   ToTemplateIndex:5366;
    BitSize:32;
    MaximalCountOperands:3;
   ),
   (
    Name:'VTESTPD';
-   FromTemplateIndex:5379;
-   ToTemplateIndex:5380;
+   FromTemplateIndex:5367;
+   ToTemplateIndex:5368;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VTESTPS';
-   FromTemplateIndex:5381;
-   ToTemplateIndex:5382;
+   FromTemplateIndex:5369;
+   ToTemplateIndex:5370;
    BitSize:256;
    MaximalCountOperands:2;
   ),
   (
    Name:'VUCOMISD';
-   FromTemplateIndex:5383;
-   ToTemplateIndex:5384;
+   FromTemplateIndex:5371;
+   ToTemplateIndex:5372;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'VUCOMISS';
-   FromTemplateIndex:5385;
-   ToTemplateIndex:5386;
+   FromTemplateIndex:5373;
+   ToTemplateIndex:5374;
    BitSize:32;
    MaximalCountOperands:2;
   ),
   (
    Name:'VUNPCKHPD';
-   FromTemplateIndex:5387;
-   ToTemplateIndex:5391;
+   FromTemplateIndex:5375;
+   ToTemplateIndex:5379;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VUNPCKHPS';
-   FromTemplateIndex:5392;
-   ToTemplateIndex:5396;
+   FromTemplateIndex:5380;
+   ToTemplateIndex:5384;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VUNPCKLPD';
-   FromTemplateIndex:5397;
-   ToTemplateIndex:5401;
+   FromTemplateIndex:5385;
+   ToTemplateIndex:5389;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VUNPCKLPS';
-   FromTemplateIndex:5402;
-   ToTemplateIndex:5406;
+   FromTemplateIndex:5390;
+   ToTemplateIndex:5394;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VXORPD';
-   FromTemplateIndex:5407;
-   ToTemplateIndex:5411;
+   FromTemplateIndex:5395;
+   ToTemplateIndex:5399;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VXORPS';
-   FromTemplateIndex:5412;
-   ToTemplateIndex:5416;
+   FromTemplateIndex:5400;
+   ToTemplateIndex:5404;
    BitSize:256;
    MaximalCountOperands:3;
   ),
   (
    Name:'VZEROALL';
-   FromTemplateIndex:5417;
-   ToTemplateIndex:5417;
+   FromTemplateIndex:5405;
+   ToTemplateIndex:5405;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'VZEROUPPER';
-   FromTemplateIndex:5418;
-   ToTemplateIndex:5418;
+   FromTemplateIndex:5406;
+   ToTemplateIndex:5406;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'WBINVD';
-   FromTemplateIndex:5419;
-   ToTemplateIndex:5419;
+   FromTemplateIndex:5407;
+   ToTemplateIndex:5407;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'WRFSBASE';
-   FromTemplateIndex:5420;
-   ToTemplateIndex:5421;
+   FromTemplateIndex:5408;
+   ToTemplateIndex:5409;
    BitSize:64;
    MaximalCountOperands:1;
   ),
   (
    Name:'WRGSBASE';
-   FromTemplateIndex:5422;
-   ToTemplateIndex:5423;
+   FromTemplateIndex:5410;
+   ToTemplateIndex:5411;
    BitSize:64;
    MaximalCountOperands:1;
   ),
   (
    Name:'WRMSR';
-   FromTemplateIndex:5424;
-   ToTemplateIndex:5424;
+   FromTemplateIndex:5412;
+   ToTemplateIndex:5412;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'WRPKRU';
-   FromTemplateIndex:5425;
-   ToTemplateIndex:5425;
+   FromTemplateIndex:5413;
+   ToTemplateIndex:5413;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'WRSHR';
-   FromTemplateIndex:5426;
-   ToTemplateIndex:5426;
+   FromTemplateIndex:5414;
+   ToTemplateIndex:5414;
    BitSize:32;
    MaximalCountOperands:1;
   ),
   (
    Name:'XABORT';
-   FromTemplateIndex:5427;
-   ToTemplateIndex:5428;
+   FromTemplateIndex:5415;
+   ToTemplateIndex:5416;
    BitSize:8;
    MaximalCountOperands:1;
   ),
   (
    Name:'XADD';
-   FromTemplateIndex:5429;
-   ToTemplateIndex:5436;
+   FromTemplateIndex:5417;
+   ToTemplateIndex:5424;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'XBEGIN';
-   FromTemplateIndex:5437;
-   ToTemplateIndex:5444;
+   FromTemplateIndex:5425;
+   ToTemplateIndex:5432;
    BitSize:64;
    MaximalCountOperands:1;
   ),
   (
    Name:'XBTS';
-   FromTemplateIndex:5445;
-   ToTemplateIndex:5448;
+   FromTemplateIndex:5433;
+   ToTemplateIndex:5436;
    BitSize:32;
    MaximalCountOperands:2;
   ),
   (
    Name:'XCHG';
-   FromTemplateIndex:5449;
-   ToTemplateIndex:5471;
+   FromTemplateIndex:5437;
+   ToTemplateIndex:5459;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'XCRYPTCBC';
-   FromTemplateIndex:5472;
-   ToTemplateIndex:5472;
+   FromTemplateIndex:5460;
+   ToTemplateIndex:5460;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'XCRYPTCFB';
-   FromTemplateIndex:5473;
-   ToTemplateIndex:5473;
+   FromTemplateIndex:5461;
+   ToTemplateIndex:5461;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'XCRYPTCTR';
-   FromTemplateIndex:5474;
-   ToTemplateIndex:5474;
+   FromTemplateIndex:5462;
+   ToTemplateIndex:5462;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'XCRYPTECB';
-   FromTemplateIndex:5475;
-   ToTemplateIndex:5475;
+   FromTemplateIndex:5463;
+   ToTemplateIndex:5463;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'XCRYPTOFB';
-   FromTemplateIndex:5476;
-   ToTemplateIndex:5476;
+   FromTemplateIndex:5464;
+   ToTemplateIndex:5464;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'XEND';
-   FromTemplateIndex:5477;
-   ToTemplateIndex:5477;
+   FromTemplateIndex:5465;
+   ToTemplateIndex:5465;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'XGETBV';
-   FromTemplateIndex:5478;
-   ToTemplateIndex:5478;
+   FromTemplateIndex:5466;
+   ToTemplateIndex:5466;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'XLAT';
-   FromTemplateIndex:5479;
-   ToTemplateIndex:5479;
+   FromTemplateIndex:5467;
+   ToTemplateIndex:5467;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'XLATB';
-   FromTemplateIndex:5480;
-   ToTemplateIndex:5480;
+   FromTemplateIndex:5468;
+   ToTemplateIndex:5468;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'XOR';
-   FromTemplateIndex:5481;
-   ToTemplateIndex:5519;
+   FromTemplateIndex:5469;
+   ToTemplateIndex:5507;
    BitSize:64;
    MaximalCountOperands:2;
   ),
   (
    Name:'XORPD';
-   FromTemplateIndex:5520;
-   ToTemplateIndex:5520;
+   FromTemplateIndex:5508;
+   ToTemplateIndex:5508;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
    Name:'XORPS';
-   FromTemplateIndex:5521;
-   ToTemplateIndex:5521;
+   FromTemplateIndex:5509;
+   ToTemplateIndex:5509;
    BitSize:128;
    MaximalCountOperands:2;
   ),
   (
    Name:'XRSTOR';
-   FromTemplateIndex:5522;
-   ToTemplateIndex:5522;
+   FromTemplateIndex:5510;
+   ToTemplateIndex:5510;
    BitSize:0;
    MaximalCountOperands:1;
   ),
   (
    Name:'XRSTOR64';
-   FromTemplateIndex:5523;
-   ToTemplateIndex:5523;
+   FromTemplateIndex:5511;
+   ToTemplateIndex:5511;
    BitSize:0;
    MaximalCountOperands:1;
   ),
   (
    Name:'XRSTORS';
-   FromTemplateIndex:5524;
-   ToTemplateIndex:5524;
+   FromTemplateIndex:5512;
+   ToTemplateIndex:5512;
    BitSize:0;
    MaximalCountOperands:1;
   ),
   (
    Name:'XRSTORS64';
-   FromTemplateIndex:5525;
-   ToTemplateIndex:5525;
+   FromTemplateIndex:5513;
+   ToTemplateIndex:5513;
    BitSize:0;
    MaximalCountOperands:1;
   ),
   (
    Name:'XSAVE';
-   FromTemplateIndex:5526;
-   ToTemplateIndex:5526;
+   FromTemplateIndex:5514;
+   ToTemplateIndex:5514;
    BitSize:0;
    MaximalCountOperands:1;
   ),
   (
    Name:'XSAVE64';
-   FromTemplateIndex:5527;
-   ToTemplateIndex:5527;
+   FromTemplateIndex:5515;
+   ToTemplateIndex:5515;
    BitSize:0;
    MaximalCountOperands:1;
   ),
   (
    Name:'XSAVEC';
-   FromTemplateIndex:5528;
-   ToTemplateIndex:5528;
+   FromTemplateIndex:5516;
+   ToTemplateIndex:5516;
    BitSize:0;
    MaximalCountOperands:1;
   ),
   (
    Name:'XSAVEC64';
-   FromTemplateIndex:5529;
-   ToTemplateIndex:5529;
+   FromTemplateIndex:5517;
+   ToTemplateIndex:5517;
    BitSize:0;
    MaximalCountOperands:1;
   ),
   (
    Name:'XSAVEOPT';
-   FromTemplateIndex:5530;
-   ToTemplateIndex:5530;
+   FromTemplateIndex:5518;
+   ToTemplateIndex:5518;
    BitSize:0;
    MaximalCountOperands:1;
   ),
   (
    Name:'XSAVEOPT64';
-   FromTemplateIndex:5531;
-   ToTemplateIndex:5531;
+   FromTemplateIndex:5519;
+   ToTemplateIndex:5519;
    BitSize:0;
    MaximalCountOperands:1;
   ),
   (
    Name:'XSAVES';
-   FromTemplateIndex:5532;
-   ToTemplateIndex:5532;
+   FromTemplateIndex:5520;
+   ToTemplateIndex:5520;
    BitSize:0;
    MaximalCountOperands:1;
   ),
   (
    Name:'XSAVES64';
-   FromTemplateIndex:5533;
-   ToTemplateIndex:5533;
+   FromTemplateIndex:5521;
+   ToTemplateIndex:5521;
    BitSize:0;
    MaximalCountOperands:1;
   ),
   (
    Name:'XSETBV';
-   FromTemplateIndex:5534;
-   ToTemplateIndex:5534;
+   FromTemplateIndex:5522;
+   ToTemplateIndex:5522;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'XSHA1';
-   FromTemplateIndex:5535;
-   ToTemplateIndex:5535;
+   FromTemplateIndex:5523;
+   ToTemplateIndex:5523;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'XSHA256';
-   FromTemplateIndex:5536;
-   ToTemplateIndex:5536;
+   FromTemplateIndex:5524;
+   ToTemplateIndex:5524;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'XSTORE';
-   FromTemplateIndex:5537;
-   ToTemplateIndex:5537;
+   FromTemplateIndex:5525;
+   ToTemplateIndex:5525;
    BitSize:0;
    MaximalCountOperands:0;
   ),
   (
    Name:'XTEST';
-   FromTemplateIndex:5538;
-   ToTemplateIndex:5538;
+   FromTemplateIndex:5526;
+   ToTemplateIndex:5526;
    BitSize:0;
    MaximalCountOperands:0;
   )
