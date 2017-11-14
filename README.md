@@ -2,7 +2,7 @@
 
 SASM (Scriptable ASseMbler) is a x86 assembler with ECMAScript as (additional) macro language as an optional compile-in-option 
 
-# Features
+## Features
 
 - Support for x86-16, x86-32 and x86-64 targets 
   - since 2015, it's based on the opcode tables from the NASM project, before 2015, the whole x86 ISA code generation was hardcoded 
@@ -26,16 +26,20 @@ SASM (Scriptable ASseMbler) is a x86 assembler with ECMAScript as (additional) m
 - Floating point number literal parsing up to inoffical 512 bit FP data formats.
 - And many more features . . . 
 
-# Requirements
+## Requirements
 
 - Delphi or FreePascal as compiler for to compile SASM itself
 - PUCU.pas from https://github.com/BeRo1985/pucu for unicode handling stuff
 - Optional together with SASMBESEN as define: BESEN*.pas from https://github.com/BeRo1985/besen 
 
-# License
+## Support me
+
+[Support me at Patreon](https://www.patreon.com/bero)
+
+## License
 
 zlib, otherwise see beginning comment of https://github.com/BeRo1985/sasm/blob/master/src/SASM.inc
 
-# General guidelines for code contributors
+## General guidelines for code contributors
 
 See beginning comment of https://github.com/BeRo1985/sasm/blob/master/src/SASM.inc
