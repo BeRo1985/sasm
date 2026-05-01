@@ -1,3 +1,7 @@
+> [!IMPORTANT]
+> The primary repository has moved to [git.rosseaux.net/BeRo1985/sasm](https://git.rosseaux.net/BeRo1985/sasm).
+> This GitHub repository is kept up-to-date via push mirroring.
+
 # SASM
 
 SASM (Scriptable ASseMbler) is a x86 assembler with ECMAScript as (additional) macro language as an optional compile-in-option 
